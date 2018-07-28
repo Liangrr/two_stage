@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inp {
+            color:  #ccc;
+        }
+        .error {
+            color: red;
+            display: none;  
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text" value="请输入内容" class="inp">
+        <span class="error"></span>
+    </div>
+    <ul class="libox">
+
+    </ul>
+    <script>
+        // 文本框模仿placeholder功能
+        var inp = document.querySelector('.inp');
+        var ulBox = document.querySelector('.libox');
+        inp.onfocus = function() {
+            this.style.color = '#000';
+            this.nextElementSibling.style.display = 'none'
+            if(this.value == '请输入内容') {
+                this.value = ''
+            }
+        }
+        inp.onblur = function() {
+            if(this.value == '') {
+                this.value = '请输入内容'
+                this.style.color = '#ccc';
+            }
+        }
+        inp.onkeydown = function(ev) {
+            ev = ev || window.event;
+            var keyCode = ev.keyCode || ev.which;
+            if(keyCode == 13 && ev.ctrlKey) {
+                var reg = /^1[35789]\d{9}$/
+                if(reg.test(this.value)) {
+                    var li = document.createElement('li')
+                    li.innerHTML = this.value
+                    ulBox.appendChild(li);
+                    this.value = ''
+                } else {
+                    this.nextElementSibling.style.display = 'inline'
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

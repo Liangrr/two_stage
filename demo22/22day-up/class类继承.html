@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         class People {
+            constructor(name, age) {
+                // 里面写私有属性
+                this.name = name;
+                this.age = age;
+            }
+            // 没有逗号
+            // 外面的方法相当于写在People.prototype上面
+            eat() {
+                console.log(this.name + '会吃饭');
+            }
+            run() {
+                console.log(this.name + '会跑步');
+            }
+        }
+        // class 实现继承
+        class Cat extends People {
+            constructor(name, age, color) {
+                super(name, age);
+                // 代表父类的constructor, 必须写在constructor函数内部的第一行
+                this.color = color;
+            }
+            walk() {
+
+            }
+        }
+        // 再写一个继承Cat
+        class Dog extends Cat{
+
+        }
+        var cat = new Cat('小花', 3, 'gray');
+        var dog = new Dog('大毛', 3, 'blod');
+        console.log(cat);
+        console.log(cat instanceof Cat);
+        console.log(cat instanceof People);
+        // console.log();
+        // 检测类继承的父级
+        console.log(Object.getPrototypeOf(Cat) === People)
+        console.log(Object.getPrototypeOf(Dog) === People)
+        console.log(Object.getPrototypeOf(Dog) === Cat)
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul class="ul_box">
+			<li>第一个节点</li>
+			<li>第二个节点</li>
+			<li>第三个节点</li>
+		</ul>
+		<script type="text/javascript">
+			var ul_box = document.querySelector('.ul_box');
+			// 获取子节点
+			var liAll = ul_box.getElementsByTagName('li');
+//			【创建节点】
+			var li_one  = document.createElement('li'); // 创建元素节点
+			var li_text = document.createTextNode('新个节点');// 创建文本节点
+			//  有一个参数，代表标签名
+			// 	创建的全是对象
+			// 创建以后，节点即存在，只是没有显示出来
+			li_one.appendChild(li_text);
+			// 给li_one添加文本节点
+			li_one.setAttribute('class', 'item');
+			// setAttribute添加属性，有两个参数，第一个参数属性名称， 第二个参数属性值
+			li_one.id = 'libox';
+			// 创建属性
+//			var classAttr = document.createAttribute('class', 'item-list')
+			// 【添加节点】
+			// 【以下ele，代表父元素，newEle代表新元素， old代表已经存在额度元素】
+			//【第一种添加方式】
+//			ul_box.appendChild(li_one);
+			// ele.appendChild(newEle),添加到父元素的最后一个子元素\
+			// 参数：newEle， 是你想添加的节点
+			//【第二种添加方式】
+			//  ele.insertBefore(newEle, oldEle);
+//			ul_box.insertBefore(li_one, liAll[1]);
+//			console.log(ul_box);
+//			【删除节点】ele.removeChild(oldEle)
+//			ul_box.removeChild(liAll[1]);
+			//【替换节点】
+//			ele.replaceChild(newEle, oldEle)共有两个参数，第一个是新元素，第二个是要替换的元素
+//			ul_box.replaceChild(li_one, liAll[1]);
+			// 查询： 子节点，父节点，兄弟节点（上一个节点，下一个节点）
+			// 查找子节点ele.childNodes ,没有括号，属于属性，不是方法
+//			console.log(ul_box.childNodes);
+			// 查找子节点ele.parentNode
+//			console.log(liAll[0].parentNode.parentNode.parentNode.parentNode);
+			// 查找下一个节点
+			console.log('下一个节点', ul_box.childNodes[1].nextSibling)
+			// 查找下一个元素节点
+			console.log('下一个元素节点', ul_box.childNodes[1].nextElementSibling)
+			// 查找上一个节点
+			console.log('上一个节点', ul_box.childNodes[1].previousSibling)
+			// 查找上一个元素节点
+			console.log('下一个元素节点', ul_box.childNodes[1].previousElementSibling)
+			// 节点查找不到，返回null，差查找到，返回节点
+		</script>
+	</body>
+</html>

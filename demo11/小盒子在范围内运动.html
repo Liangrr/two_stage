@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.big_box{
+				margin: 100px auto;
+				width: 100px;
+				height: 100px;
+				border: 1px solid; 
+				position: relative;
+			}
+			.box{
+				width: 20px;
+				height: 20px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="big_box">
+			<div class="box">
+			
+			</div>
+		</div>
+		
+	</body>
+	<script src="js/all_purpose.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//		获取盒子,和盒子中的盒子
+		var box  = document.querySelector('.box');
+		var big_box = document.querySelector('.big_box');
+		var x = 0;
+		var y = 0;
+		
+//		设定盒子border为1px
+		big_box.style.borderWidth = 1+'px';
+		
+//		鼠标按下box
+		box.onmousedown = function(event){
+//			进行兼容判断
+			event = event || window.event;
+//			获取盒子距离大盒子
+			var evLeft = event.offsetX;
+			var evTop = event.offsetY;
+			
+			document.onmousemove = function(event){
+//					x = 可视宽度-大盒子距离左边的宽度-小盒子的宽度
+					x = event.clientX - big_box.offsetLeft - evLeft;
+					y = event.clientY - big_box.offsetTop - evTop;
+					
+					if(x<0){
+						x=0;
+					}
+					if(y<0){
+						y=0;
+					}
+//					如果上面的出来的值大于 大小盒子宽度的差值
+					if (x>(big_box.offsetWidth-box.offsetWidth)) {
+//						把值赋给x
+						x = (big_box.offsetWidth-box.offsetWidth) - parseInt(big_box.style.borderWidth)*2 ;
+					}
+					if (y>(big_box.offsetHeight-box.offsetHeight)) {
+						y = (big_box.offsetHeight-box.offsetHeight) - parseInt(big_box.style.borderWidth)*2;
+					}
+					box.style.left = x + 'px';
+					box.style.top = y + 'px';
+				
+			}
+		}
+		box.onmouseup = function(event){
+			event = event || window.event;
+			document.onmousemove = null;
+		}
+	
+	</script>
+</html>

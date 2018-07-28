@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//  全局作用域，相当于客厅
+			var haiFeiSi = '1/3瓶'
+			function zhangFei() {
+				// 张潮坤的卧室
+//				var a
+//				var b
+//				var c
+				var haiFeiSi = '半瓶'
+				haiFeiSi = '1/4瓶'
+				console.log('我的海飞丝还有' + haiFeiSi)
+				var b = 123
+				//////
+				
+				var c = '123123'
+			}
+			function liGuoFu() {
+				// 李国富的卧室
+				var haiFeiSi = '满瓶'
+				console.log('我的海飞丝还有' + haiFeiSi)
+			}
+			function wangJing() {
+				// 我没有海飞丝
+				haiFeiSi = '1/5 瓶'
+				console.log('我的海飞丝还有' + haiFeiSi)
+			}
+			function aa() {
+				
+			}
+			function zhaoSi() {
+				console.log(a)
+				console.log('我的海飞丝还有' + haiFeiSi)
+			}
+//			zhangFei()
+//			liGuoFu()
+//			zhaoSi()
+//			wangJing()
+			zhaoSi()
+//          作用域链， 作用域执行的时候，碰见一个变量，如果当前作用域没有，向上级作用查找。
+//          直到找到全局作用域， 找到就用，找不到，就报错。
+//          在作用域中定义变量的时候，我们最好把变量定义在首行
+		</script>
+	</body>
+</html>

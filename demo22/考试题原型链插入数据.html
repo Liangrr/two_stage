@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inp {
+            color:  #ccc;
+        }
+        .error {
+            color: red;
+            display: none;  
+        }
+        li{
+        	width: 300px;
+        	height: 30px;
+        	line-height: 30px;
+        	color: dodgerblue;
+        }
+        span{
+        	display: block;
+        	float: right;
+        }
+        ul li:hover{
+        	color: yellowgreen;
+        }
+        .list_item{
+        	color: red;
+        }
+        .list_item .close{
+        	color: #7FFFD4;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text"  class="inp" placeholder="请输入内容">
+        <span class="error">你的输入有误</span>
+    </div>
+    <ul class="libox">
+		
+    </ul>
+    </body>
+</html>
+    <script>
+//  	建立一个构造函数,参数为input元素,和显示li的ul元素
+        function CheckInp(params,cont){
+//      	获取input
+			this.element = document.querySelector(params);
+//			获取ul
+			this.cont = document.querySelector(cont);
+//			建立一个新数组,为了保存数据
+			this.list = [];
+        }
+        
+//       通过原型链建立keyInp(判断数据是否符合要求)函数
+	    CheckInp.prototype.keyInp = function(params) {         
+//          正则判断
+            var reg = /^\w+$/;
+//          检测传参的值是否符合正则要求
+            if (reg.test(params.value)) {
+//          	把值加到数组list的最后
+				this.list.push({value:params.value});
+//				把这个数组传到增加数据这个函数里
+				this.insertDate(this.list);
+//				input为空
+				params.value = ''
+			}else{
+//				如果输入不符合正则,则把输入有误的span标签显示
+				params.nextElementSibling.style.display = 'inline';
+			}
+	    }
+	    
+//	     通过原型链建立insertDate(增加数据)函数,传参是个数组
+	    CheckInp.prototype.insertDate = function(arr){
+//	    	把传进来的数组再赋给list数组,进行更新
+	    	this.list = arr;
+//	    	清空原本的内容，不然每次都把上一次的内容加入
+	    	this.cont.innerHTML = '';
+//	    	对数组进行遍历循环
+	    	for (var i=0;i<arr.length;i++) {
+//	    		创建li,和span
+				var _span = document.createElement('span');
+			    var _li = document.createElement('li');
+//				给li和span内容和样式
+	        	_span.innerHTML = 'X';
+	        	_span.className = 'close';
+//	        	这里给一个索引值i给span的index,为了删除做铺垫
+	        	_span.index = i;
+				_li.innerHTML = arr[i].value;
+				_li.className = 'list-item';
+//				把span加到li,把li加到ul(this.cont)
+				_li.appendChild(_span);
+				this.cont.appendChild(_li)
+	    	}
+	    }
+	    
+//		通过原型链建立delDate(删除数据)函数,传参是个索引值
+	    CheckInp.prototype.delDate = function(index){
+//	    	删除list数组内的第index个,删除数目为一个
+	    	this.list.splice(index,1);
+//	    	把删除后的数组传到insertDate函数,进行遍历,得到最新数组
+	    	this.insertDate(this.list);
+	    }
+	    
+//		通过原型链建立init(初始化)函数
+	    CheckInp.prototype.init = function(){
+//	    	这里的this是CheckInp,赋给_this，保留CheckInp
+	    	var _this = this;
+//			this.element是input,所以是获取输入框按下的键
+            this.element.onkeydown = function(ev) {
+//          	事件委托兼容
+                ev = ev || window.event;
+//              键盘事件兼容
+                var keyCode = ev.keyCode || ev.which;
+//              如果按下回车(ascii值是13)
+                if(keyCode == 13) {
+//              	执行函数keyInp,这里的this是上面的this.element
+                    _this.keyInp(this)
+                }
+            }
+//          this.cont这里是ul,这里利用事件委托
+            this.cont.onclick = function(e){
+            	e = e || window.event;
+            	var target = e.target || e.srcElement;
+//          	利用className进行判断
+            	if (target.className == 'close') {
+//          		删除点击到的那个
+            		_this.delDate(target.index);
+            	}
+            }
+	    }
+	    
+//	    new一个实例
+	    var check = new CheckInp('.inp','.libox');
+//		调用init
+		check.init();
+
+</script>

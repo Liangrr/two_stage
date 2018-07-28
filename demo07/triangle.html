@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+			console.log(gougu(3,4,5));
+			function gougu(a,b,c){
+				var triangle = '这个三角形是直角三角形';
+				var Ntriangle = '这个不是直角三角形';
+				var Nangle = '这个不是三角形';
+//				首先判断是不是三角形,俩边之和大于第三边
+				if (a+b>c||a+c>b||b+c>a) {
+//					如果a>b且>c,并且a**2=b**2+c**2 则三角形是直角三角行,下面三个是判断谁为大边，同理
+					if (a>b&&a>c&&Math.pow(c,2)+Math.pow(b,2)==Math.pow(a,2)) {
+//						如果符合条件,返回输出是直角
+							return triangle;
+					}else if(b>a&&b>c&&Math.pow(c,2)+Math.pow(a,2)==Math.pow(b,2)) {
+							return triangle;
+					}else if(c>a&&c>b&&Math.pow(a,2)+Math.pow(b,2)==Math.pow(c,2)) {
+							return triangle;
+					}else{
+//						如果都不符合,则不是直角三角形
+						return Ntriangle;
+					}
+				}else{
+//					第一步判断三角形就不符合,直接输出不是三角形
+					return Nangle;
+				}
+				
+			}
+
+		</script>
+	</body>
+</html>

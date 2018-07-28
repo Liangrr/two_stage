@@ -1,0 +1,55 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.loupe{
+	margin: 100px auto;
+	width: 600px;
+	height: 300px;
+	overflow: hidden;
+	position: relative;
+}
+.picAll{
+	width: 3000px;
+	height: 300px;
+	position: absolute;
+}
+.picAll img{
+	float: left;
+	width: 600px;
+	height: 300px;
+}
+.dotAll{
+	list-style: none;
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+}
+.dotAll li{
+	float: left;
+	margin-left: 10px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: white;
+	opacity: 0.4;
+}
+.dotAll li.active{
+	opacity: 1;
+}
+button{
+	width: 26px;
+	height: 46px;
+	border: none;
+	background: url(../img/pre.png) no-repeat;
+	position: absolute;
+	top: 50%;
+	margin-top: -23px;
+}
+#left{
+	left: 20px;
+}
+#right{
+	right: 20px;
+	background-position-x: -50px;
+}

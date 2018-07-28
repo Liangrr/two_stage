@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<title></title>
+		<style type="text/css">
+			div{
+				font-size: 20px;
+				color: white;
+			}
+			#big{
+				width: 100%;
+				height: 200px;
+			}
+			.box1{
+				height: 100%;
+				background-color: yellow;
+			}
+			.box2{
+				height: 100%;
+				background-color: yellowgreen;
+			}
+			.box2>div{
+				width: 100%;
+				height: 100px;
+				background-color: #ccc;
+			}
+			.box2 .minbox1{
+				padding: 0;
+				height: 100px;
+				background-color: red;
+			}
+			.box2 .minbox2{
+				height: 100px;
+				background-color: #1E90FF;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="row" id="big">
+			<div class="box1 col-xs-4"></div>
+			<div class="box2 col-xs-8">
+		  		<div class="minbox1 row">
+			    	<div class="col-xs-4">1</div>
+			    	<div class="col-xs-4">2</div>
+			    	<div class="col-xs-4">3</div>
+			   </div>
+			   <div class="minbox2 row">
+			    	<div class="col-xs-4">1</div>
+			    	<div class="col-xs-4">2</div>
+			    	<div class="col-xs-4">3</div>
+			   </div>
+			</div>
+		</div>
+		
+	</body>
+</html>

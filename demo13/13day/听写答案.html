@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr = []
+			arr.pop()
+			arr.push()
+			arr.shift()
+			arr.unshift()
+			arr.splice()
+			var str = '123';
+			// 返回指定索引对应字符的ASCII码
+			str.charCodeAt()
+			// 返回指定索引的位置
+			str.charAt()
+			// 跳转页面的三种方式
+			location.href
+			location.assign()
+			location.replace()
+			// 检测浏览器版本
+			navigator.userAgent
+			// 元素标签的nodeValue是null||undefined
+			// 文本节点的nodeType是3
+			// 事件监听IE9+
+			event.addEventListener()
+			// 接受三个参数,分别是:
+			'事件类型': 'click', 'mousemove', '等'
+			'事件方法':  '需要执行的函数体'
+			'布尔值': 'false,表示在冒泡阶段触发,true表示在捕获阶段触发'
+			// 事件监听ie9-
+			window.event.attachEvent('onclick', fn(){}) //没有布尔值
+			// 鼠标相对浏览器窗体的位置
+			event.clientX; event.clientY
+			// 鼠标相对于元素的位置
+			event.offsetX; event.offsetY
+			// 通过className获取dom元素
+			document.getElementsByClassName()
+			// 通过css选择器，获取单个dom元素
+			document.querySelector()
+			// 阻止冒泡
+			event.stopPropagation()
+			event.cancelBubble = false
+			// 阻止浏览器默认行为
+			event.preventDefault()
+			// keyup, keydown, keypress的区别：
+			// keypress,并不是每一个按键都可以触发，可以区分大小写，但是不能判断是否为组合键
+			// 获取兄弟节点
+			nextSibling
+			// 获取父节点
+			parentNode
+			// 删除元素节点
+			oldEle.parentNode.removeNode(oldEle);
+			// 插入元素节点
+			fatherEle.appendChild(newEle);
+			fatherEle.insertBefore(newEle, oldEle);
+		</script>
+	</body>
+</html>

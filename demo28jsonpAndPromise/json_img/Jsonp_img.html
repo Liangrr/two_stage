@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="search" type="text" />
+		<button id="btn">搜索</button>
+		<ul id="show"></ul>
+	</body>
+</html>
+<script src="ajax1.3.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var inp = document.getElementById('search');
+	var btn = document.getElementById('btn');
+	var img_box = document.getElementById('show');
+	
+	btn.onclick = function () {
+		img_box.immerHTML = '';
+		var val = inp.value;
+		getImg(val,1);
+	}
+	function getImg(value,page,pageSize) {
+		pageSize = pageSize || 12;
+		var pageNum	= (page - 1) * pageSize + 1;
+		var params = {
+			url:`http://dev.91jianke.com:1091/id_v2_5/search_img?q=${value}&page_no=${pageNum}&page_size=${pageSize}`,
+			success : success
+		}
+		ajax(params);
+	}
+	function success(json){
+		img_box.innerHTML = '';
+		var data = json.data;
+		for (var i = 0; i < data.length; i++) {
+			var img = document.createElement('img');
+				img.src = data[i].img;
+			var li = document.createElement('li');
+				li.appendChild(img);
+				img_box.appendChild(li);
+		}
+	}
+	
+	
+//	btn.onclick = function(){
+//		var val = find.value;
+//		getImage(val, 1);
+//	}
+//	
+//  function getImage(val, page, pageSize) {
+//      pageSize = pageSize || 10;
+//      var pageNum = (page - 1) * pageSize + 1;
+//      var params = {
+//          url: 'http://dev.91jianke.com:1091/id_v2_5/search_img?q=${val}&page_no=${pageNum}&page_size=${pageSize}',
+//          success: success
+//      }
+//      ajax(params);
+//  }
+//  
+//  function success(json) {
+//		var data = json.data;
+//		for(var i=0;i<data.length;i++){
+//			var pic = document.createElement('img');
+//			pic.src = data.i.img;
+//			var _li = document.createElement('li');
+//			_li.appendChild(pic);
+//			show_ul.appendChild(_li);
+//		}
+//		
+//  }
+</script>

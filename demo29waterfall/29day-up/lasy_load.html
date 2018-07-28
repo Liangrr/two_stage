@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片懒加载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .contain {
+      height: 100vh;
+    }
+    .image-box {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      padding-top: 100px;
+      font-size: 0;
+      height: 100%;
+      overflow: auto;
+    }
+    .img-list {
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .img-list img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .search {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+    }
+    .search input {
+      width: 300px;
+      height: 40px;
+      line-height: 40px;
+    }
+    .search button {
+      height: 40px;
+      line-height: 40px;
+      background-color: #e34;
+      margin-left: 10px;
+      border: none;
+      padding:0 40px;
+      color: #fff;
+      box-sizing: content-box;
+      box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+    <div class="contain">
+      <div class="search">
+        <input type="text" placeholder="请输入搜索内容" id="inp">
+        <button id="btn">搜索图片</button>
+      </div>
+      <ul class="image-box">
+  
+      </ul>
+    </div>
+    <script src="js/ajax2.0.js"></script>
+    <script>
+      var _lazyload = new LazyLoad('.image-box');
+      var inp = document.getElementById('inp');
+      btn.onclick = function() {
+        _lazyload.init(inp.value);
+      }
+      function LazyLoad(ele) {
+        this.imageBox = document.querySelector(ele);
+        // 防止手机
+        this.load = true;
+      }
+      // 图片初始化
+      LazyLoad.prototype.init = function(words) {
+        // 初始化
+        var _this = this
+        // -> ulbox内容为空
+        this.imageBox.innerHTML = '';
+        var params = {
+          page_num: 1,
+          page_size: 40,
+          q: words
+        }
+        this.getImage(params);
+        this.imageBox.onscroll = function() {
+          console.log(this.scrollTop);
+          // 计算滚动条离底部距离
+          var bottom = this.scrollHeight - this.scrollTop - this.clientHeight;
+          // console.log(bottom)
+          if(bottom < 80 && _this.load) {
+            _this.load = false;
+            params.page_num++;
+            _this.getImage(params);
+          }
+
+        }
+        
+      }
+      LazyLoad.prototype.getImage = function(params) {
+        var _default = {
+          url: "http://dev.91jianke.com:1091/id_v2_5/search_img",
+          page_num: 1,
+          page_size: 40,
+          q: '世界杯'
+        }
+        for (var i in params) {
+          // 替换默认值
+          _default[i] = params[i]
+        }
+        // 接口地址
+        // -> url http://dev.91jianke.com:1091/id_v2_5/search_img
+        // -> q  查询内容
+        // -> page_no 页码
+        // -> page_size 每次返回条数
+        // 通过ajax获取图片
+        // var arr = [_default.url, '?' ,'page_no=', (_default.page_num - 1)* _default.page_size, '&page_size=', _default.page_size]
+        var _this = this
+        function loadImage(json) {
+          _this.insertImage(json.data);
+        }
+        var params = {
+          url: `${_default.url}?page_no=${_default.page_num}&page_size=${_default.page_size}&q=${_default.q}`,
+          success: loadImage
+        }
+        sendAJAX(params)
+      }
+      LazyLoad.prototype.insertImage = function(arrIamge) {
+        // 创建文档碎片
+        var frag = document.createDocumentFragment(); 
+        for (let index = 0; index < arrIamge.length; index++) {
+            var li = document.createElement('li');
+            li.style.width = 200/arrIamge[index].height * arrIamge[index].width
+            li.className = 'img-list';
+            var img = document.createElement('img');
+            img.src = arrIamge[index].img;
+            li.appendChild(img);
+            frag.appendChild(li);
+            this.load =  true;
+        }
+        this.imageBox.appendChild(frag);
+      }
+    </script>
+</body>
+</html>

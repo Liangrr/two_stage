@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+</head>
+<body>
+   
+    <script src="jquery.js"></script>
+    <script>
+        //-> $.extend();
+        // 一个参数的时候
+        // 函数属性上添加方法我们称之为静态方法
+        // $.extend({
+        //     sayHello: function() {
+        //         console.log('你好世界');
+        //     }
+        // })
+        // $.sayHello()
+        // 多个参数
+        // 是将除第一个以外的对象和第一个对象经行合并,并返回第一个对象
+        // 除第一个以外的元素，其他对象都为改变
+        var obj = {
+            sayHello() {
+                console.log('你好世界');
+            },
+            name: 'xixi',
+            age: 10
+        }
+        var obj2 = {
+            name: 'lilei',
+            arr: [1,2,3,4,5,6,7],
+            sayHello() {
+                console.log('你好世界!!!!');
+            }
+        }
+        // ------浅拷贝------------
+        // var _obj = $.extend(obj, obj2);
+        // console.log(obj) // 返回obj和obj2合并的结果
+        // obj.sayHello() // 你好世界!!!!
+        // obj.arr.push('xixixi');
+        // -> 此时obj和obj2的arr共用一个对象地址
+        // 所以改变obj的arr， 也是改变arr的数组
+        // console.log(obj);
+        // console.log(obj2.arr);
+        // obj.name = 'xixi';
+        // console.log(obj2.name);
+        // ----------深拷贝----------
+        // var _obj = $.extend(true, obj, obj2);
+        // console.log(obj);
+        // // console.log(obj2)
+        // obj.arr.push('xixixxi');
+        // console.log(obj2)
+        // console.log(_obj.arr);
+        //-> 传入一个空对象， 不会影响其他的obj
+        var _obj = $.extend(true,{}, obj, obj2);
+        _obj.arr.push('xixixi');
+        console.log(obj)
+        console.log(obj2)
+      
+
+    </script>
+</body>
+</html>

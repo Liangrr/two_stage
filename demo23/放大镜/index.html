@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+
+        }
+        .show-image {
+            position: relative;
+            width: 360px;
+            border: 1px solid #ccc;
+            font-size: 0;
+        }
+        .box__small {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+            cursor: move;
+        }
+        .show-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .show-image__small {
+            margin-top: 10px;
+        }
+
+        .show-image__small > li {
+            display: inline-block;
+            margin-right: 10px;
+            border: 1px solid transparent;
+        }
+        .show-image__small > li:hover, 
+        .show-image__small > li.active {
+            border-color: #000;
+        }
+        .show-image__big {
+            position: absolute;
+            left: 400px;
+            top: 0;
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            display: none;
+        }
+        .show-image__big img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 720px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="show-image">
+            <img src="images/01_big.jpg" alt="">
+            <div class="box__small"></div>
+        </div>
+        <div class="show-image__big">
+            <img src="images/01_largest.jpg" alt="">
+        </div>
+        <ul class="show-image__small">
+            <li class="active"><img src="images/01_small.jpg" alt=""></li>
+            <li><img src="images/02_small.jpg" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        function $ (ele) {
+            return document.querySelector(ele)
+        }
+        // 获取移动的盒子
+        var $moveBox = $('.box__small');
+        // 获取移动的区域
+        var $showImageBox = $('.show-image');
+        // 放大图片的盒子
+        var $showBigImage = $('.show-image__big');
+        // 小图片的盒子
+        var $ulbox = $('.show-image__small');
+        var libox = $ulbox.querySelectorAll('li');
+        for(var i = 0; i < libox.length; i++) {
+            libox[i].index = i
+            libox[i].onclick = function() {
+                showImage(this.index)
+            }
+        }
+        // 第一步移入展示区域，小盒子展示，展示大图的区域显示
+        $showImageBox.onmouseover = function() {
+            $moveBox.style.display = 'block';
+            $showBigImage.style.display = 'block';
+
+        }
+        // 鼠标移出隐藏小盒子
+        $showImageBox.onmouseout = function() {
+            $moveBox.style.display = 'none';
+            $showBigImage.style.display = 'none';
+        }
+        function showImage(index) {
+            for(var i = 0; i < libox.length; i++) {
+                libox[i].className = ''
+
+            }
+            libox[index].className = 'active'
+            // 获取图片展示地址
+            var src = libox[index].querySelector('img').src
+            // 根据图片规律，替换小图片的地址
+            $showImageBox.querySelector('img').src = src.replace('small', 'big');
+            $showBigImage.querySelector('img').src = src.replace('small', 'largest')
+        }
+        $showImageBox.onmousemove = function(ev) {
+            ev = ev || window.event
+            // 获取移动后，小盒子的位置
+            var l = ev.clientX - $showImageBox.offsetLeft - $moveBox.offsetWidth / 2
+            var t = ev.clientY - $showImageBox.offsetTop - $moveBox.offsetHeight / 2
+            // 获取最大边界
+            var maxL = $showImageBox.clientWidth - $moveBox.offsetWidth
+            var maxT = $showImageBox.clientHeight - $moveBox.offsetHeight
+            //边界处理
+            if(l > maxL) {
+                l = maxL
+            } else if(l < 0) {
+                l = 0
+            }
+            if(t > maxT) {
+                t = maxT
+            } else if (t < 0) {
+                t = 0
+            }
+            // 移动小盒子
+            $moveBox.style.left = l + 'px'
+            $moveBox.style.top = t + 'px'
+            // 移动大图片
+            $showBigImage.querySelector('img').style.left = -2 * l + 'px'
+            $showBigImage.querySelector('img').style.top = -2 * t + 'px'
+        }
+    </script>
+</body>
+</html>

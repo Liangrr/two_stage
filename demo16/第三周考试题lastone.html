@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var url = 'https://blog.csdn.net/m?key0=0:key1=1:key2=2:key3=3;';
+		var reg = /[a-z]{3}\d/g;
+		var val = reg.exec(url);
+		var r = /\d/;
+		var obj = {};
+		
+		for (var i=0;i<4;i++) {
+			obj[val]= (r.exec(val))+'';
+			val = reg.exec(url);
+		}
+		console.log(obj)
+		
+	</script>
+</html>

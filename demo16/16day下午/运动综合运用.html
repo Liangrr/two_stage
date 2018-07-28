@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>综合运用</title>
+    <style>
+        .box {
+            position: absolute;
+            left: 0px;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+        <button id="btnright">向右运动</button>
+        <button id="btnleft">向左运动</button>
+        <button id="btndown">向下运动</button>
+        <button id="btnup">向上运动</button>
+        <div class="box"></div>
+    <script src="js/sport.js"></script>
+    <script>
+        var $btnRight = document.getElementById('btnright');
+        var $btnLeft = document.getElementById('btnleft');
+        var $btnDown = document.getElementById('btndown');
+        var $btnUp = document.getElementById('btnup');
+
+        var $div = document.querySelector('.box');
+        var timer;
+        $btnRight.onclick = function() {
+            speedRight()
+        }
+        $btnUp.onclick = function() {
+            clearInterval(timer)
+            var speed = -2;
+            timer = setInterval(function() {
+                var top = $div.offsetTop;
+                $div.style.top = top + speed + 'px'
+           }, 10)
+        }
+        $btnLeft.onclick = function() {
+            clearInterval(timer)
+            var speed = -2;
+            // 获取小盒子到把边框左边的距离
+            timer = setInterval(function() {
+                var left = $div.offsetLeft;
+                $div.style.left = left + speed + 'px';
+            }, 10)
+        }
+        $btnDown.onclick = function() {
+            speedDown($div, 400, function() {
+                speedRight($div, 300);
+            })
+        }
+    </script>
+</body>
+</html>

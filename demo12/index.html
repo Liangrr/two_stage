@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">按钮</button>
+		<button id="remBtn">删除</button>
+	</body>
+	<script type="text/javascript">
+		var addBtn = document.getElementById('btn');
+		var remBtn = document.getElementById('remBtn');
+//		创建一个对象，对象里有addHanle,remHandle属性
+//		这个对象主要进行dom事件兼容操作
+		var obj = {
+//			属性addHanle的属性值是个函数,有三个形参
+			addHandle:function(ele,type,method){
+//				如果能执行ele.attachEvent证明是ie9以下版本
+				if (ele.attachEvent) {
+					ele.attachEvent('on'+type,method);
+//					如果能执行ele.addEventListener证明是高级浏览器,ie9+
+				}else if(ele.addEventListener){
+					ele.addEventListener(type,method,false);
+				}else{
+//					否则默认来个最基本的形式,btn.onclick=func...
+					ele['on'+type] = method;
+				}
+			},
+//			删除也是跟添加一样的步骤进行操作,可能是属性稍微改变
+			remHandle:function(ele,type,method){
+				if (ele.dedetachEvent) {
+					ele.detachEvent('on'+type,method);
+				}else if(ele.removeEventListener){
+					ele.removeEventListener(type,method,false);
+				}else{
+					ele['on'+type] = null;
+				}
+			}
+		}
+//		调用对象的addHandle属性的属性值(三个参数),最后一个参数是一个函数
+		obj.addHandle(addBtn,'click',fn);
+		obj.addHandle(addBtn,'click',fn2);
+	
+		remBtn.onclick = function(){
+			console.log('xxxx')
+//			删除addBtn对fn2函数的操作
+			obj.remHandle(addBtn,'click',fn2);
+		}
+//		定义俩个函数
+		function fn(){
+			console.log('事件1')
+		}
+		function fn2(){
+			console.log('事件2')
+		}
+	</script>
+</html>

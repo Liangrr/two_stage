@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>无缝轮播</title>
+		<link rel="stylesheet" type="text/css" href="css/loupe23.css"/>
+	</head>
+	<body>
+		<div class="loupe">
+			<div class="box_img">
+				<img src="img/npc1.jpg" alt="" />
+				<img src="img/npc2.jpg" alt="" />
+				<img src="img/npc3.jpg" alt="" />
+				<img src="img/npc4.jpg" alt="" />
+				<img src="img/npc5.jpg" alt="" />
+				<img src="img/npc6.jpg" alt="" />
+				<img src="img/npc7.jpg" alt="" />
+			</div>
+			<ul class="box_ul">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<button id="left"></button>
+			<button id="right"></button>
+		</div>
+	</body>
+</html>
+<script src="js/sport2.1.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var loupe = document.querySelector('.loupe');
+	var box_img = document.querySelector('.box_img');
+	var imgs = document.querySelectorAll('.box_img img');
+	var box_ul = document.querySelector('.box_ul');
+	var liAll = document.querySelectorAll('.box_ul li');
+	var leftBtn = document.getElementById('left');
+	var rightBtn = document.getElementById('right');
+	var timer;
+	var index=0;
+	
+	init()
+	autoPlay(showPageLeft);
+	
+	leftBtn.onclick = function(){
+		showPageLeft()
+		autoPlay(showPageLeft)
+	}
+	rightBtn.onclick = function(){
+		showPageRight()
+		autoPlay(showPageRight)
+	}
+	
+	
+	function init(){
+//		初始时,在第一个前面插入最后一个
+		box_img.insertBefore(box_img.lastElementChild,box_img.firstElementChild);
+//		添加了一个图片后,设定图片父级盒子左移图片的宽度
+		box_img.style.left = '-500px';
+	}
+	
+	function showPageLeft(){
+//		调用元素移动函数,传参
+		startMove(box_img,-500*2,100,'left',function(ele){
+//			向左移动后,就会减少一张图片,然后把第一张图片加到图片的父级的最后
+			ele.appendChild(ele.firstElementChild);
+//			移动之后返回显示在固定位置
+			ele.style.left = '-500px';
+		});
+	}
+	
+	function showPageRight(){
+//		调用元素移动函数,传参
+		startMove(box_img,0,100,'left',function(ele){
+//			在第一个前面插入最后一个
+			ele.insertBefore(box_img.lastElementChild,box_img.firstElementChild);
+//			移动之后返回显示在固定位置
+			ele.style.left = '-500px';
+		});
+	}
+	
+	function autoPlay(callback){
+//		清除定时器
+		clearInterval(timer);
+		timer = setInterval(function(){
+//			传进函数,进行调用
+			callback();
+		},2000);
+	}
+	
+</script>

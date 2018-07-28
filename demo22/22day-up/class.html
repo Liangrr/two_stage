@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class类</title>
+</head>
+<body>
+    <script>
+        // js面向对象： 封装、继承
+        // class
+        // function People(name, age) {
+        //     this.name = name;
+        //     this.age = age
+        // }
+        // People.prototype.eat = function() {}
+        // var person = new People('xiaolan', 18);
+        // console.log(person);
+        // class People {
+        //     constructor(name, age) {
+        //         // 里面写私有属性
+        //         this.name = name;
+        //         this.age = age;
+        //     }
+        //     // 没有逗号
+        //     // 外面的方法相当于写在People.prototype上面
+        //     eat() {
+        //         console.log(this.name + '会吃饭');
+        //     }
+        //     run() {
+        //         console.log(this.name + '会跑步');
+        //     }
+        // }
+        // var person = new People('xiaolan', 18);
+        // console.log(person);
+        // class类与构造函数的区别：
+        //  实列类的时候，必须使用new关键字
+        // class类里面，是默认开启严格模式
+        // class类，不会进行变量提升
+        // 在class类中声明的方法默认是原型方法，不可以枚举
+        class Child {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            eat() {
+                console.log(this.name + '很会吃');
+            }
+        }
+        function People(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        People.prototype.eat = function() {
+
+        }
+        var person = new People('xiaolan', 18);
+        var children = new Child('lanlan', 12);
+        console.log(person);
+        console.log(children);
+        // for in 循环是循环可枚举属性
+        for(var i in person) {
+            // 返回私有属性， 不返回公有上面定义的方法和属性（过滤作用）
+            if(person.hasOwnProperty(i)) {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>

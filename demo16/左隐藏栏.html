@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 200px;
+				height: 100px;
+				position: absolute;
+				top: 100px;
+				left: -180px;
+				background-color: greenyellow;
+			}
+			#startBtn,#endBtn{
+				width:20px;
+				height: 100px;
+				float: right;
+			}
+			#endBtn{
+				float: left;
+			}
+			p{
+				width: 20px;
+				height: 100px;
+				float: right;
+				padding-top: 20px;
+				box-sizing: border-box;
+				color: white;
+				background-color: #AAAAAA;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<!--<button id="startBtn">开始</button>
+			<button id="endBtn">收回</button>-->
+			<p>分享到</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box = document.querySelector('.box');
+//		var startBtn = document.getElementById('startBtn');
+//		var endBtn = document.getElementById('endBtn');
+		
+		var _p = document.querySelector('p');
+		var timer;
+		var lock = true;
+		
+//		startBtn.onclick = function(){
+//			if (lock) {
+//				timer = setInterval(function(){
+//					var left = box.offsetLeft;
+//					if (left>-5) {
+//						clearInterval(timer);
+//					}
+//					box.style.left = left + 2 + 'px';
+//				},10);
+//				}
+//			lock = false;
+//		}
+//		endBtn.onclick = function(){
+//			lock = true;
+//			clearInterval(timer);
+//			box.style.left = -180 + 'px';
+//		}
+		
+		box.onmouseenter = function (e){
+			e = e || window.event;
+			mouserEnter(box);
+		}
+		box.onmouseleave = function(e){
+			e = e || window.event;
+			mouseLeave(box)
+		}
+		
+		function mouserEnter(ele){
+			clearInterval(timer);				
+			timer = setInterval(function(){
+				var left = ele.offsetLeft;
+				var maxSpeed = left + 2;
+				if (maxSpeed > -5) {
+					clearInterval(timer);
+					
+				}else{
+					ele.style.left = maxSpeed + 'px';
+				}
+			},10);
+		}
+		
+		function mouseLeave(ele){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var left = ele.offsetLeft;
+				var maxSpeed = left - 2;
+				if (maxSpeed < -180) {
+					clearInterval(timer);
+					ele.style.left = -180 + 'px';
+				}else{
+					ele.style.left = maxSpeed + 'px';
+				}
+			},10);
+			
+		}
+	</script>
+</html>

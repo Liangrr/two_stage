@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    ul {
+        list-style: none;
+    }
+    .content {
+
+    }
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+    }
+    .header input {
+        height: 30px;
+        line-height: 30px;
+        margin-right: 20px;
+    }
+    .header .btn {
+        padding: 0 30px;
+        height: 30px;
+        line-height: 30px;
+        background-color: #e34;
+        border: none;
+        box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.4);
+        box-sizing: content-box;
+    }
+    .ul-box {  
+        padding-top: 30px;
+        height: 100vh;
+        overflow: auto;
+    }
+    .ul-box li {
+        height: 200px;
+    }
+    .ul-box li img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <header class="header">
+            <input class="inp" type="text" placeholder="请输入你想输入的图片">
+            <button class="btn">搜索</button>
+        </header>
+        <ul class="ul-box">
+           
+        </ul>
+    </div>
+    
+    <script>
+        // 接口文档
+        // 搜索图片接口
+        // api： http://dev.91jianke.com:1091/id_v2_5/search_img
+        // 请求方式： GET,
+        // 参数： page_no: 非必填 ,默认是1 ==> 显示页码
+        // page_size:  非必填， 默认是10 ==>  一次返回多少条数据
+        // q: 必填  ==> 查询字段
+        // 返回字段：
+        // {
+        //   code: 0,  // 成功时， code默认为0
+        //   // ==》 返回的数据源
+        //   data: {
+        //     height: 531, //图片的高
+        //     img: '', //图片的地址
+        //     imgsize: '',图片的大小
+        //     imgtype: '', 图片的类型
+        //     title: '', 图片的标题
+        //     width: '', 图片的宽
+        //     thumb: '' 缩略图
+        //   }
+        // }
+        //第一步请求图片资源 
+        var url = "http://dev.91jianke.com:1091/id_v2_5/search_img?page_no=1&page_size=20&q=hello"
+        var btn = document.querySelector('.btn');
+        var inp =  document.querySelector('.inp');
+        var ulbox = document.querySelector('.ul-box');
+        var bool = true;
+        var page_Num = 1;
+        btn.onclick = function() {
+            // 清空原有的图片
+            ulbox.innerHTML = '';
+            page_Num = 1;
+            //找到文本框的值
+            var val = inp.value;
+            var url = "http://dev.91jianke.com:1091/id_v2_5/search_img?page_no=1&page_size=20&q=" + val;
+            // console.log(val);
+            ajax(url);
+        }
+        ulbox.onscroll = function() {
+            // 计算滚动轴高度
+            var bottom = this.scrollHeight - this.scrollTop - this.clientHeight;
+            if(bottom < 80 && bool) {
+                page_Num++
+                var val = inp.value;
+                bool = false
+                var url = `http://dev.91jianke.com:1091/id_v2_5/search_img?page_no=${page_Num}&page_size=20&q=${val}`;
+                ajax(url);
+            }
+        }
+        function ajax(url) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.send(null);
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    var json  = xhr.responseText;
+                    // 约定好， 后台返回json对象
+                    json = JSON.parse(json);
+                    if(json.code === 0) {
+                        insertImage(json.data);
+                    } else {
+                        alert(json.msg)
+                    }
+                }
+            }
+        }
+        function insertImage(arr) {
+            // arr是一个数组对象，每一个里面包含图片信息
+            var frag = document.createDocumentFragment();
+            for(let i = 0; i < arr.length; i++) {
+                // 循环遍历图片
+                var li = document.createElement('li');
+                var img = document.createElement('img');
+                img.src =  arr[i].img;
+                li.appendChild(img);
+                // 执行效率很低，一各一个插入到dom内部，效率很低。
+                //第一种方式：
+                // 缺点： 多添加一个div, 不符合规范
+                // var div = document.createElement('div');
+                // 第二种方式：
+                // -> 文档碎片
+                frag.appendChild(li);
+            }
+            ulbox.appendChild(frag);
+            bool = true;
+        }
+        // 第二步，当滚动轴快要滚动到底部时，再继续获取图片资源
+        // 第三步循环第二步
+    </script>
+</body>
+</html>

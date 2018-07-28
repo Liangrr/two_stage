@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#dead{
+				margin: 50px auto;
+				width: 600px;
+				height: 600px;
+				position: relative;
+				border: 1px solid;
+			}
+			.box{
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				top: 250px;
+				left: 250px;
+				border-radius: 50%;
+				background-color: cornflowerblue;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="dead">
+			<div class="box"></div>
+		</div>
+		
+	</body>
+	<script src="js/all_purpose.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/arrowSpeed.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var dead = document.getElementById('dead');
+		var box = document.querySelector('.box');
+		var timer;
+
+		document.onkeydown = function(e){
+			e = e || window.event;
+			if (e.keyCode==37) {
+				speedLeft(box,0,death);
+			}
+			if (e.keyCode==38) {
+				speedUp2(box,-100,1000,death)
+//				speedUp(box,0,1000,death);
+			}
+			if (e.keyCode==39) {
+				speedRight(box,550,death);
+			}
+			if (e.keyCode==40) {
+				speedDown(box,550,death);
+			}
+		}
+
+		
+		function death(){
+			alert('You died!')
+		}
+	</script>
+</html>

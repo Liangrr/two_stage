@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="chart.css">
+	</head>
+	<body>
+		<div class="chart-box">
+			<div class="chart-box__header">
+				<b>小明</b>
+			</div>
+			<ul class="chart-box__main">
+				<li class="main__left">
+					<span class="main_avater"><img src="img/xiaoming.jpg" alt=""></span>
+					<span class="main_bg">今天天气真好</span>
+				</li>
+				<li class="main__right">
+					<span class="main_bg">我觉得也挺不错的</span>
+					<span class="main_avater"><img src="img/xiaolan.jpg" alt=""></span>
+				</li>
+			</ul>
+			<div class="chart-box__bottom">
+				<textarea name="" rows="10" cols="" class="chart_content"></textarea>
+				<button class="chart_send">发送</button>
+			</div>
+		</div>
+		<script src="js/ajax1.3.js"></script>
+		<script>
+			// 模拟一个块级作用域
+			(function() {
+				var btn = document.querySelector('.chart_send');
+				// 聊天盒子
+				var chartBox = document.querySelector('.chart-box__main');
+				// 文本内容
+				var content = document.querySelector('.chart_content');
+				btn.onclick = function (ev) {
+					ev = ev ||  window.event
+					// 获取发送文本
+					var contentVal = content.value.trim();
+					//为空时不能发送
+					if(contentVal !== '') {
+					//	console.log(contentVal);
+					var domEle = chartBox.querySelector('.main__right').cloneNode(true);
+						// 修改克隆后的文本值
+					domEle.firstElementChild.innerHTML = contentVal;
+					chartBox.appendChild(domEle);
+					chartBox.scrollTop = chartBox.scrollHeight - chartBox.clientHeight;
+						var params = {
+							url: 'http://www.tuling123.com/openapi/api?key=6aca08c274414f4bac3e45b831c5fcb4&info=' + contentVal,
+							success: insertLeft
+						}
+						ajax(params);		
+	//					当高度变化以后,在计算滚动高度					
+						content.value = ''
+					}
+				}
+				function insertLeft(res) {
+					// 克隆左边内容
+					var domEle = chartBox.querySelector('.main__left').cloneNode(true);
+						// 修改克隆后的文本值
+					domEle.querySelector('.main_bg').innerHTML = res.text;
+					chartBox.appendChild(domEle);
+					chartBox.scrollTop = chartBox.scrollHeight - chartBox.clientHeight;
+				}
+				content.onkeydown = function(ev) {
+					ev = ev || window.event
+					// 判断用户是否按下ctrl + enter
+					if(ev.keyCode == 13) {
+						btn.onclick()
+					}
+				}
+			})()
+			// 发送按钮
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+.star-box{padding:0; margin:0; list-style:none;  width:300px; height:28px;}
+.star-box li{float:left; background:url(star.gif) no-repeat 0 0; width:27px; height:28px; }
+.star-box li.active {
+	background:url(star.gif) no-repeat 0 -28px;
+}
+.active{ }
+.default{ }
+</style>
+</head>
+
+<body>
+	<ul class="star-box ulbox" >
+	
+	</ul>
+	<script type="text/javascript">
+		var arr=['差评','不推荐','一般','推荐','强力推荐'];
+		function Star (params) {
+			this.$ele = document.querySelector(params.ele);
+			this.num = params.num || 5
+		}
+		Star.prototype.init = function(index) {
+			var _this = this;
+			index = index || this.num;
+			var frag = document.createDocumentFragment();
+			for(var i = 0; i < index; i++) {
+				var li = document.createElement('li');
+				li.index = i;
+				frag.appendChild(li);
+			}
+			this.$ele.appendChild(frag);
+			this.$ele.onclick = function(ev) {
+				ev = ev || window.event;
+				var target = ev.target || ev.srcElement;
+				if(target.nodeName === 'LI') {
+					var index = target.index;
+					_this.start(index);
+				}
+			}
+		}
+		Star.prototype.close = function() {
+			var liBox = this.$ele.querySelectorAll('li');
+			for(var i = 0; i < liBox.length; i++) {
+				liBox[i].className = '';
+			}
+		}
+		Star.prototype.start = function(index) {
+			this.close();
+			var liBox = this.$ele.querySelectorAll('li');
+			var max = liBox.length - 1
+			// index应该有最大值， index代表的是索引
+			index = index >= max ? max : index;
+			for(var i = 0; i <= index; i++) {
+				liBox[i].className = 'active';
+			}
+		}
+		var params = {
+			ele: '.ulbox', //传入的盒子
+			num: 7 // 星星的数量
+		}
+		var params2 = {
+			ele: '.ulbox2', //传入的盒子
+			num: 7 // 星星的数量
+		}
+		var star_box1 = new Star(params);
+		star_box1.init();
+	</script>
+</body>
+</html>

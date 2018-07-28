@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.boundary{
+				width: 300px;
+				height: 300px;
+				margin: 100px auto;
+				position: relative;
+				border: 1px solid red;
+			}
+			.box{
+				width: 50px;
+				height: 50px;
+				display: none;
+				position: absolute;
+				background-color: deepskyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="boundary">
+			<div class="box">
+				
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var bor = document.querySelector('.boundary');
+	var box = document.querySelector('.box');
+	
+	bor.onmouseenter = function(e){
+		e = e || window.event;
+		box.style.display = 'block';
+	}
+	bor.onmouseleave = function(e){
+		e = e || window.event;
+		box.style.display = 'none';
+	}
+	bor.onmousemove = function(e){
+		e = e || window.event;
+		
+		var l = e.clientX - bor.offsetLeft - box.offsetWidth/2;
+		var t = e.clientY - bor.offsetTop - box.offsetHeight/2;
+		var maxL = bor.clientWidth - box.offsetWidth;
+		var maxT = bor.clientHeight - box.offsetHeight;
+		
+		l = (l>maxL?maxL:l);
+		l = (l<0?0:l);
+		t = (t>maxL?maxL:t);
+		t = (t<0?0:t);
+		
+		box.style.left = l + 'px';
+		box.style.top = t + 'px';
+	}
+	
+</script>

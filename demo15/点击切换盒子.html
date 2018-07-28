@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.cut{
+				margin: 100px auto;
+				width: 300px;
+				height: 300px;
+				border: 1px solid;
+				
+			}
+			.control button{
+				width: 60px;
+				height: 30px;
+				margin: 15px;
+			}
+			.show{
+				position: relative;
+			}
+			.show div{
+				margin-left: 30px;
+				margin-top: 10px;
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				display: none;
+				background-color: deepskyblue;
+			}
+			#show1{
+				background-color: red;
+				display: block;
+			}
+			#show2{
+				background-color: greenyellow;
+			}
+			#show3{
+				background-color: burlywood;
+			}
+			
+		</style>
+	</head>
+	<body>
+		 <div class="cut">
+		 	<div class="control">
+		 		<button>切换1</button>
+		 		<button>切换2</button>
+		 		<button>切换3</button>
+		 	</div>
+		 	<div class="show">
+		 		<div id="show1"></div>
+		 		<div id="show2"></div>
+		 		<div id="show3"></div>
+		 	</div>
+		 </div>
+	</body>
+</html>
+	<script type="text/javascript">
+			var btn = document.querySelectorAll('button');
+			var show = document.querySelectorAll('.show>div');	
+			for (var i=0;i<btn.length;i++) {
+//				把当前按钮的下标保存，按下按钮对应显示下标一致的盒子，其它盒子隐藏
+				btn[i].index = i;
+				btn[i].onclick = function(){
+//					遍历每个按钮样式清空
+//					遍历每个盒子隐藏
+					for (var j=0;j<btn.length;j++) {
+						btn[j].className = ''
+						show[j].style.display = 'none';
+					}
+//					this表示当前按钮
+					this.className = 'active'
+//					盒子显示按钮下标的那个盒子，this。index是开始时保存的按钮下标
+				 	show[this.index].style.display = 'block'
+				}
+			}
+			
+//			下面那种是简单明了,但是代码量多，以及电脑操作步骤多，会影响性能
+			
+//			btn[0].onclick = function (){
+//				show[0].style.display = 'block';
+//				show[1].style.display = 'none';
+//				show[2].style.display = 'none';
+//			}
+//			btn[1].onclick = function (){
+//				show[1].style.display = 'block';
+//				show[0].style.display = 'none';
+//				show[2].style.display = 'none';
+//			}
+//			btn[2].onclick = function (){
+//				show[2].style.display = 'block';
+//				show[0].style.display = 'none';
+//				show[1].style.display = 'none';
+//			}
+				
+	</script>

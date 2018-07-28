@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr = [123,12,523,45,4,134,65,5,82];
+			var arr2 = [124,12,16];
+			console.log('原数组：'+arr)
+			arr.pop();
+			console.log('pop删除最后一个'+arr);
+			arr.shift();
+			console.log('shift删除第一个'+arr);
+			arr.push(99);
+			console.log('push增加最后一个'+arr);
+			arr.unshift(88);
+			console.log('unshift增加第一个'+arr);
+			arr.splice(3,2,777);
+			console.log("splice是指删除从第四个开始，删除三个，然后增加777这个元素"+arr);
+			var b = arr.slice(0,1);
+			console.log('slice是截取，指从开始位置到结束位置0-1值为  '+b);
+			
+			var contact = arr.concat(arr2);
+			console.log('合并俩个数组，重复不会覆盖'+contact);
+			
+			//经典调用数组方法排序
+			arr.sort(function(x,y){
+				return parseInt(x)-parseInt(y);
+			});
+			console.log('sort从小到大排序的数组'+arr);
+			
+			
+		</script>
+	</body>
+</html>

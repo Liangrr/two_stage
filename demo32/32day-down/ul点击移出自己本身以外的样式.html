@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .ulbox>li {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            margin: 4px;
+            display: inline-block;
+        }
+        .ulbox>li.active {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <ul class="ulbox box1">
+        <li class="active box"></li>
+        <li class="box"></li>
+        <li class="box"></li>
+        <li class="box"></li>
+    </ul>
+    <ul class="ulbox box2">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script src="jquery.js"></script>
+    <script>
+      (function() {
+         var $box1 = $(".box1");
+         var $box2 = $(".box2");
+         // jq对象添加点击时间，集合的话，会给每个元素都添加事件
+         // -> children 与  find的区别
+         $box1.children("li").on('click', function() {
+             
+            // $(this).attr("class", "active").siblings().attr("class", "");
+            // addClass 添加class，无类名添加，有类名不添加
+            $(this).addClass("active").siblings().removeClass("active");
+         })
+         $box2.children("li").on("mouseenter", function() {
+            $box2.children("li").addClass('active');
+            $(this).nextAll().removeClass("active");
+         })
+      })()
+    </script>
+</body>
+</html>

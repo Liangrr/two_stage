@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>匀速运动</title>
+    <style>
+        .box {
+            position: absolute;
+            left: 0;
+            top: 300px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">飞起来</button>
+    <div class="box"></div>
+    <script>
+        var $btn = document.getElementById('btn');
+        var $div = document.querySelector('.box');
+        var bool = true;
+        var timer;
+        btn.onclick = function() {
+            yunSu()
+        }
+        // 匀速运动
+        function yunSu() {
+            // clearInterval(timer)
+            if(bool) {
+                bool = false
+                timer = setInterval(() => {
+                    var left = $div.offsetLeft;
+                    if(left > 500) {
+                        $div.style.left = 500 + 'px';
+                        clearInterval(timer);
+                    } else {
+                        $div.style.left = left + 3 + 'px'
+                    }
+                }, 50)
+            }
+        }
+        // 加速运动
+        function jiaSu() {
+            // 默认速度为0
+            var speed = 0;
+            // 代表加速度
+            var a = 4;
+            timer = setInterval(() => {
+                var left = $div.offsetLeft;
+                if(left > 500) {
+                    $div.style.left = 500 + 'px';
+                    clearInterval(timer);
+                } else {
+                    speed += a * 30 / 1000;
+                     $div.style.left = left + speed + 'px'
+                }
+            }, 30)
+        }
+    </script>
+</body>
+</html>

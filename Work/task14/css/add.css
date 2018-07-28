@@ -1,0 +1,61 @@
+form {
+	width: 450px;
+	height: 250px;
+	background-color: lightskyblue;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -125px 0 0 -225px;
+	display: none;
+}
+label {
+	width: 100%;
+}
+span {
+	display: inline-block;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	font-size: 14px;
+}
+
+label:nth-child(1) span:nth-child(1) {
+	margin-top: 10px;
+}
+
+input {
+	width: 180px;
+	height: 27px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+#sub {
+	padding: 0;
+	width: 100px;
+	height: 30px;
+	border: none;
+	border-radius: 10px;
+	background-color: red;
+	color: white;
+	margin-left: 50px;
+	margin-top: 20px;
+}
+#res {
+	padding: 0;
+	width: 100px;
+	height: 30px;
+	border: none;
+	border-radius: 10px;
+	background-color: red;
+	color: white;
+	margin-left: 30px;
+}
+b {
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	margin-left: 10px;
+	padding: 0 10px;
+	box-sizing: border-box;
+}

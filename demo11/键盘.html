@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				top:200px;
+				left: 200px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<input type="text" id="inp"/>
+		<div class="box">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+	    document.onkeydown=function(event){
+	        var obj=document.getElementById('box');
+	        var left=obj.offsetLeft;
+	        var top=obj.offsetTop;
+	        var x;
+	        var y;
+	        switch(event.keyCode){
+	            case 37:
+	                x=left-10;
+	                break;
+	            case 39:
+	                x=left+10;
+	                break;
+	            case 38:
+	                y=top-10;
+	                break;
+	            case 40:
+	                y=top+10;
+	                break;
+	        	case 65:
+				  x = left - 10;
+					break;
+				case 68:
+				  x = left + 10;
+					break;
+				case 87:
+				  y = top - 10;
+					break;
+				case 83:
+				  y = top + 10;
+					break;
+				default:
+					break;    
+	            
+	        }
+	        if(x){
+	            obj.style.left=x+'px';
+	        }
+	        if(y){
+	            obj.style.top=y+'px';
+	        }
+	    }
+		
+//		inp.onkeypress = function(e){
+//			e = e || window.event;
+//			console.log(e.keyCode);
+//			console.log(String.fromCharCode(e.keyCode));
+			
+//			if (e.ctrlKey&&e.altKey&&e.keyCode==67) {
+//				console.log('肯定行啊')
+//				alert('aklasf')
+//			}
+//		}
+	</script>
+</html>

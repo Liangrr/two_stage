@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<button id="btn">摇筛子</button>
+		<script type="text/javascript">
+			
+//			var arr = new Array('张朝坤','肖祥成','覃胜华','王京','戴文军','许俊湖','梁兴富','陈谦','戚润娟','何春辉','梁柔瑞');
+//			var btn = document.getElementById('btn');
+//			btn.onclick = function  () {
+//				getArr(arr);
+//			}
+//			function getArr(arr){
+//				var ran = parseInt(Math.random()*10);
+//				console.log(arr[ran]);
+//			}
+			
+			var arr = new Array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f');
+			var btn = document.getElementById('btn');
+			btn.onclick = function  () {
+				getArr(arr);
+			}
+			function getArr(arr){
+				var ran = parseInt(Math.random()*16);
+				console.log(arr[ran]);
+			}
+			
+		</script>
+	</body>
+</html>

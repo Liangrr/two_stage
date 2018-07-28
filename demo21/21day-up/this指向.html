@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr = [1,2,3]
+        // // arr.many = function() {
+        // //     console.log(this);
+        // // }
+        // // var _fn = arr.many
+        // // _fn()
+        // // arr.many()
+        // 数组的toSring会重写对象上的toString方法，返回的是字符串
+        // console.log(arr.toString())
+        // var obj = {
+        //     name: 'xiaolan',
+        //     eat: function() {
+        //         console.log(this)
+        //         console.log(this.name + '他会吃')
+        //     }
+        // }
+        // Object.toString返回数据类型
+        // console.log(obj.toString())
+        // // object的toString与其他对象的不同
+        // // call, apply, 对象冒充， 更改函数this指向
+        // 函数体内的this本身指向，只和函数调用方式有关
+        // obj.eat() // this == 》obj
+        // var obj2 = {
+        //     name: '张三',
+        //     age: 25
+        // }
+        //  当使用call的时候，立即执行函数，改变函数内部this的指向
+        // obj.eat.call(obj2);
+        // // call，方法第一个参数代表的是函数体内的this
+        // var obj3 = {
+        //     name: '晓芳',
+        //     age: 26
+        // }
+        // obj.eat.call(bull);
+        function _arr (a) {
+            console.log(arguments)
+            if(typeof this == 'object') {
+                this.push(a)        
+            }
+            console.log(this)
+        }
+        var arr = [1,2,3,4]
+        // _arr.call(arr, [5,6,7,8,9]);
+        //call 中第一个参数代表的是this的指向， 后面的参数代表函数体内的实参
+        _arr.apply(arr, [10,6,7,8,9]);
+        // 改变object.toString, 检测数据类型
+        var str = '1234556';
+        var reg = /\w+/g
+        var time = new Date();
+        var fun = function() {
+
+        }
+        var un = undefined
+        var tr = null
+        console.log( Object.prototype.toString.call(reg));
+        console.log( Object.prototype.toString.call(time));
+        console.log( Object.prototype.toString.call(fun));
+        console.log( Object.prototype.toString.call(un));
+        console.log( Object.prototype.toString.call(tr));
+        var regStr = Object.prototype.toString.call(reg);
+        var funStr = Object.prototype.toString.call(fun);
+        console.log(funStr.match(reg)[1]);
+        // 封装检测数据类型函数
+        function checkType(obj) {
+            var type = Object.prototype.toString.call(obj);
+            var reg = /\w+/g;
+            console.log(type.match(reg)[1])
+            return type.match(reg)[1]
+        }
+    </script>
+</body>
+</html>

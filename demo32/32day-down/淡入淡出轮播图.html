@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        ul,ol{ list-style: none;}
+        .wrapper{
+            width: 670px;
+            height: 240px;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        ul{
+        	position:relative;
+        }
+        ul li{
+        	position:absolute;
+        	top:0;
+        	left:0;
+        }
+        ol{
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            width: 190px;
+        }
+        ol li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: default;
+            background-color: #fff;
+        }
+        ol li.current{
+            background-color: pink;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul id="box">
+            <li style="z-index: 6;"><img src="images/1.jpg" alt=""/></li>
+            <li style="z-index: 5;"><img src="images/2.jpg" alt=""/></li>
+            <li style="z-index: 4;"><img src="images/3.jpg" alt=""/></li>
+            <li style="z-index: 3;"><img src="images/4.jpg" alt=""/></li>
+            <li style="z-index: 2;"><img src="images/5.jpg" alt=""/></li>
+            <li style="z-index: 1;"><img src="images/6.jpg" alt=""/></li>
+        </ul>
+        <ol style="z-index: 10;" id="uu">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ol>
+    </div>
+</body>
+</html>
+<script src="jquery.js"></script>
+<script type="text/javascript">
+  var fade = (function() {
+      var $box = $('#box');
+      var $uuBox = $('#uu');
+      var timer = null;
+      var index = 0;
+      return {
+          init() {
+              this.events();
+              this.autoPlay();
+          },
+          showImage() {
+             $uuBox.children("li").eq(index).addClass('current').siblings().removeClass("current");
+              $box.children("li").eq(index).fadeIn().siblings().fadeOut();
+              
+          },
+          autoPlay() {
+              var _this = this;
+              clearInterval(timer)
+              timer = setInterval(function() {
+                  index++;
+                  if(index == $box.children("li").length) {
+                      index = 0;
+                  }
+                  _this.showImage(index);
+
+              },2000)
+          },
+          events(){
+            var _this = this;
+            $uuBox.children('li').on('click', function() {
+                // console.log($(this).index());
+                index = $(this).index();
+                _this.showImage();
+                _this.autoPlay();
+            })
+          }
+      }
+  })()
+  fade.init()
+</script>	 

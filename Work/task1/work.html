@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/work.css"/>
+	</head>
+	<body>
+		<input type="number" id="year" placeholder="请输入年份！" required="required"/>
+		<input type="number" id="month" placeholder="请输入月份！"/>
+		<input type="number" id="day" placeholder="请输入日份！"/>
+		<input type="button" id="btn" value="ShutDown" />
+
+
+		<!--1. （promt）计算某年某月某日,是这一年的第几天
+            2.  (input)计算某年某月某日,是这一年的第几天
+            3. 计算某一个月的天数（注： 分闰年和平年）
+            4. 随机一个数，在10-100 之间的整数 （Math.ceil(), 用Math.floor()取整）-->
+
+
+		<script src="../js/task1_01.js" type="text/javascript" charset="utf-8">
+			getDate();
+		</script>
+
+		<script src="../js/task1_02.js" type="text/javascript" charset="utf-8">
+			getDate2();
+		</script>
+		
+		
+		<script src="../js/task1_03.js" type="text/javascript" charset="utf-8">
+			getData3();
+		</script>
+		
+		<script type="text/javascript">
+			getData4();
+		</script>
+			
+		
+		<script type="text/javascript">
+			
+			var i = 10;
+
+			var numCeil = Math.ceil(Math.random()*(100-i));
+			numCeil += i;
+			alert('ceil向上去整为'+numCeil);
+		
+			var numFloor = Math.floor(Math.random()*(100-i));
+			numFloor += i;
+				alert('floor向下去整为'+numFloor);
+			
+			var numRound = Math.round(Math.random()*(100-i));
+			numRound += i;
+			console.log('round整为'+numRound);
+
+		</script>
+		
+	</body>
+</html>

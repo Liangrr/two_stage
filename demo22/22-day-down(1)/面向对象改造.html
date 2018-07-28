@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inp {
+            color:  #ccc;
+        }
+        .error {
+            color: red;
+            display: none;  
+        }
+        .libox {
+            width: 300px;
+        }
+        .libox-item  .close{
+            float: right;
+            margin-right: 10px;
+            cursor: pointer;
+            display: none;
+        }
+        .libox-item:hover .close{
+           display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text" value="请输入内容" class="inp">
+        <span class="error">输入内容有误</span>
+    </div>
+    <ul class="libox">
+        
+    </ul>
+    <button id="btn">获取数据</button>
+    <script src="js/checkinp.js"></script>
+    <script>
+        // 文本框模仿placeholder功能
+        var inp = document.querySelector('.inp');
+        var ulBox = document.querySelector('.libox');
+
+        var json = [
+            {"value": '今天天气真好'},
+            {"value": '我想起吃饭'}
+        ]
+        var check = new Fn('.inp', '.libox');
+        // 传入json初始化数据(可能我们的备忘录，默认就有内容，不是每次都从空开始)
+        check.init(json);
+        btn.onclick = function() {
+            console.log(check.list)
+        }
+    </script>
+</body>
+</html>

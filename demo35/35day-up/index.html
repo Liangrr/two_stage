@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script src="lib/require.js" data-main="js/main"></script>
+    <script>
+        //  data-main定义入口文件
+        require(['swiper'], function(swiper) {
+            swiper.sayHello();
+        })
+    </script>
+
+</body>
+</html>

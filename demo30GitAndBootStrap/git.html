@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // git clone 远程仓库地址（从github上克隆一个仓库）
+        // cd 进入到某一个文件夹
+        // 设置邮箱， 用户名， 第一次使用
+        // -> git config --global user.name "姓名"
+        // -> git config --global user.email "邮箱账号"
+        // 把修改的内容添加到缓冲区
+        // -> git add .
+        // 把缓冲区的内容提交到本地仓库
+        // -> git commit -m '此次提交的备注
+        // 查看当前状态
+        // -> git status 
+        // -> 提交到远程仓库(master: 代表分支名称)
+        // git push origin master
+        // -> 拉取远程仓库代码
+        // git pull origin master
+        // -> 注意
+        // 假设你的项目和多个人同时开发时， 在你要写代码之前，拉去远程仓库最新代码
+        // 在你提交到远程之前，如果你没有同步过远程代码，git会强制你同步一次
+        // 代码要尽量多提交（做完一个小功能，提交到本地仓库）
+        // 查看日志
+        // 查看日志详细信息
+        // -> git log 
+        // 只查看版本号，和提交备注
+        // -> git log --pretty=oneline
+        // 版本回退
+        // git reset --hard HEAD^ (^ 代表上一个版本，^^代表上上个版本)
+        // git reset --hard 提交id （从日志里面查看） 返回到对应的版本
+        // 回退后悔，需要返回到新版本
+        // 查看所有日志
+        // -> git reflog 
+        // 在通过-> git reset --hard 提交id, 回到未来
+        // 【日常开发中，不建议在主线上进行开发】master ，是主线分支
+        // 创建分支
+        // 1. 分项目功能，创建分支，由不同的分来完成
+        // 2. 版本管理
+        // 3. bug分支， 测试bug， 如果测试通过，再把代码同步项目中
+        // 目的： 降低对主分支的影响。
+        // ->   git branch 分支名称
+        // 切换分支
+        // git checkout 分支名称
+        // 查看分支
+        // -> git branch
+        // 删除分支
+        // -> git branch -d 分支名称
+        // 合并分支
+        // git merge branch
+    </script>
+</body>
+</html>

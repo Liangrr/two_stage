@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解构赋值</title>
+</head>
+<body>
+    <script>
+        // 前后解构相同，变量对应值
+        // let [a, b, c, d] = [1, 2];
+        // console.log('a',a);
+        // console.log('b', b);
+        // console.log('c', c); // undefined
+        // console.log('d', d) // undefined
+        let [a,[b,c,[d]]] = [1,[2,3,[4]]]
+        // console.log('a',a);
+        // console.log('b', b);
+        // console.log('c', c); 
+        // console.log('d', d)
+        //结构不一样，会报错
+        var obj = {
+            name: 'xiaolans',
+            age: '18',
+            weight: '50kg'
+        }
+        // 对象解构，变量名，必须跟属性名相同
+        // 对象跟顺序无关
+        // let {name: xiaoLan,weight, height} = obj;
+        // 变量明后面加：变量， 相当于把当前属性值，赋值给后面的变量,如果后面的变量加了{， 相当于又是一层解构}
+        // console.log(xiaoLan, height, weight)
+        // var obj2 = {
+        //     name: 'xiaolan',
+        //     _sister: {
+        //         name: 'xiaohua',
+        //         age: 36,
+        //         sister: 'xiaoxiao'
+        //     }
+        // }
+        // 冒号前的不属于变量声明
+        // 一次只能解构一次，最后一个属于最终声明的变量
+        // let { _sister: {sister}, _sister} = obj2
+        // console.log(sister, _sister)
+
+        // 两值交换
+        // let x = 10, y = 5;
+        // [x, y] = [y, x];
+        // console.log(x, y);
+        // var obj3 = {
+        //     code: '1001',
+        //     date: {
+        //         date: [
+        //             {name: 'xiaolan', age: 36},
+        //             {name: 'lilei', age: 36}
+        //         ]
+        //     }
+        // }
+        // var {date: {date}, code, date: _date} = obj3;
+        // console.log(date, code);
+        // console.log(_date);
+    </script>
+</body>
+</html>

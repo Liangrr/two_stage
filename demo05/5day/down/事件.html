@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.btn {
+				display: inline-block;
+				width: 200px;
+				height: 100px;
+				line-height: 100px;
+				border: none;
+				background-color: #000;
+				color: #fff;
+				transition: all 0.1s;
+			}
+			.btn:focus {
+				outline: none;
+			}
+			.btn:active {
+				transform: scale(0.9);
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btn" id="btn">按钮</button>
+		<input type="" name="" id="inp2" value="你好世界" />
+		<script type="text/javascript">
+			var inp = document.getElementById('inp2');
+			var btn = document.getElementById('btn')
+			// dom   JQuery // 
+			inp.onfocus = function() {
+				if (inp.value == '你好世界') {
+					inp.value = '';
+				}
+			}
+			inp.onblur = function() {
+				if(inp.value == '') {
+					inp.value = '你好世界'
+				}
+			}
+			inp.oninput = function() {
+				console.log('hello')
+			}
+			inp.onchange = function() {
+				console.log('Hi girl')
+			}
+			btn.onclick = function() {
+				console.log('点我')
+			}
+			btn.ondblclick = function() {
+				console.log('双击我')
+			}
+		</script>
+	</body>
+</html>

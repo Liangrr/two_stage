@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				background-color: lightblue;
+				color: white;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<input type="text"  id="inp"/>-->
+		<button id="pause">暂停</button>
+		<button id="start">开始</button>
+		<button id="sub">重置</button>
+		<p id="load"></p>
+		<script src="js/mixtureCode.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 1. 写一个计时器
+//			var inp = document.getElementById('inp');
+			var pause = document.getElementById('pause');
+			var start = document.getElementById('start');
+			var sub = document.getElementById('sub');
+			var load = document.getElementById('load');
+			var myVar;
+			var sum = 0;
+			
+			start.onclick = function(){
+				clearInterval(myVar);
+				myVar = setInterval(function(){
+					sum++;
+					load.innerHTML = sum;
+			},1000);
+			}
+			
+			sub.onclick = function(){
+				clearInterval(myVar);
+				sum=0;
+				load.innerHTML = '';
+			}
+			
+			pause.onclick = function(){
+				clearInterval(myVar);
+			}
+			
+			// 2. [1,2,3,4,5,6]随机打乱这个数组
+			var arr = [1,2,3,4,5,6];
+			var muddle = arr.sort(function(){
+				return Math.random()-0.5;
+			});
+//			console.log(muddle);
+			
+			// 3. 字母数字混合6位验证码，至少有一位字母，至少有一位数字
+			console.log(ascRan());
+
+			
+			// 4. [[1,2,3,4,5,6], [7,8,9,10,11,12,13,14], [12,'haha', 13, 'name']]
+			//打印这个二位数组的所有元素
+//			dim();
+			function dim(){
+				var arr = [[1,2,3,4,5,6], [7,8,9,10,11,12,13,14], [12,'haha', 13, 'name']]
+				for(var i=0;i<arr.length;i++){
+					for (var j=0;j<arr[i].length;j++) {
+						console.log(arr[i][j]);
+					}
+				}
+			}
+			
+			
+//			5.[
+//				{name: '小兰', score: 97},
+//				{name: '小王', score: 98},
+//				{name: '小张', score: 84},
+//				{name: '小李', score: 86},
+//				{name: '小黄', score: 57}
+//			] 把这个数组对象，按成绩由高到低排序， 返回排好序的数组
+			var arr = [
+				{name: '小兰', score: 97},
+				{name: '小王', score: 98},
+				{name: '小张', score: 84},
+				{name: '小李', score: 86},
+				{name: '小黄', score: 57}
+			];
+			
+			arr = arr.sort(function(a,b){
+					return b.score-a.score;
+				});
+			
+//			console.log(arr);
+			
+			
+			// 6. 掌握数组，字符串，日期，数字常用方法
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

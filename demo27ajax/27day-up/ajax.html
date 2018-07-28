@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="inp" type="text" placeholder="请输入用户名"> <br/>
+    <input type="password" placeholder="请输入密码"><br />
+    <button id="btn">注册</button>
+    <script src="ajax.js"></script>
+    <script>
+        var inp = document.getElementById('inp');
+        inp.onblur = function() {
+            var val = this.value;
+            ajax(val);
+
+        }
+    </script>
+</body>
+</html>

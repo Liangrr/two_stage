@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/loupe.css"/>
+	</head>
+	<body>
+		<div class="container">
+			<ul>
+				<li><img src="../img/npc1.jpg"/></li>
+				<li><img src="../img/npc2.jpg"/></li>
+				<li><img src="../img/npc3.jpg"/></li>
+				<li><img src="../img/npc4.jpg"/></li>
+			</ul>
+			<div class="currentImg">
+				<img src="../img/npc1.jpg" />
+				<div class="block">
+				</div>
+				<!--监听currentImgOver-->
+				<div class="currentImgOver">
+				</div>
+			</div>
+			<div class="bigImg">
+				<img src="../img/npc1.jpg" />
+			</div>
+		</div>
+		<script src="../js/loupe.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var container = document.querySelector('.container');
+			var img = document.querySelectorAll('.container>ul>li>img');
+			var currentImg = document.querySelector('.container .currentImg');
+			var block = document.querySelector('.container .currentImg .block');
+			var currentImgOver = document.querySelector('.container .currentImg .currentImgOver');
+			var bigImg = document.querySelector('.container .currentImg .bigImg');
+			
+			
+		</script>
+	</body>
+</html>

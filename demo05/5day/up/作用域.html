@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//  全局作用域  window
+			var num = 100
+			function aa() {
+				var num = 10 // 声明变量才是自己的
+				num = 150
+			}
+			function bb () {
+				var num = 300
+				num = 200
+			}
+			function cc() {
+				console.log(num)
+			}
+			// 1. 防止变量污染
+//			aa()
+			bb()
+			cc()
+		</script>
+	</body>
+</html>

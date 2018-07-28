@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	function Move(ele,speed,time){
+		var ele = document.querySelector(ele);
+		this.ele = ele;
+		this.speed = speed || 10;
+		this.time = time;
+		this.timer = null;
+	}
+	Move.prototype.moveLeft = function(){
+		
+	}
+	Move.prototype.moveRight = function(){
+		
+	}
+	Move.prototype.moveTop = function(target,time,callback){
+		var init = this.getStyle('top')
+		var _this = this;
+		var _time = time / ((target - init)/ - this.speed);
+		this.timer = setInterval(function(){
+			init = parseInt(_this.getStyle('top'))+_this.speed;
+			if (target>init) {
+				clearInterval(_this.timer);
+				_this.ele.style.top = target + 'px';
+			} else{
+				_this.ele.style.top = init + 'px';
+			}
+		},_time);
+	}
+	Move.prototype.moveBottom = function(){
+		
+	}
+	
+	Move.prototype.getStyle = function (attr){
+		return window.getComputedStyle ? window.getComputedStyle(this.ele,null)[attr]:this.ele.currentStyle[attr];
+	}
+	
+</script>

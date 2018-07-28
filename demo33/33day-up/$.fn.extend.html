@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            list-style: none;
+            line-height: 40px;
+            transition: all .4s;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+        </style>
+</head>
+<body>
+    <div class="box"></div>
+        <ul>
+            <li>你好世界</li>
+            <li>你好世界</li>
+            <li>你好世界</li>
+            <li>你好世界</li>
+            <li>你好世界</li>
+            <li>你好世界</li>
+            <li>你好世界</li>
+            <li>你好世界</li>
+        </ul>
+    <script src="jquery.js"></script>
+    <script>
+        // 静态方法， 跟jq实例没关系（dOM)
+        // $.extend({})
+        $.extend({
+            getColor() {
+                var str = '0123456789abcdef';
+                var color = '#';
+                for(var i = 0; i < 6; i++) {
+                    var _random = Math.random() * 15;
+                    color += str[Math.round(_random)];
+                }
+                return color;
+            }
+        })
+//      console.log($.getColor());
+        $.fn.extend({
+           setColor() {
+                this.each(function(index, item) {
+                    $(item).css("backgroundColor", $.getColor());
+                })
+                return this;
+           },
+           setHover: function(options) {
+               var _default = {
+                    "backgroundColor": "#000", 
+                    "color": "#fff"
+               }
+               $.extend(_default, options)
+               var defaultCss = {};
+                this.on("mouseenter", function() {
+                    // 记录改变的样式
+                    for(var i in _default) {
+
+                        defaultCss[i] = $(this).css(i);
+                    }
+                    $(this).css(_default);
+
+                })
+                this.on("mouseleave", function() {
+                    $(this).css(defaultCss);
+                })
+           }
+        })
+        $('.box').setColor().setHover();
+        $("li").setColor().setHover({"backgroundColor": "#000", "height": 48, "fontSize": 22});
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">删除元素</button>
+		<ul>
+			<li class="item">你好世界</li>
+		</ul>
+		<script type="text/javascript" src="../common.js"></script>
+		<script type="text/javascript">
+			var li = document.getElementsByClassName('item');
+			var btn = document.getElementById('btn');
+			btn.onclick = function() {
+				removeNode(li[0])	
+			}
+		</script>
+	</body>
+</html>

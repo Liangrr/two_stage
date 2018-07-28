@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var str = '123456';
+			var str2 = new String('1a3pjk56');
+			console.log(str['1']);
+			// 添加一个属性
+			str2.abc = 123;
+			str.abc = 456;
+			console.log(str['abc'])
+			console.log(str2)
+			// 字符串，数字，布尔类型属于基本包装类型
+			// str.charAt(0)
+			// 1. var _str = new String('123456')
+			// 2. _str.charAt(0)
+			// 3. 对象销毁
+			// 1. 基本包装类型调用方法时，浏览器会默认创建一个相对应的对象
+			// 2. 用创建的对象调用该方法，并返回值
+			// 3. 销毁对象
+			// 构造对象返回的对象，全为true
+//			 var bool = new Boolean(false)
+//			 console.log(bool)
+//			 console.log(Boolean(bool))
+			 
+		</script>
+	</body>
+</html>

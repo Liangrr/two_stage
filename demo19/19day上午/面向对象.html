@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象</title>
+</head>
+<body>
+    <script>
+        // 什么是对象
+        var obj = new Object()
+        var obj2 = {};
+        obj2.age = 18;
+        var name = 'lixianglan'
+        console.log(obj2);
+        // 将obj2重新指向一个新的堆内存
+        obj2 = {
+            height: '183cm'
+        } 
+        obj2.name = 'lixianglan';
+        // obj2.lixianglan = name;
+        obj2[name] = name;
+        console.log(obj2);
+        //  声明一个对象，在堆内存中，把内存地址赋值给我们的变量
+        // 什么是面向过程
+        // 注重过程的开发
+        function fn() {
+            console.log('起床');
+            console.log('上厕所');
+            console.log('刷牙');
+            console.log('洗脸')
+        }
+        // 面向对象
+        //  注重结果
+        // 面向对象就是把我们的需求，或者说是一个具体的事物，抽象成一个对象，分析他的属性（特点
+        //）和方法（行为）
+        // 封装，继承， 多态（重写、重载）（模拟）
+        // 重写
+        // function fn() {
+        //     console.log('abc')
+        // }
+        // function fn() {
+        //     console.log('123')
+        // }
+        // 重载
+        // function fn(name) {
+        //     console.log(name)
+        // }
+        // function fn(num1, num2) {
+        //     console.log(num1 + num2);
+        // }
+        // function fn(a, b, c) {
+        //     console.log(a-b-c)
+        // }
+        // 在其他语言中
+        // fn('xiaolan')// 找第一个执行
+        // fn(2, 1) // 默认找第二个
+        // 模拟的形式，完成多态
+        // function fn () {
+        //     if(arguments.length === 1) {
+        //         console.log(name)
+        //     } else if(arguments.length == 2) {
+
+        //     }
+        // }
+        var person = {
+            name: 'xiaolan',
+            age: 18,
+            height: '183cm',
+            weight: '50kg'
+        }
+        var person2 = {
+            name: 'xiaoxiao', 
+            age: 17,
+            height: '153cm',
+            weight: '50kg'
+        }
+        var parson3 = {
+            name: 'zhangsan', 
+            age: 19,
+            height: '163cm',
+            weight: '60kg'
+        }
+        // 工厂模式
+        // function People (name, age, height, weight) {
+        //     var obj =  {
+        //         name: name,
+        //         age: age,
+        //         height: height,
+        //         weight: weight
+        //     }
+        //     return obj
+        // }
+        // var obj = People('xiaolan', '18', '183cm', '50kg');
+        // People('xiaoxiao', '17', '163cm', '40kg');
+        // console.log(obj instanceof People);
+        // console.log(obj instanceof Object);
+        // console.log(null instanceof Object);
+        // console.log(typeof null)
+        // 工厂模式，不知道他的工厂是哪一个，不可以用instanceof 检测
+        // var arr = new Array()
+        // arr instanceof Array
+        // 构造函数模式, 本身就是一个简单的函数
+        // new 是一个运算符， 他将构造函数内部的this指向，我们当前实例
+        // function People (name, age, height, weight) {
+        //     // 私有属性
+        //     this.name = name;
+        //     this.age = age;
+        //     this.height = height
+        //     this.weight = weight
+        //     // 公有属性
+        //     // 公有方法，（共有）
+        //     this.eat = function() {
+        //         console.log(this.name + '就会吃');
+        //     }
+        // }
+        // var person1 = People('xiaolan', '18', '183cm', '50kg');
+        // console.log(person1);
+        // var person2 =  new People('xiaolan', '18', '183cm', '50kg');
+        // console.log(person2) // 是一个对象
+        // person2.eat()
+        // 构造函数模式缺点：
+        // 公有属性声明在构造函数内，是一种资源的浪费
+        //  原型链模式
+        // 把公有的属性， 公有方法写原型链上
+        // 函数天生自带一个属性prototype, 我们称之为原型
+        // prototype默认带有constructor属性，默认指向构造函数
+        function Cat (name) {
+            this.name = name
+            this.eat = function() {
+                console.log('就会吃')
+            }
+        }
+        function People (name, age, height, weight) {
+            // 私有属性
+            this.name = name;
+            this.age = age;
+            this.height = height
+            this.weight = weight      
+        }
+          // 公有属性
+          // 公有方法，（共有）
+        // People.prototype.eat = function() {
+        //     console.log(this.name + '就会吃');
+        // }
+        console.dir(People)
+        // 这种写法， 会覆盖原有的prototype属性
+        People.prototype = {
+            sleep: function() {
+                console.log('我会睡觉')
+            },
+            run: function() {
+                console.log('我会跑步')
+            }
+        }
+        People.prototype.eat = function() {
+            console.log(this.name + '就会吃');
+        }
+        // 通过对象重新赋值的方式，给prototype添加属性时，会覆盖原本所有的属性，
+        // 它自带的constructor也会被覆盖，而constructor不可以被覆盖，后面会用到，
+        // 所以在覆盖后，我们要再给prototype添加这个属性
+        People.prototype.constructor = People;
+        var cat1 = new Cat('波斯猫');
+        var cat2 = new Cat('英短');
+        var cat3 = new Cat('英短');
+        var xiaoLan = new People('xiaolan');
+        var xiaoXiao = new People('xiaoxiao');
+        // console.log(cat1.eat == cat2.eat);
+        // console.log(xiaoLan.eat == xiaoXiao.eat);
+        // console.log(cat3.name == cat2.name); // 相等
+        // console.log(xiaoLan.eat); // undefined
+        // 解释一下，公有属性中的方法为什么相等
+        console.log(xiaoLan);
+        console.log(xiaoXiao);
+    </script>
+</body>
+</html>

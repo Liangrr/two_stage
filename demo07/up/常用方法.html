@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 常用方法
+			var str = new String('123')
+			str[1] = 'a'
+			console.log(str)
+//			str.charAt(0) // 返回特定位置的字符。
+			//	indexOf  查询当前字符串所在位置
+			// charCodeAt()  查询对应字符的Ascii码
+			// replace  替换字符串
+			// substring , 两个参数，开始位置，到结束位置,返回在字符串中指定两个下标之间的字符。
+			// substr， 开始位置，长度
+			// split  将字符串对象分割成字符串数组
+			// toUpperCase 返回大写
+			// toLowerCase 返回小写
+			// trim() 清楚前后空格
+//			function filterStr (str){
+//				str = str || '你 TMD 真好，TMD真棒，TMD我就是棒';
+////				str = str.replace('TMD', '***').replace('TMD', '***').replace('TMD', '***');
+//				str = str.split('TMD').join('***');
+//				console.log(str)
+//			}
+//			filterStr()
+//			过滤左边空格
+			[1, 2, 3, 4]
+			i = 0, [2, 3, 4]
+			i = 1  
+			function trimLeft(str) {
+				str = str || '       123usis  123456    ';
+				for(var i = 0; i < str.length; i ++) {
+					if(str[i] == ' ') {
+						str = str.replace(' ', '');
+						i--;
+					} else {
+						break;
+					}
+				}
+				return str
+			}
+			console.log(trimLeft())
+		</script>
+	</body>
+</html>

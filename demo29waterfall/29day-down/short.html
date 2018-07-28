@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sortIndex() {
+
+            var arr = [
+                {index: 0, height: 80},
+                {index: 1, height: 66},
+                {index: 2, height: 30},
+                {index: 3, height: 120}
+            ]  
+            arr.sort(function(a, b) {
+                return a.height - b.height;
+            });
+            return index = arr[0].index
+        }
+    </script>
+</body>
+</html>

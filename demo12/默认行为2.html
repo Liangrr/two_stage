@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				height: 3000px;
+			}
+			ul{
+				width: 200px;
+				display: none;
+				list-style: none;
+				border: 1px solid #333;
+				box-shadow: 2px 2px 0px #aaa;
+				position: fixed;
+			}
+			ul li{
+				padding: 10px 0 10px 25px;
+				box-sizing: border-box;
+				font-size: 12px;
+				color: #111;
+			}
+			ul li:nth-child(3){
+				border-bottom: 1px solid #ddd;
+			}
+			ul li:nth-child(6){
+				border-bottom: 1px solid #ddd;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>后退</li>
+			<li>前进</li>
+			<li>重新加载</li>
+			<li>另存</li>
+			<li>打印</li>
+			<li>投射</li>
+			<li>翻译成中文</li>
+			<li>查看源代码</li>
+			<li>检查</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var ul = document.querySelector('ul');
+		var li = document.querySelectorAll('li');
+		
+			document.oncontextmenu = function (ev){
+			ev = ev || window.event;
+//			阻止默认行为，三目，ture是高级版本浏览器，false是ie9以下的浏览器
+			ev.preventDefault?ev.preventDefault():ev.returnValue=false;
+			ul.style.display = 'block';
+			
+			
+			var gapX = window.innerWidth - ul.offsetWidth;
+			var l = ev.clientX;
+			
+			var Left = l > gapX ? l - ul.offsetWidth : l;
+			
+			var gapY = window.innerHeight - ul.offsetHeight;
+			var t = ev.clientY;
+			var Top = t > gapY ? t - ul.offsetHeight : t;
+	
+			ul.style.left = Left + 'px';
+			ul.style.top = Top + 'px';
+		}
+		document.onclick = function (ev){
+			ev = ev || window.event;
+			ev.preventDefault?ev.preventDefault():ev.returnValue=false;
+			ul.style.display = 'none';
+		}
+	</script>
+</html>

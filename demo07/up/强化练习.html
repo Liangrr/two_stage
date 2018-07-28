@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="" id="inp"/>
+		<script type="text/javascript">
+//			1. 检测用户名是否合法 （只能输入数字，或大写的字母，或小写的字母）
+//			首先获取id
+			var inp = document.getElementById('inp');
+//			onchange事件
+			inp.onchange = function(){
+//				获取输入值
+				var value = inp.value;
+//				调用函数，为true执行
+				if (check(value)) {
+					alert('用户名合法！');
+				}else{
+					alert('用户名不合法！');
+				}
+			}
+			
+			function check(user){
+//				将user的空格全部去掉
+				var user = user.trim();
+//				循环遍历数组
+				for (var i=0;i<user.length;i++) {
+//					把第i个转为ascii编码值
+					var asc = user[i].charCodeAt();
+//					根据编码表进行判断,如果不符合数字,英文的返回false
+					if(asc>122||(asc<97&&asc>90)||(asc>57&&asc<65)||asc<48){
+						return false;
+					}
+				}
+//				如果都没有不符合的,则返回ture
+				return true;
+			}
+			
+			
+		</script>
+	</body>
+</html>

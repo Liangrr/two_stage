@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp" autocomplete="off">
+    <button type="button" id="btn">搜索</button>
+    <ul id="ulbox">
+
+    </ul>
+    <script>
+        function jsonP(url) {
+            var script = document.createElement('script');
+            script.src = url;
+            document.body.appendChild(script);
+        }
+        function getJson(json) {
+            var data = json.s
+            ulbox.innerHTML = '';
+            for(var i = 0; i < data.length; i++) {
+                var li =  document.createElement('li');
+                li.innerHTML = data[i];
+                ulbox.appendChild(li);
+            }
+        }
+        btn.onclick = function() {
+            var params = {
+                wd: inp.value,
+                json: 1,
+                p: 3,
+                sid: "1422_21080_19897_26350_20927",
+                req: 2,
+                csor: 3,
+                cb: "getJson",
+                _: Date.now()
+            }
+            var url = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su";
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    if(url.indexOf('?') == -1) {
+                        url+= '?' + key + '=' + params[key]
+                    } else {
+                        url+= '&' + key + '=' + params[key]
+                    }
+                    
+                }
+            }
+                // console.log(url);
+            jsonP(url);
+        }
+    </script>
+</body>
+</html>

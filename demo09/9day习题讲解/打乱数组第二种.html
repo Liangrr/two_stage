@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../../common.js"></script>
+		<script type="text/javascript">
+			var _arr = [0,1,2,3,4,5,6,7,8,9]; // 所以0-9
+//  		 _arr = [0,9,2,3,4,5,6,7,8,1]; 第一次交换   // 0-8
+//			 _arr = [8,9,2,3,4,5,6,7,0,1]; 第二次 // 0-7
+// 			 _arr = [8,9,2,3,4,5,6,7,0,1]; 第三次 // 0-6
+//			 _arr = [8,9,6,3,4,5,2,7,0,1];
+			function fixArr(arr) {
+				// 循环循环10次，用i--,方便取随机数，变化规律同i一样
+				for(var i = arr.length-1;i >= 0 ; i--) {
+					var _random = maxRandom(i);
+					// 获取到最后一个元素
+					var last = arr[i];
+					arr[i] = arr[_random]
+					arr[_random] = last
+				}
+			}
+			fixArr(_arr)
+			console.log(_arr)
+		</script>
+	</body>
+</html>

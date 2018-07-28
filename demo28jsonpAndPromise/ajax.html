@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="inp" /><br />
+		<p id="txt">回复内容:</p>
+		<button type="button" id="btn">发送</button>
+		<script type="text/javascript">
+			var inp = document.getElementById('inp');
+			var btn = document.getElementById('btn');
+			var content = document.getElementById('txt');
+			
+			btn.onclick = function(){
+				var inpVal = inp.value;
+				ajax(inpVal);
+			}
+			
+			function ajax(val){
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET','http://www.tuling123.com/openapi/api?key=dfe5401f5ec44c6db891a3eeaa309bca&info='+val,true);
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState === 4&& xhr.status === 200) {
+						var json = xhr.responseText;
+						console.log(json);
+						json = JSON.parse(json);
+						var reg = /^4\d{4}$/g;
+						if (!reg.test(json.code)) {
+							content.innerHTML = '回复内容:'+json.text;
+						}else{
+							alert('报错！');
+						}
+					
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

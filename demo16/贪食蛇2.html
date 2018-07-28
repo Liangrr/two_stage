@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#dead{
+				margin: 50px auto;
+				width: 600px;
+				height: 600px;
+				position: relative;
+				border: 1px solid;
+				box-sizing: border-box;
+			}
+			.box{
+				box-sizing: border-box;
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				top: 250px;
+				left: 250px;
+				border-radius: 50%;
+				background-color: cornflowerblue;
+			}
+			p{
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background-color: black;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="dead">
+			<div class="box"></div>
+
+		</div>
+		
+	</body>
+	<script src="js/all_purpose.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/speed.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var dead = document.getElementById('dead');
+		var box = document.querySelector('.box');
+		var timer;
+		var foodTimer;
+		
+//		定时产生食物p
+		foodTimer = setInterval(function(){
+			var food = document.createElement('p');
+//			随机生成p的坐标
+			var foodLeft = randomMax_Min(600,10);
+			var foodTop = randomMax_Min(600,10);
+			food.style.left = foodLeft +'px';
+			food.style.top = foodTop + 'px';
+//			把p加到dead
+			dead.appendChild(food);
+		},1000);
+		
+		
+		document.onkeydown = function(e){
+			e = e || window.event;
+//			键盘左移动键
+			if (e.keyCode==37) {
+				speedLeft(box,0,death);
+			}
+//			键盘上移动键
+			if (e.keyCode==38) {
+				speedUp(box,0,death);
+			}
+//			键盘右移动键
+			if (e.keyCode==39) {
+				speedRight(box,550,death);
+			}
+//			键盘下移动键
+			if (e.keyCode==40) {
+				speedDown(box,550,death);
+			}
+		}
+		
+		
+		function death(){
+			alert('You died!')
+		}
+	</script>
+</html>

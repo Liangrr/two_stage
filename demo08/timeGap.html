@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="" id="time1" placeholder="输入格式为：2018-06-08 12:00:05 差值精确到毫秒"/>
+		<input type="text" name="" id="time2" placeholder="输入格式为：2018-06-08 12:00:05 差值精确到毫秒"/>
+		<button id='btn'>计算俩时间的差值</button>
+		<p id="txt"></p>
+		<script type="text/javascript">
+//			计算俩个时间差,并以每天每时每分每秒显示
+//			2018-06-08 12:00:05
+
+//			获取button,p,input
+			var btn = document.getElementById('btn');
+			var load = document.getElementById('txt');
+			var preTime = document.getElementById('time1');
+			
+//方法1：写死的		
+//			获取input2
+			var nextTime = document.getElementById('time2');
+			btn.onclick = function(){
+//				获取俩个input的值,并且导入日期对象
+				var time1 = new Date(preTime.value);
+				var time2 = new Date(nextTime.value);
+//				调用函数getGap,并把参数传进去
+					getGap(time1,time2);
+			}
+
+//方法2：活的，含有监听器的，计算输入的时间到当前时间的差值并且进行倒计时
+//			btn.onclick = function(){
+//				获取input的值,并且导入日期对象
+//				var time1 = new Date(preTime.value);
+//					调用定时器,每隔1000ms走一次
+//					setInterval(function(){
+//						调用函数,传入参数
+//						getGap(time1,new Date());
+//					},1000);
+//			}
+			
+//			函数getGap并且传入俩个参数
+			function getGap(time1,time2){
+				
+				var timeGap = Math.abs(time1.getTime()-time2.getTime());
+				var ms = timeGap%1000;
+				var second = parseInt(timeGap/1000)%60;
+				var minute = parseInt((timeGap/1000)/60)%60;
+				var hour = parseInt(((timeGap/1000)/60)/60)%24;
+				var day = parseInt((((timeGap/1000)/60)/60)/24);
+				load.innerHTML =day+'天'+hour+'时'+minute+'分'+second+'秒'+ms+'毫秒' ;
+			}
+			
+		</script>
+	</body>
+</html>

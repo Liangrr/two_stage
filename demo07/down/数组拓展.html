@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//		  	var arr = [1,23,6,5,74];
+//		  	var arr2 = new Array('10');
+//		  	var arr3 = new Array(2 ** 32 - 1)
+//		  	var arr4 = new Array(0)
+//		  	arr4['name'] = 25
+// 			当传入多个参数的时候，为数组的元素。
+// 			第一个传入的参数为数字的时候，代表的是数组的长度，且数组为空数组,
+// 			第一个参数为数字，范围最大在2 ** 32 - 1 且 大于等于 0
+//		  	arr4['123'] = 10;
+		  	// 给一个对象添加一个属性
+//		  	arr4.abc = 25
+		  	// 后面跟什么名字就是什么名字，所以不能用变量
+//		  	var name = 'obj'
+//		  	console.log(arr4);
+		  	var arr = [1,12,54,36,5,3,4,8,12,52];
+		  	// 相当于一个循环，把每个元素当作参数，传给filter括号内的函数，
+		  	// 函数判断条件return为true时，就返回当前元素
+//		  	arr = arr.filter(function (item) {
+//		  		return item > 10 
+//		  		// 为true 即返回
+//		  	})
+			// 循环机制同上。把数组里面的每个元素经行操作，最后函数返回值是什么，当前元素就变更成啥
+			arr = arr.map(function(item) {
+				return item + 1
+			})
+			arr.forEach(function(item, index, arr) {
+				console.log(item, index, arr);
+			})
+			// 注意:以上三个方法，都不会改变原有数组!!!!!!
+		</script>
+	</body>
+</html>

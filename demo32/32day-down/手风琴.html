@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			li {
+				list-style: none;
+			}
+			.image-box li {
+				width: 240px;
+				overflow: hidden;
+				float: left;
+			}
+			.image-box li img {
+				width: 800px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="image-box">
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+			</ul>
+		</div>
+		<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// jquery 循环，里面传入一个函数，两个参数，一个是索引，元素本身（DOM）
+			// $(item)
+			// jquery -----> DOM
+			// $(item).get(0)
+			$('.image-box .item').each(function(index, item) {
+				$(item).append("<img src='images/banner"+ (index + 1) +".jpg' />")
+			// DOM ---> jquery
+			})
+			$(".item").on("mouseenter", function() {
+				$(".item").stop();
+				$(this).animate({width: 800}, 1000).siblings().animate({width: 100}, 1000)
+			}).on("mouseleave", function() {
+				$(".item").stop();
+				$(".item").animate({width: 240}, 1000);
+			})
+		</script>
+	</body>
+</html>

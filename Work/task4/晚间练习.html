@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="task4_01.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 1.根据一个数字日期，判断这个日期是这一年的第几天
+			// 例如： 20160211，计算后结果为42
+			// 向上直角三角形
+			// 向下直角三角形
+			// 等腰三角形
+			// 拓展: 金字塔
+			
+//			var numDate =parseInt(prompt('请输入一个数字日期:格式为20180101'));
+//			getDate(numDate);
+			
+//			getDengyao(10);
+
+			function getDengyao(m){
+				//相同原理，把里面的内容包括起来进行循环
+				for (var i=1;i<=m;i++) {
+					//因为等腰三角形前面有空格，并且是递减的关系
+					for (var j=m;j>=i;j--) {
+						document.write('&ensp;');
+					}
+					//等腰三角形原理是俩边*数目相等，中间一个*号
+					for (var k=1;k<=(2*i-1);k++) {
+						document.write('$');
+					}
+					document.write('<br />');
+				}
+			}
+			
+			
+//			向上直角三角形
+//			upTri(11);
+			function upTri(num){
+				//从0开始，小于不等于num，循环num次
+				for (var i=0;i<num;i++) {
+					//从0开始，小于等于，循环i次
+					for (var j=0;j<=i;j++) {
+						document.write(' * ');
+					}
+					document.write('<br />');
+				}
+			}			
+//			向下直角三角形
+//			downTri(10);
+			function downTri(num){
+					//把num赋予i，进行判断，循环num次
+					for (var i=num;i>0;i--) {
+						//从0开始循环，循环次数i次
+						for (var j=0;j<i;j++) {
+							document.write(' * ');
+						}
+						document.write('<br />');
+					}
+			}
+			
+			//调用向上，向下，整合。形成等腰
+			function allTri(num){
+				upTri(num);
+				downTri(num);
+			}
+//			allTri(10);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--输入整数a和b,若a2+b2大于100,则输出a2+b2百位以上数字,否则输出两数之和-->
+		<input type="number" id="a"/>
+		+
+		<input type="number" id="b"/>
+		=
+		<input type="button" id="" value="结果" onclick="num()"/>
+		
+		<script type="text/javascript">
+			
+			function num(){
+				var a = parseInt(document.getElementById('a').value);
+				var b = parseInt(document.getElementById('b').value);
+				var c=a+b;
+				if(c>100){
+					alert(parseInt(c/100));
+				}else{
+					alert(c);
+				}
+			}
+		</script>
+	</body>
+</html>

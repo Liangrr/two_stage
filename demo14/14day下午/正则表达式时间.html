@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		登录成功！
+	</body>
+	<script type="text/javascript">
+		function regExpDate(date){
+			var reg = /\d+/g;
+			return reg.exec(str)+'年'+reg.exec(str)+'月'+reg.exec(str)+'日'+
+			reg.exec(str)+'时'+reg.exec(str)+'分'+reg.exec(str)+'秒';
+		}
+		
+		var str = '2019-10-9 1:10:8'
+		console.log(regExpDate(str))
+		
+	</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>聊天</title>
+</head>
+<body>
+    <input type="text" id="inp"><br/>
+    <p id="content">回复内容：</p>
+    <button type="button" id="btn">发送</button>
+    <script>
+        var btn = document.getElementById('btn');
+        var inp = document.getElementById('inp');
+        var content = document.getElementById('content');
+        btn.onclick = function() {
+            var words = inp.value;
+            ajax(words);
+        }
+        function ajax(words) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://www.tuling123.com/openapi/api?key=6aca08c274414f4bac3e45b831c5fcb4&info=' + words, true);
+            xhr.send(null);
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    var json = xhr.responseText;
+                    var reg = /^4\d{4}$/
+                    json = JSON.parse(json);
+                    if(!reg.test(json.code)) {
+                        content.innerHTML = '回复内容：' + json.text;
+                    }   
+                    console.log(json);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

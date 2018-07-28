@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			form{
+				margin: 100px auto;
+				width: 500px;
+				height: 420px;
+				background-color: #333;
+				color: white;
+				overflow: hidden;
+			}
+			legend{
+				margin: 20px 0 0 10px;
+				color: #0895d4;
+				font-size: 18px;
+				overflow: hidden;
+			}
+			span{
+				margin: 5px 10px;
+				display: inline-block;
+				padding-left: 20px;
+				box-sizing: border-box;
+				font-size: 14px;
+				width: 120px;
+				height: 30px;
+				line-height: 30px;
+				color: #806b56;
+			}
+			input{
+				width: 200px;
+				height: 28px;
+				padding-left: 20px;
+				box-sizing: border-box;
+				border: none;
+				border-radius: 5px;
+				background-color: #999;
+			}
+			#sub{
+				width: 100px;
+				height: 30px;
+				padding-left: 0;
+				background-color: #0895D4;
+				margin: 0 0 0 30px;
+			}
+			#rem{
+				margin-top: 5px;
+				width: 20px;
+				height: 20px;
+			}
+			#remember{
+				font-size: 14px;
+				color: white;
+				margin-left: 50px;
+			}
+			b{
+				margin-left: 20px;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="" method="post">
+			<!--<fieldset>-->
+			<legend>账户详细资料</legend>
+				<label><span>用户名称</span>	<input type="text" 	pattern="/^[a-zA-Z]{1}\w{1,10}$/"	placeholder="请输入您的用户名称"	id="account"/></label><b></b><br />
+				<label><span>登录密码</span>	<input type="password"	pattern='/^\w{6,15}$/'	placeholder="请输入您的登录密码"	id="pas1"/></label><b></b><br />
+				<label><span>重复登录密码</span><input type="password"	pattern='/^\w{6,15}$/'	placeholder="请再次输入您的密码"	id="pas2"/></label><b></b><br />
+			<!--</fieldset>-->
+			<!--<fieldset>-->
+			<legend>个人信息资料</legend>
+				<label><span>电子邮件</span>	<input type="email" placeholder="请输入您的邮箱"	id="em"/></label><b></b><br />
+				<label><span>真实姓名</span>	<input type="text"	pattern='/^[\u4e00-\u9fa5]{2,4}$/'	placeholder="请输入您的真实姓名"	id="person"/></label><b></b><br />
+				<label><span>中奖通知手机</span>	<input type="number"	pattern='/^1[35789]\d{9}$/'	placeholder="请输入您的手机"	id="phone"/></label><b></b><br />
+				<label><span>验证码</span>		<input type="number"placeholder="请输入验证码"	id="code"/></label><b></b><br />
+			<!--</fieldset>-->
+			<input type="submit" id="sub" value="注册"/>
+			<label id="remember"><input type="checkbox" id="rem"/>十天免登录</label>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	var account = document.getElementById('account');
+	var pas1 = document.getElementById('pas1');
+	var pas2 = document.getElementById('pas2');
+	var em = document.getElementById('em');
+	var person = document.getElementById('person');
+	var phone = document.getElementById('phone');
+	var code = document.getElementById('code');
+	var inp = document.querySelectorAll('input');
+	var _b = document.querySelectorAll('b');
+	
+	
+	account.onblur = function(){
+		val = account.value;
+		reg = /^[a-zA-Z]{1}\w{1,10}$/g;
+		if (reg.test(val)) {
+			_b[0].innerHTML = '您的输入正确！';
+			_b[0].style.color = "green";
+		}else{
+			_b[0].innerHTML = '您的输入错误！';
+			_b[0].style.color = "red";
+		}
+	}
+	
+	pas1.onblur = function(){
+		var val1 = pas1.value;
+		reg = /^[a-zA-Z]{1}\w{1,10}$/g;
+		if (reg.test(val)) {
+			_b[1].innerHTML = '您的输入正确！';
+			_b[1].style.color = "green";
+		}else{
+			_b[1].innerHTML = '您的输入错误！';
+			_b[1].style.color = "red";
+		}
+	}
+	
+	pas2.onblur = function(){
+		var val1 = pas1.value;
+		var val2 = pas2.value;
+		reg = /^[a-zA-Z]{1}\w{1,10}$/g;
+		if (reg.test(val)&& val1 == val2 ) {
+			_b[2].innerHTML = '您的输入正确！';
+			_b[2].style.color = "green";
+		}else{
+			_b[2].innerHTML = '您的输入错误！';
+			_b[2].style.color = "red";
+		}
+	}
+	
+</script>

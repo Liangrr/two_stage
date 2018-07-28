@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_733336_nyniab2cs1o.css"/>
+		<title></title>
+		<style type="text/css">
+			li {
+				list-style: none;
+				background-color: #1b1a1a;
+				color: #efefef;
+				line-height: 40px;
+				cursor: pointer;
+			}
+			li div:hover {
+				background-color: #000;
+				color: #fff;
+				box-shadow: 0 0 10px rgba(0,0,0,0.8);
+				text-shadow: 0 0 2px rgba(255,255,255,0.8);
+			}
+			ul {
+				padding-left: 0;
+				width: 300px;
+				overflow: hidden;
+			}
+			.first i {
+				margin-right: 4px;
+				font-size: 14px;
+			}
+			.second div {
+				padding-left: 28px;
+			}
+			.third div {
+				padding-left: 46px;
+			}
+			.second, .third {
+				/*display: none;*/
+			}
+			.iconfont {
+				float: right;
+				padding-right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul  class="first">
+			<li>
+				<div>一级菜单  <i class="iconfont oneShop-jia"></i></div>
+				<ul class="second">
+					<li>
+						<div>二级菜单</div>
+					</li>
+					<li>
+						<div>二级菜单</div>
+					</li>
+					<li>
+						<div>二级菜单 <i class="iconfont oneShop-jia"></i></div>
+						<ul class="third">
+							<li><div>三级菜单 </div></li>
+							<li><div>三级菜单 </div></li>
+							<li><div>三级菜单 </div></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<div> 一级菜单 <i class="iconfont oneShop-jia"></i></div>
+				<ul class="second">
+					<li>
+						<div>二级菜单 <i class="iconfont oneShop-jia"></i></div>
+						<ul class="third">
+							<li><div>三级菜单 </div></li>
+							<li><div>三级菜单 </div></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+	(function(){
+		$('li').on('click',function(){
+			event.stopPropagation();
+		});
+		$('li:has(ul)').on('click',function(){
+			$(this).children('ul').slideToggle();
+			$(this).children('div').children('i').toggleClass('oneShop-jia').toggleClass('oneShop-jiansvg');
+		});
+	})();
+</script>

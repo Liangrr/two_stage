@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<span>00</span>时:
+		<span>00</span>分:
+		<span>00</span>秒
+		<button>开始</button>
+		<button>暂停</button>
+		<button>重置</button>
+		<script type="text/javascript">
+			// 计时器
+			var spanAll = document.querySelectorAll('span');
+			var btnAll = document.querySelectorAll('button');
+			var seconds = 0;
+			var bool = true; 
+			// 设置一个锁
+			var timer;
+			btnAll[0].onclick = function() {
+				if (bool) {
+					// 判断锁是否打开
+					bool = false
+					timer = setInterval(function() {
+						seconds++
+						countTime(seconds)
+					}, 1000)					
+				}
+				// timer相当于定时器的id号
+			}
+			btnAll[1].onclick = function() {
+				bool = true
+				clearInterval(timer)// 传入的参数是定时器的id号
+			}
+			btnAll[2].onclick = function() {
+				bool = true
+				clearInterval(timer)
+				seconds = 0
+				countTime(seconds)
+			}
+			function countTime(time) {
+				//time以秒为单位
+//				计算时分秒
+				var hour = parseNum(time / 60 / 60 % 24);
+				var min = parseNum(time / 60 % 60);
+				var sec = parseNum(time % 60);
+				// 把秒数格式化成时分秒
+				spanAll[0].innerHTML = hour
+				spanAll[1].innerHTML = min
+				spanAll[2].innerHTML = sec
+			}
+			function parseNum(num) {
+				num = Math.floor(num)
+				if(num < 10) {
+					num = '0' + num
+				}
+				return num
+			}
+		</script>
+	</body>
+</html>

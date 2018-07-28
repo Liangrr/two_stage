@@ -1,0 +1,108 @@
+// 引入scss文件
+@charset "utf-8";
+@import "menu.scss";
+// 声明变量
+$color: blue;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    color: $color;
+}
+ul {
+    width: 200px;
+    .item {
+        line-height: 40px;
+        background-color: $color; 
+        color: #fff;
+        li {
+            color: red;
+            // & 代表父级的class类名
+            &:hover {
+                background-color: yellow;
+            }
+        }
+    }
+} 
+// 写组件
+.box {
+    width: 100px;
+    height: 100px;
+    &-left {
+        width: 100px;
+        height: 200px;
+        &__xxx {
+            width: 600px;
+            height: 200px;
+        }
+    }
+    &.right {
+        width: 10px;
+    }
+}
+
+// 继承
+.h1 {
+    width: 200px;
+    height: 200px;
+}
+.h2 {
+    @extend .h1;
+    background-color: #343;
+}
+
+// minxin  混合， 没有参数，定参数，不定参数
+@mixin hh{
+    width: 400px;
+    height: 200px;
+}
+
+.h5 {
+    @include hh;
+}
+
+@mixin box-shadow($x...) {
+    box-shadow: $x;
+}
+.h6 {
+    @include box-shadow(2px 4px 6px 0 rgba(0,0,0,0.6));
+}
+
+$width: 100;
+$width2: 200;
+.box {
+    @if $width2 > $width {
+        background-color: #000;
+    } @else {
+        background-color: #fff;
+    }
+}
+
+	// $arr: (
+    //     (theme: dark, size: 40px),
+    //     (theme: light, size: 32px)
+    // ); 
+    @for $i from 1 through 10 {  
+        // 遍历数组 
+        // $item: nth($arr, $i);  // 获取数组中第i项的值
+       .item-#{$i} {
+           width: 60px * $i;
+           background-color: red;
+       }
+    }  
+    $a: 1;
+    $b: 100px;
+    $c: 300px;
+    .box {
+        width: $b + $c;
+    }
+    // @while $a < 10 {
+    //     .iaem-#{$a} {
+    //         width: 90px * $a;
+    //         background-color: red;
+    //     }
+    //     $a:$a + 1;
+    // }
+    

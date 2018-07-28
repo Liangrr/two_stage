@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>报文</title>
+</head>
+<body>
+    <script>    
+        // 报文
+        // 概念： 客户端和服务端进行交互的数据
+        // 起始行： 请求起始行， 响应起始行
+        // 首部： 请求首部，响应首部， 自定义首部
+        // 主体： 请求主题， 响应主题
+        // 优化： 尽量减少http请求。应用: 雪碧图(精灵图)。
+        // -> response Header
+        /*  HTTP/1.1 200 OK // 响应起始行
+            //   响应首部
+                Date: Tue, 26 Jun 2018 10:01:58 GMT
+                格林尼治时间，跟我们的事件相差8个小时
+                Server: Apache/2.4.4 (Win64) PHP/5.4.12
+                Last-Modified: Tue, 26 Jun 2018 10:01:57 GMT
+                ETag: "14f-56f8896a2498e"
+                Accept-Ranges: bytes
+                Content-Length: 335
+                Keep-Alive: timeout=5, max=99
+                Connection: Keep-Alive
+                Content-Type: application/javascript
+                
+        */
+        // 响应是：服务端发送数据给客户端。
+        //  请求起始行
+        /*  GET /27day/27day-up/ajax.js HTTP/1.1
+        //  请求首部
+            Host: 127.0.0.1:8888
+            Connection: keep-alive
+            If-None-Match: "14a-56f8894503d2a"
+            If-Modified-Since: Tue, 26 Jun 2018 10:01:18 GMT
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+            // 浏览器版本
+            Referer: http://127.0.0.1:8888/27day/27day-up/ajax.html
+            Accept-Encoding: gzip, deflate, br
+            Accept-Language: zh-CN,zh;q=0.9
+        */
+        // 请求： 是客户端发送数据给服务端
+        // 首部，是可以自定义的，他也是传输信息的一种方式，我们一般会把很简短，而且经常用到的，放在请求首部，或者响应首部。
+        // -> 比如用户id， 当你登陆成功后，在此进行数据操作的时候，都会携带你的用户id，这样后台就可以知道是谁在操作数据。
+        // 这些信息可以放在请求主体里面，但是默认放在请求首部里面
+
+        // 状态码
+
+        // 2xx 请求成功
+        // 200 请求成功
+        // 4xx 客户端的错误
+        // 401  没有权限访问
+        // 403  拒绝访问
+        // 404  你发送的请求，我服务器找不到
+
+        // 5xx 服务端的问题
+        // 500 服务端报错了
+        // 开发环境，服务器报错，是会提示错误信息的，方便我们查找问题。
+        // 线上环境： 屏蔽此功能， 直接返回500错误
+        
+        // 3xx
+        // 301 永久重定向
+        // 302 临时重定向 
+        // 服务端的负载均衡
+        // 一个服务器同时可以接受10000个请求
+        // 304 读取的缓存文件（但是不是所有的缓存文件，都会返回304）
+    </script>
+</body>
+</html>

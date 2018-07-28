@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* 
+			 * 1. 某个公司采用公用电话传递数据，数据是四位的整数，
+			 * 在传递过程中是加密的，加密规则如下：每位数字都加上5,
+			 * 然后用除以10的余数代替该数字，再将第一位和第四位交换，
+			 * 第二位和第三位交换，
+			 * 请编写一个函数，传入原文，输出密文
+			 * 2. 递归实现1--100以内所有偶数的和  2 + 4 + 6 +。。。+ 100
+			 */
+			
+//			console.log(getNum(5110));
+			function getNum(num){
+				var qianM = (parseInt(num/1000)+5)%10;
+				var baiM = (parseInt(num/100)%10+5)%10;
+				var shiM = (parseInt(num/10)%10+5)%10;
+				var geM = (num%10+5)%10;
+				var sum = "" +geM+shiM+baiM+qianM;
+					return sum;
+			}
+			
+			
+			var sum = getEven(2);
+//			console.log(sum);			
+			function getEven(n){
+				if(n<1){
+					return 0;
+				}
+				return getEven(n-1)+2*n;
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		QQ: <input type="" name="" id="inp" value="" />
+		<script type="text/javascript">
+			var inp = document.getElementById('inp');
+			inp.onchange = function() {
+				var value = inp.value;
+				if(checkQq(value)) {
+					alert('QQ合法')
+				} else {
+					alert('QQ不合法')
+				}
+			}
+			inp.oninput = function() {
+				
+			}
+			function checkQq(str) {
+//				清除空格
+				str = str.trim()
+//				判断是不是不为数字,不是数字就进去
+				if (isNaN(str)) {
+					return false;
+				} 
+//				判断长度
+				if(str.length > 10 || str.length < 6) {
+					return false;
+				}
+//				判断是否含有.
+				if (str.indexOf('.') > -1) {
+					return false
+				}
+				return true
+			}
+			// 1. 纯数字
+			// 长度 6 - 10
+			// 不能出现小数点
+			// 清除前后空格
+		</script>
+	</body>
+</html>

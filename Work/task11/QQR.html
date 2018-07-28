@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<style type="text/css">
+			body{
+				background-color: #ccc;
+			}
+			.chat{
+				width: 600px;
+				height: 500px;
+				background-color:white;
+				border-radius:10px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -300px;
+				margin-top: -250px;
+			}
+			#show_ul{
+				width: 600px;
+				height: 400px;
+				background-color: white;
+				border-bottom: 1px solid;
+				overflow: auto;
+			}
+			.chat ul h1{
+				text-align: left;
+				padding: 10px;
+				height: 40px;
+				line-height: 40px;
+				margin-bottom: 10px;
+				font-size: 16px;
+				font-weight: bold;
+				background-color: #eee;
+			}
+			.chat ul p{
+				width: 100%;
+				text-align: center;
+			}
+			.chat ul li{
+				float: right;
+				padding: 10px;
+				margin-bottom: 10px;
+				word-break: break-word;
+				background-color: #eee;
+				position: relative;
+			}
+			.chat ul li img{
+				margin: 0 10px;
+				width: 40px;
+				height: 40px;
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
+			.chat ul li span{
+				display: block;
+				float: right;
+				margin-left: 60px;
+				line-height: 40px;
+				padding-left: 10px;
+				padding-right: 10px;
+				border-radius: 10px;
+			}
+			
+			#inTxt{
+				width:600px;
+				height: 100px;
+				padding: 20px;
+				border-top: 1px solid #ccc;
+				box-sizing: border-box;
+				background-color: white;
+				resize: none;
+				border: none;
+			}
+			#send{
+				width: 50px;
+				height: 30px;
+				border-radius: 10px;
+				border: none;
+				background-color: #FF4500;
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+				color: white;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="chat">
+				<ul id="show_ul">
+					<h1>与XX的对话</h1>
+				</ul>
+			<textarea id="inTxt"></textarea>
+			<button id="send">发送</button>
+		</div>
+	</body>
+	<script src="../js/all_purpose.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var chat = document.querySelector('.chat');
+		var show_ul = document.getElementById('show_ul');
+		var inTxt = document.getElementById('inTxt');
+		var btnSend = document.getElementById('send');
+		var pTime;
+		var li;
+		var img;
+		var span;
+		
+		btnSend.onclick = function (){
+			send();
+		}
+		
+		inTxt.onkeydown = function (e){
+			e = e || window.event;
+			console.log(e.keyCode);
+			if(e.ctrlKey&&e.keyCode==13){
+				send();
+			}
+		}
+		
+		
+		function send(){
+//			如果textarea的值不为空
+			if (inTxt.value != '') {
+
+//				创建li,img,span,p
+				li = document.createElement('li');
+				img = document.createElement('img');
+				span = document.createElement('span');
+				pTime = document.createElement('p');
+//				p从getDate()函数中获取时间
+				pTime.innerHTML = getDate()+'';
+//				赋值
+				img.src = '../img/meizi.jpg';
+//				把textarea的值给span进行输出
+				span.innerHTML = inTxt.value ;
+//				把img,span加到li（顺序有问题，先图片在文本）,再把li加到ul
+				
+				li.appendChild(span);
+				li.appendChild(img);
+//				p加到ul
+				show_ul.appendChild(pTime);
+				show_ul.appendChild(li);
+	//			执行完上面的操作之后,对textarea进行清空
+				inTxt.value = '';
+//				隐藏的高度等于 总高度
+				show_ul.scrollTop = show_ul.scrollHeight - show_ul.clientHeight;
+			}
+
+		}
+	</script>
+</html>

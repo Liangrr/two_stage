@@ -1,0 +1,92 @@
+div {
+  background-color: #fff; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  color: blue; }
+
+ul {
+  width: 200px; }
+  ul .item {
+    line-height: 40px;
+    background-color: blue;
+    color: #fff; }
+    ul .item li {
+      color: red; }
+      ul .item li:hover {
+        background-color: yellow; }
+
+.box {
+  width: 100px;
+  height: 100px; }
+  .box-left {
+    width: 100px;
+    height: 200px; }
+    .box-left__xxx {
+      width: 600px;
+      height: 200px; }
+  .box.right {
+    width: 10px; }
+
+.h1, .h2 {
+  width: 200px;
+  height: 200px; }
+
+.h2 {
+  background-color: #343; }
+
+.h5 {
+  width: 400px;
+  height: 200px; }
+
+.h6 {
+  box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.6); }
+
+.box {
+  background-color: #000; }
+
+.item-1 {
+  width: 60px;
+  background-color: red; }
+
+.item-2 {
+  width: 120px;
+  background-color: red; }
+
+.item-3 {
+  width: 180px;
+  background-color: red; }
+
+.item-4 {
+  width: 240px;
+  background-color: red; }
+
+.item-5 {
+  width: 300px;
+  background-color: red; }
+
+.item-6 {
+  width: 360px;
+  background-color: red; }
+
+.item-7 {
+  width: 420px;
+  background-color: red; }
+
+.item-8 {
+  width: 480px;
+  background-color: red; }
+
+.item-9 {
+  width: 540px;
+  background-color: red; }
+
+.item-10 {
+  width: 600px;
+  background-color: red; }
+
+.box {
+  width: 400px; }

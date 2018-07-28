@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/banner.css">
+</head>
+<body>
+    <div class="qf-banner">
+        <div class="banner-inner">
+            <img src="images/1.jpg" alt="">
+            <img src="images/2.jpg" alt="">
+            <img src="images/3.jpg" alt="">
+            <img src="images/4.jpg" alt="">
+            <img src="images/5.jpg" alt="">
+            <img src="images/6.jpg" alt="">
+        </div>
+        <ul class="banner-tip">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <a href="javascript:;" class="left-btn"></a>
+        <a href="javascript:;" class="right-btn"></a>
+    </div>
+    <script src="js/sport2.1.js"></script>
+    <script>
+        // 获取元素
+        // 点击左键，向左移动一个图片的位置
+        // 点击右键，向右移动一个图片的位置
+        // js文件，移动是绝对位置，我们要计算移动位置，跟index相关
+        // 判断index，不能超出范围
+        var leftBtn = document.querySelector('.left-btn');
+        var rightBtn = document.querySelector('.right-btn');
+        var bannerBox = document.querySelector('.banner-inner');
+        var bannerTip = document.querySelector('.banner-tip');
+        var liAll = bannerTip.querySelectorAll('li');
+        var index = 0;
+        var timer;
+        leftBtn.onclick = function() {
+            if(index == 5) {
+                index = 0
+            } else {
+                index++;
+            }
+            showPage(index);
+        }
+        rightBtn.onclick = function() {
+            if(index == 0) {
+                index = 5;
+            } else {
+                index--;
+            }
+            showPage(index)
+        }
+        function showPage(index) {
+            for(var i = 0; i < liAll.length; i++) {
+                liAll[i].className = ''
+            }
+            liAll[index].className = 'active';
+            moveHorizontal(bannerBox, -670 * index, 300);
+        }
+    </script>
+</body>
+</html>

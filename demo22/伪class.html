@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+//	原先js没有class类,只是实现class类的效果而已
+//	1.class默认里面使用严格模式,2.不会进行变量提升,3.实例化时必须加new关键字,否则报错.
+//	控制台深紫色的是可枚举方法,浅紫色的是原型方法
+	class Animal{
+		constructor(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		eat(){
+			console.log('吃吃吃!');
+		}
+		run(){
+			console.log('跑跑跑!');
+		}
+	}
+	class Dog extends Animal{
+		constructor(name,age,cry){
+			super(name,age);
+			this.cry = cry;
+		}
+	}
+	
+	var dog = new Dog('加菲猫',3,'喵喵喵');
+	dog.eat()
+	
+//	hasOwnPrototype检测是不是私有的，是就true
+	
+
+	
+</script>

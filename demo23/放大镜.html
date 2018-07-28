@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.glass{
+				margin-left: 20px;
+			}
+			.boundary{
+				width: 200px;
+				height: 200px;
+				position: relative;
+				border: 1px solid red;
+			}
+			.boundary img{
+				width: 200px;
+				height: 200px;
+			}
+			.manify{
+				width: 50px;
+				height: 50px;
+				display: none;
+				position: absolute;
+				background: rgba(0,0,0,0.1);
+			}
+			ul{
+				list-style: none;
+			}
+			ul li{
+				width: 50px;
+				height: 50px;
+				display: inline-block;
+				border:1px solid transparent;
+			}
+			ul li img{
+				font-size: 0;
+				width: 50px;
+				height: 50px;
+			}
+			.glass .img_show{
+				width: 100px;
+				height: 100px;
+				border: 1px solid;
+				position: absolute;
+				left: 300px;
+				top: 0;
+				overflow: hidden;
+			}
+			.glass .img_origin li.active{
+				border: 1px solid;
+			}
+			.img_show img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+		</style>
+	</head>
+	<body>
+		<div class="glass">
+			<div class="boundary">
+				<img src="img/01_big.jpg"/>
+				<div class="manify">
+					
+				</div>
+			</div>
+			<ul class="img_origin">
+				<li><img src="img/01_small.jpg"/></li>
+				<li><img src="img/02_small.jpg"/></li>
+			</ul>
+		<div class="img_show">
+			<img src="img/01_largest.jpg"/>
+		</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+
+	var bor = document.querySelector('.boundary');
+	var manify = document.querySelector('.manify');
+	var img_origin = document.querySelector('.img_origin');
+	var liAll = document.querySelectorAll('.glass .img_origin li');
+	var img_show = document.querySelector('.img_show');
+	
+	
+	for (var i = 0;i<liAll.length;i++) {
+		liAll[i].index = i;
+		liAll[i].onclick = function(){
+			showImg(this.index);
+		}
+	}
+	function showImg(index){
+		for (var i=0;i<liAll.length;i++) {
+			liAll[i].className = '';
+		}
+		liAll[index].className = 'active';
+		var src = liAll[index].querySelector('img').src;
+		bor.querySelector('img').src = src.replace('small','big');
+		img_show.querySelector('img').src = src.replace('small','largest');
+	}
+	
+	auto();
+	
+	function auto(){
+		bor.onmouseenter = function(e){
+			e = e || window.event;
+			manify.style.display = 'block';
+		}
+		bor.onmouseleave = function(e){
+			e = e || window.event;
+			manify.style.display = 'none';
+		}
+		bor.onmousemove = function(e){
+			e = e || window.event;
+	
+			var l = e.clientX - bor.offsetLeft - manify.offsetWidth/2;
+			var t = e.clientY - bor.offsetTop - manify.offsetHeight/2;
+			var maxL = bor.clientWidth - manify.offsetWidth;
+			var maxT = bor.clientHeight - manify.offsetHeight;
+	
+			l = (l>maxL?maxL:(l<0?0:l));
+			t = (t>maxT?maxT:(t<0?0:t));
+			
+			manify.style.left = l + 'px';
+			manify.style.top = t + 'px';
+			img_show.querySelector('img').style.left = -2*l +'px';
+			img_show.querySelector('img').style.top = -2*t +'px';
+		}		
+	}
+
+	
+</script>

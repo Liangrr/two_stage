@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>习题讲解</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>职业</td>
+                <td>简介</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="table">
+
+        </tbody>
+    </table>
+    <script>
+        var arr = [
+				{
+					'name': '周杰伦', // 名称
+					'age': '28', // 年龄
+					'profession': '歌手', // 职业
+					// 简介
+					'introduce': '周杰伦（Jay Chou），1979年1月18日出生于台湾省新北市，中国台湾流行乐男歌手、音乐人、演员、导演、编剧、监制、商人。'
+				},
+				{
+					'name': '布冯',
+					'age': '40',
+					'profession': '足球运动员',
+					'introduce': '吉安路易吉·布冯（Gianluigi Buffon），1978年1月28日出生于意大利卡拉拉，意大利职业足球运动员，司职门将，效力于意甲尤文图斯足球俱乐部。'
+				},
+				{
+					'name': '加内特',
+					'age': '42',
+					'profession': '篮球运动员',
+					'introduce': '凯文·加内特（Kevin Garnett），1976年5月19日出生在美国南卡罗来纳，前美国职业篮球运动员，司职大前锋/中锋，绰号狼王（森林狼时期）、KG（名字缩写）、The BIG TICKET、Da Kid。'
+				},
+				{
+					'name': '李青',
+					'age': '28',
+					'profession': '打野',
+					'introduce': '李青是一个近战战士型英雄，拥有很高的机动性和爆发力，单挑和小规模团战能力很强，同时李青也是非常优秀的打野英雄，非常擅长野区的遭遇战和Gank，是非常致命的英雄人物。'
+				},
+				{
+					'name': '巫妖王',
+					'age': '1000',
+					'profession': 'boss',
+					'introduce': '巫妖王是魔兽世界设定中的一个职位，天灾军团的统领，并非专指某人，至今为止共有三代，初代耐奥祖、二代阿尔萨斯、三代伯瓦尔。'
+				}
+			]
+		var $table = document.getElementById('table');
+        function adddate(arr) {
+            // var str = '';
+            for(var i = 0;  i < arr.length; i++ ) {
+                // 给每个对象添加一个index属性
+                arr[i].index = i + 1;
+                var obj = {
+                    index: arr[i].index,
+                    name: arr[i].name,
+                    age: arr[i].age,
+                    profession: arr[i].profession,
+                    introduce: arr[i].introduce
+                }
+                // 以``，如果字符串模板中，要使用变量，就用${变量名称} 
+                var tr = createTr(obj);
+                $table.appendChild(tr)
+                // 通过字符串模板拼接的方式
+                // str += `<tr><td>${arr[i].index}</td>
+                // <td>${arr[i].name}</td>
+                // <td>${arr[i].age}</td>
+                // <td>${arr[i].profession}</td>
+                // <td>${arr[i].introduce}</td></tr>`
+            }
+            // $table.innerHTML = str
+        }
+        function createTr(obj) {
+            var tr = document.createElement('tr');
+            for(let j in obj) {
+                var td = document.createElement('td');
+                td.innerHTML = obj[j]
+                tr.appendChild(td)
+            }
+            td = document.createElement('td');
+            var btn1 = document.createElement('button');
+            btn1.innerHTML = '添加';
+            btn1.className = 'add';
+            var btn2 = document.createElement('button');
+            btn2.className = 'del'
+            btn2.innerHTML = '删除'
+            td.appendChild(btn1);
+            td.appendChild(btn2)
+            tr.appendChild(td);
+            return tr;
+        }
+        adddate(arr)
+    </script>
+</body>
+</html>

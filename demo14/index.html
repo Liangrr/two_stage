@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="inp" />
+		<button id="btn">按钮</button>
+	</body>
+	<script type="text/javascript">
+//	^ 	位置的开始
+//	$ 	结束
+//	. 	除\n以外的所有字符
+//	\d	代表0-9的数字
+//	\D	非0-9的字符
+//	\w	[0-9 a-z A-Z]
+//	\W	与上面相反
+//	\b  匹配边缘字符
+//	
+//	量词元字符
+//	*	表示0到多次
+//	+	表示至少一次
+//	？	0或者1次
+//	{n, m}  至少n次最多m次
+//	a|b	(用的时候最好用括号括起来)
+//	[abc]	三者中其一
+//	[a-z]	a-z中的其中一个字符
+//	[^abc]	除abc外的任意其中一个
+		//1. 用正则表达式判断年龄18-65
+//			var str = '28';
+//			var reg = /^(1[8-9]|[2-5][0-9]|6[0-5])$/g;
+//			if (reg.test(str)) {
+//				alert('正确')
+//			}else{
+//				alert('错误')
+//			}
+			
+			//2. 用正则表达式匹配一个正确的手机号（手机号一般是15，13， 18，19，17开头）
+//			var str = "17876211032";
+//			var reg = /^(1[35789]\d{9}$/g;
+//			if (reg.test(str)) {
+//				alert('正确');
+//			} else{
+//				alert('错误');
+//			}
+			//3. 匹配一个正确的数字
+//			思路,先规定首末,第一个[+-]正负?(是可有可无)
+			
+//			var reg = /^[+-]?(0|([1-9]\d*))(\.\d*[1-9])?$/;
+//			var str = '+1';
+//			if (reg.test(str)) {
+//				alert('正确')
+//			} else{
+//				alert('错误')
+//			}
+			
+//			var reg = /^(\d+)\*\1$/
+//			console.log(reg.test('1*1'))
+			
+//			var reg = /^[1-9]\d{16}[0-9x]$/
+//			console.log(reg.test('472342348230942311'))
+		
+//			var str = '景物登临闲始见43按时420放松的024的首付款吗420'
+//			var reg = /\d{2}/g;
+//			console.log(str.match(reg))
+		
+//		var str = '1998-06-10 08:26:32'
+//		var reg = /\d{0,4}/g;
+//		console.log(str.match(reg))
+//		console.log(str.match(reg)[0]+'年'+str.match(reg)[2]+'月'+str.match(reg)[4]+'日'+str.match(reg)[6]+'时'+str.match(reg)[8]+'分'+str.match(reg)[10]+'秒');
+		
+//		var regName = /^[\u4]
+//		var str = '  我  是  谁  ';
+//		console.log(str)
+//		var regL = /^\s+/	//清除左边空格
+//		var regR = /\s+$/	//清除右边空格
+//		var regAll = /\s*/g  //清除所有
+////		str = str.replace(regAll,'');
+////		console.log(str)
+//		
+//		str = str.match(' ');
+//		console.log(str)
+		
+//		var str = '拉克丝静安寺卡 萨；了的撒开发卡     库拉克丝按实际肯德基拉  卡屎拉克丝';
+//		var reg = /拉克丝/g;
+//		var reg2 = /肯德基/g;
+//		
+//		console.log(reg.exec(str));
+//		console.log(reg.exec(str));
+//		console.log(reg2.exec(str));
+//		console.log(reg.exec(str));
+//		console.log(reg.exec(str));
+		
+	</script>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/banner.css">
+</head>
+<body>
+    <div class="qf-banner">
+        <div class="banner-inner">
+            <img src="images/1.jpg" alt="">
+            <img src="images/2.jpg" alt="">
+            <img src="images/3.jpg" alt="">
+            <img src="images/4.jpg" alt="">
+            <img src="images/5.jpg" alt="">
+            <img src="images/6.jpg" alt="">
+        </div>
+        <ul class="banner-tip">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <a href="javascript:;" class="left-btn"></a>
+        <a href="javascript:;" class="right-btn"></a>
+    </div>
+    <script src="js/sport2.1.js"></script>
+    <script>
+        var leftBtn = document.querySelector('.left-btn');
+        var rightBtn = document.querySelector('.right-btn');
+        var bannerBox = document.querySelector('.banner-inner');
+        var bannerTip = document.querySelector('.banner-tip');
+        var liAll = bannerTip.querySelectorAll('li');
+        var index = 0;
+        var timer;
+        leftBtn.onclick = function() {
+            showPageLeft();
+            // 当 向左滑动时，默认向左动画
+            autoPlay(showPageLeft);
+        }
+        rightBtn.onclick = function() {
+            showPageRight();
+            // 当 向右滑动时，默认向右动画
+            autoPlay(showPageRight);
+        }
+        // 初始化函数
+        function init() {
+            //默认将最后一张移动到第一张，保证向左移动，有显示的图片。
+            bannerBox.insertBefore(bannerBox.lastElementChild, bannerBox.firstElementChild);
+            // 但是要默认显示第一张
+            bannerBox.style.left = '-670px';
+        }
+        // 向左边播放
+        function showPageLeft() {
+            moveHorizontal(bannerBox, -670 * 2, 100, function(ele) {
+                // 动画执行完成后，把第一个元素移动到最后一个，保证后面的元素不会少，才可以完成无限循环
+                ele.appendChild(ele.firstElementChild);
+                // 移动元素后，重置盒子位置
+                ele.style.left = '-670px';
+            })
+        }
+        // 向右边播放
+        function showPageRight() {
+            moveHorizontal(bannerBox, 0, 100, function(ele) {
+                // 动画执行完成后，把第一个元素移动到最后一个，保证后面的元素不会少，才可以完成无限循环
+                ele.insertBefore(ele.lastElementChild, ele.firstElementChild);
+                // 移动元素后，重置盒子位置
+                ele.style.left = '-670px';
+            })
+        }
+        // 左边自动播放
+        function autoPlayLeft() {
+            clearInterval(timer)
+            timer = setInterval(function(){
+                // 向左走
+                showPageLeft();
+            }, 2000)
+        }
+        // 右边自动播放
+        function autoPlayRight() {
+            clearInterval(timer)
+            timer = setInterval(function(){
+                //向右走
+                showPageRight();
+            }, 2000)
+        }
+        // 通用自动播放
+        function autoPlay(callback) {
+            // 实参可以是任意数据类型。
+            // 函数可以当作参数传入
+            clearInterval(timer);
+            timer = setInterval(function(){
+                //向右走
+                // 回调函数： 只是一个函数的名称，不是特殊的函数
+                // 特指： 在异步函数执行完，调用的函数
+                callback();
+            }, 2000)
+        }
+        init()
+        autoPlay(showPageLeft)
+    </script>
+</body>
+</html>

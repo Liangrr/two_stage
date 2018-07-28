@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	var str = 'abcde';
+//	分成数组的形式
+	var a = str.split('');
+//	将数组内的元素进行倒叙
+	var b = a.reverse();
+//	转为字符串
+	var c = b.join('');
+	console.log(str.split('').reverse().join(''))
+	
+//	函数通用转换类型
+	var str = 'abcdejgg'
+	function num(str){
+		var a = Object.prototype.toString.call(str);
+		var reg = /\w+/g
+		console.log(a.match(reg)[1])
+	}
+	num(str)
+	
+	
+//	原生Ajax  Get Post请求
+	function ajGet(){
+//		创建一个 XMLHttpRequest 对象。(这个东西有兼容，需要做兼容的可以去搜下)
+		var xhr = new XMLHttpRequest();
+//		打开请求，三个参数，请求方式，请求路径，是否异步
+		xhr.open('get','get.php',true);
+//		get方式发送null或者为空
+		xhr.send(null);
+//		请求结束后,服务器返回数据需要一个回调函数来装
+
+		xhr.onreadystatechange = function(json){
+//			XMLHttpRequest 对象的 readyState 属性加以判断，如果等于4（服务响应成功）
+//			xhr.readyState == 4  是表示后台处理完成了。
+//			xhr.status == 200 是表示处理的结果是OK的。(具体多少成功看后台)
+			if ((xhr.readyState == 4) && (xhr.status == 200)) {
+				console.log('成功');
+			}
+		}	
+	}
+	
+//	xhr.open(method, url, async, username, password)详解
+/*	method 参数是用于请求的 HTTP 方法。值包括 GET、POST 和 HEAD。
+	( 大小写不敏感。)
+	POST：用"POST"方式发送数据,可以大到4MB
+	GET：用"GET"方式发送数据,只能256KB
+	如果请求带有参数的化实用POST方式，POST方式将参数放置在页面的隐藏控件内
+	没有参数使用GET方式
+	对于请求的页面在中途可能发生更改的，也最好用POST方式
+	
+	url 参数是请求的主体。大多数浏览器实施了一个同源安全策略，并且要求这个 URL 与包含脚本的文本具有相同的主机名和端口。
+	async 参数指示请求使用应该异步地执行。如果这个参数是 false，请求是同步的，后续对 send() 的调用将阻塞，直到响应完全接收。
+	如果这个参数是 true 或省略，请求是异步的，且通常需要一个 onreadystatechange 事件句柄。
+	username 和 password 参数是可选的，为 url 所需的授权提供认证资格。如果指定了，它们会覆盖 url 自己指定的任何资格。
+*/
+	
+	function ajPost(){
+		var xhr = new XMLHttpRequest();
+		xhr.open('post','后台.php',true);
+//		post的send需要传输一个json对象
+/*		比如API有https://csdnimg.cn/static/api/js/component/anticheat.js
+		参数有很多随便举几个
+		username为zhangsan
+		age年龄为18等
+*/		
+//		创建一个json对象
+		var postJson = {
+			'username':'zhangsan',
+			'age':'18'
+		}
+		xhr.send(postJson);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				console.log('成功!');
+			}else{
+				console.log('失败!');
+			}
+		}
+	}
+	
+//	jQuery  Get Post请求
+//	必需的 URL 参数规定您希望请求的 URL。
+//	可选的 callback 参数是请求成功后所执行的函数名。
+	$.get(url,function(){});
+//	url:待载入页面的URL地址
+//	data:待发送 Key/value 参数。
+//	callback:载入成功时回调函数。
+//	type:返回内容格式，xml, html, script, json, text, _default。
+	$.get(url, [data], [callback], [type])
+	
+/*	get请求
+	$.ajax({
+        type: 'get',
+        url: 'json/words.json',
+        // 是需要传输的数据
+        data: {
+           id: '111',
+           q: 'haha'
+        },
+        // 发送类型， 默认是form表单格式
+        // contentType: 'json',
+        success: function(res, text, xhr) {
+           console.log('请求成功');
+        },
+        error: function() {
+           // 发送ajax 请求失败，服务端不能做正常的处理
+           console.log('请求失败');
+        },
+        // 无论成功还是失败，都会执行该函数
+        complete: function() {
+           console.log('请求完成');
+        }
+	})
+*/
+
+//	必需的 URL 参数规定您希望请求的 URL。
+//	可选的 data 参数规定连同请求发送的数据。
+//	可选的 callback 参数是请求成功后所执行的函数名。
+	$.post(URL,data,callback);
+//	url:发送请求地址。
+//	data:待发送 Key/value 参数。
+//	callback:发送成功时回调函数。
+//	type:返回内容格式，xml, html, script, json, text, _default。
+	$.post(url, [data], [callback], [type]);
+
+//	post请求
+/*    $.ajax({
+        type: 'post',
+        url: 'xxxx.xxx',
+        =====》设置请求格式
+        contentType: 'json',
+        =====》 如果是post请求， 且为json格式，需要经行格式化，转为json字符串。
+    	data: JSON.stringify({
+        name: 'xixi',
+        	q: 'hahaha'
+        }),
+        headers: {user_id: 36},
+        success: function(res, text, xhr) {
+            console.log('请求成功');
+        },
+        error: function() {
+            // 发送ajax 请求失败，服务端不能做正常的处理
+            console.log('请求失败');
+        },
+        // 无论成功还是失败，都会执行该函数
+        complete: function() {
+           console.log('请求完成');
+        }
+    })
+    */
+   
+// jsonp的形式
+/*  $.ajax({
+        type: 'get',
+        url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+        data: {
+            wd: '你好',
+            sid: "1422_21080_19897_26350_20927",
+        },
+        // 预期后台返回的格式
+        dataType: "jsonp",
+        // 链接中callback的字替换成你传入的值
+        jsonp: 'cb',
+        // 无论你是jonp，get，post，只要返送请求成功success函数都会调用
+        success: function(res, text, xhr) {
+            console.log(res);
+        },
+        error: function() {
+            // 发送ajax 请求失败，服务端不能做正常的处理
+            console.log('请求失败');
+        }
+    })
+*/
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// for循环 
+			// for(var a = 0; a < 100; a++) {} //如果不写表达式， 默认条件恒成立
+//			for(var a = 0; a < 100; a++) {
+//				console.log(a)
+//			}
+//			var i = 0
+//			for(var i = 0; i < 100; i++) {
+//				console.log(i)
+//			}
+			// 打印出1-100内3和7的倍数
+//			for(var i = 1; i <= 100; i++) {
+//				if(i % 3 == 0 && i % 7 ==0) {
+//					console.log(i)
+//				}
+//			}
+//			for(var i = 21; i <= 100; i += 21) {
+//				console.log(i)
+//			}
+			// 打印出100-999的水仙花数 abc = a*a*a + b*b*b + c*c*c
+			// 100 == 1*1*1 + 0*0*0 + 0*0*0
+			// 101 == 1*1*1 + 0 + 1
+			for(var i = 100; i < 1000; i++) {
+				// 获取百位数 a
+				var a = Math.floor(i / 100)
+				// 获取十位 b
+				// 983 ---》8 ---》 98
+				var b = Math.floor(i / 10) % 10
+				// 获取个位 c
+				var c = i % 10
+				if (i == a * a * a + b * b * b + c * c * c) {
+					console.log(i)
+				}
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="search" type="text" />
+		<button id="btn">搜索</button>
+		<ul id="show"></ul>
+	</body>
+</html>
+<script type="text/javascript">
+	var find = document.getElementById('search');
+	var btn = document.getElementById('btn');
+	var show_ul = document.getElementById('show');
+	
+/*	JSONP
+ 	首先在浏览器上的network的all的header的query string parameter获取属性
+ 	用一个对象来装载，cb为callback执行回调，浏览器的preview进行调用
+ 	然后在general的request url获取url只要前缀不要？之后的属性
+ 	因为我们是为了引用他的搜索
+ 	然后进行字符串拼接起来，改变cb成你想要的
+ 	然后把url加到script的src	
+ */
+
+	btn.onclick = function(){
+		var findVal = find.value;
+		var params = {
+				wd: findVal,
+				json: 1,
+				p: 3,
+				sid: "26524_1461_21079_26350_20718",
+				req: 2,
+				csor: 2,
+				cb: "showMsg",
+				_: Date.now()
+		}
+		var url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su';
+		for(const key in params){
+			if (params.hasOwnProperty(key)) {
+				if (url.indexOf('?')== -1) {
+					url += '?' + key + '=' + params[key];
+				}else{
+					url += '&' + key + '=' + params[key];
+				}
+			}
+		}
+//		拼接一个接口url,为了跟后台相对应
+		getUrl(url);
+	}
+	
+	function getUrl(url){
+		var script = document.createElement('script');
+		script.src = url;
+		document.body.appendChild(script);
+	}
+//	获取后台数据
+	function showMsg(json){
+		var data = json.s;
+		show_ul.innerHTML = '';
+		for (var i=0;i<data.length;i++) {
+			var li = document.createElement('li');
+			li.innerHTML = data[i];
+			show_ul.appendChild(li);
+		}
+	}
+</script>

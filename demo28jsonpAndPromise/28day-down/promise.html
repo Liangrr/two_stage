@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise</title>
+</head>
+<body>
+    <script src="ajax.1.4.js"></script>
+    <script>
+        // callback的形式，可以帮我们解决异步调用，但是别人阅读代码的时候，不具有可读性    
+        // setTimeout(function() {
+        //     a(b)
+        // },2000)
+        // function a(callback) {
+        //     callback(c)
+        // }
+        // function b(callback) {
+        //     callback()
+        // }
+        // function c() {
+
+        // } 
+        // callback 形式
+            // var fn = function(callbck) {
+            //     var a = 1;
+            //     var b = 2;
+            //     setTimeout(function() {
+            //         callback(a, b)
+            //     }, 2000)
+            // }
+            // function sum(a, b) {
+            //     console.log(a + b)
+            // }
+            // fn(sum);
+
+        // var fn = new Promise(function(成功函数, 失败函数) {
+        //  内容多是异步函数内容
+        //     setTimeout(() => {
+        //         var json  = 10000
+        //         调用成功函数(设置参数)
+        //     }, 2000);
+        // });
+        // 使用时，在promise实例后面，调用then(设置成功函数，设置失败函数)
+        // fn.then((res) => {
+        //     console.log(res);
+        // }).then(_=> {
+        //     console.log(1)
+        // }).then(_ => {
+        //     console.log(2)
+        // })
+
+        //  var fn = function(num) {
+        //         var a = 1;
+        //         var b = 2;
+        //         return  new Promise(function(resolved, rejected) {
+        //             setTimeout(function() {
+        //                 resolved(a, b)
+        //             }, 2000)
+        //         })
+        //     }
+        //     function sum(a, b) {
+        //         console.log(a + b)
+        //     }
+        //     // .then是Promise 实列的方法
+        //     fn(num).then(sum);
+        
+        var params = {
+            url: 'getjson.php'  
+        }
+        ajax(params).then((res) => {
+            console.log(res);
+        });
+    </script>
+</body>
+</html>

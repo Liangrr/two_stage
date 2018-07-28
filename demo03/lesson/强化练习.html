@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 1.计算 1 + 1/2 - 1/3 + 1/4 + .....+ 1/88 - 1/99 + 1/100
+			/*
+			 * 2.一个加油站为了鼓励车主多加油，所以加的多有优惠。
+			    92 号汽油，每升 6 元；如果大于等于 20升，那么每升 5.9 ；
+			    97 号汽油，每升 7 元；如果大于等于 30升，那么每升 6.95
+			    编写 JS 程序，用户输入自己的汽油编号，然后输入自己加多少升，弹出价格。
+			（用promot, 当用户输入的不是92，或者97的时候，需要让他重新输入）
+			 */
+			// 3. 入职薪水10K，每年涨幅5%，50年后工资多少？
+			// 4. 1+2!+3!+.....+19!+20!
+			
+//			for (;true;) {
+//				var xinghao = parseInt(prompt('请输入你要加的油号！'));
+//				var money;
+//				if (xinghao==92) {
+//					var sheng = parseInt(prompt("请问你需要加多少L，超过20L有优惠哟"));
+//					if (sheng<20) {
+//						money = 6*sheng;
+//						alert("你的油费为"+money+'元，谢谢惠顾!');
+//						break;
+//					} else if(sheng>=20){
+//						money = 5.9*sheng;
+//						alert("你的油费为"+money+'元，谢谢惠顾!');
+//						break;
+//					}
+//				}else if(xinghao==97){
+//					var sheng = parseInt(prompt("请问你需要加多少L，超过30L有优惠哟"));
+//					if (sheng<30) {
+//						money = 7*sheng;
+//						alert("你的油费为"+money+'元，谢谢惠顾!');
+//						break;
+//					} else if(sheng>=30){
+//						money = 6.95*sheng;
+//						alert("你的油费为"+money+'元，谢谢惠顾!');
+//						break;
+//					}
+//				}else if(isNaN(xinghao)){
+//					break;
+//				}else{
+//					alert('请重新输入油号');
+//				}
+//			}
+			
+//		do{
+//		
+//		}while (xinghao!=92||xinghao!=97)
+		
+		
+//			//定义个值
+//			var sum=0;
+//			//外面有多少个阶乘数就i小于几
+//			for (var i=1;i<=20;i++) {
+//				//定义一个参数，过度值
+//				var t=1;
+//				//在外围的循环后，第几个进行的循环次数
+//				for (var j=1;j<=i;j++) {
+//					//比如i=4，j=4，j循环四次，即t=1*1;t=1*2;t=2*3;t=6*4;但是也相当于t=2*3*4;
+//					t=t*j;
+//				}
+//				//每循环一次得出的sum加上j循环后的t值
+//				sum = sum+t;  //比如说仅仅看1+2+...+19+20,这样得出sum=sum+i;相当于阶乘的结果就是i
+//			}
+//			//在i循环全部次数后，（并且每次i循环一次，j循环多次的结果），累计的出来的sum
+//			alert(sum);
+		
+			var money=10000;
+			for (var i = 1;i<=50;i++) {
+				money = money*(1+0.05);
+			}
+			alert(Math.round(money));
+			
+		
+//			var num = 1;
+//			for (var a=2;a<101;a++) {
+//				if (a%2==0) {
+//					num=num+1/a;
+//				} else if(a%2!=0){
+//					num=num-1/a;
+//				}
+//				console.log(num);
+//			}
+//			alert(num);
+			
+			
+		</script>
+	</body>
+</html>

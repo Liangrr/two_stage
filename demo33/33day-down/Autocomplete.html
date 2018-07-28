@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自动补全</title>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	</head>
+	<body>
+		<div class="ui-widget">
+		  <label for="tags">搜索框：</label>
+		  <input id="tags">
+		</div>
+		<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  		<script>
+			 $.ajax({
+                type: 'get',
+                url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                data: {
+                    wd: '你好',
+                    sid: "1422_21080_19897_26350_20927",
+                },
+                // 预期后台返回的格式
+                dataType: "jsonp",
+                // 链接中callback的字替换成你传入的值
+                jsonp: 'cb',
+                // 无论你是jonp，get，post，只要返送请求成功success函数都会调用
+                success: function(res, text, xhr) {
+                    $( "#tags" ).autocomplete({
+                        source: res.s
+                    });
+                },
+                error: function() {
+                    // 发送ajax 请求失败，服务端不能做正常的处理
+                    console.log('请求失败');
+                }
+            })
+  		</script>
+	</body>
+</html>

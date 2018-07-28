@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			ul{list-style: none;}
+			ul li{
+				margin: 20px 10px;
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				border-radius: 10px;
+			}
+			/*ul li:nth-of-type(2n){
+				color: white;	
+				background-color: red;
+			}
+			ul li:nth-of-type(2n+1){
+				color: white;
+				background-color: deepskyblue;
+			}*/
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>第1行样式</li>
+			<li>第2行样式</li>
+			<li>第3行样式</li>
+			<li>第4行样式</li>
+			<li>第5行样式</li>
+		</ul>
+		<script src="js/randomColor.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var ul = document.querySelector('ul');
+			var li = document.querySelectorAll('ul li');
+			
+			for (var i=0;i<li.length;i++) {
+				li[i].style.backgroundColor = returnColor();
+			}
+			
+		</script>
+	</body>
+</html>

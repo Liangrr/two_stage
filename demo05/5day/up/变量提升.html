@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript" src="a.js"></script>
+		<script src="b.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			// 变量提升，是一个毫无节操的机制， 本身js代码从上到下执行
+			// 作用域中的代码在执行前，会进行一种预解释
+			// 1. 会把作用域的所有变量提前声明,带 var。
+			// 2. 会把作用域中的函数，提前声明并赋值
+			// console.log(a)
+			// var a
+			// aa()
+			//			function aa() {
+			//				console.log('aaa')
+			//			}
+			//			aa()
+			//			var aa = function () {
+			//				console.log('aaa')
+			//			}
+//			var a = 2;
+//			var a;  // 声明
+//			a = 2; // 赋值
+//			var a = 10
+//			a = 100
+//			b = 200
+//			var b = 300
+			//  var a;
+			//  var b;
+			//  a = 10;
+			//  a = 100;
+			//  b = 200;
+			// b =300
+//			console.log(a)
+//			console.log(b)
+//			aa()
+//			function aa() {
+//				
+//			}
+//			var aa;
+//			aa()
+//			aa = function() {
+//				console.log(1111)
+//			}
+//			函数在未执行时，内部变量不会经行提升
+//			function abc() {
+//				console.log(b)
+//				var a = 10;
+//				var b = 10
+//			}
+//			console.log(a)
+//			abc()
+		</script>
+	
+	</body>
+</html>

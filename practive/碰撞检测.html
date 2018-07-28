@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.ball{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background-color: red;
+				z-index: 1;
+			}
+			.box{
+				position:absolute;
+				top: 50%;
+				left: 50%;
+				width: 100px;
+				height: 100px;
+				background-color: #1E90FF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			
+		</div>
+		<div class="ball">
+			
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var box = document.querySelector('.box');
+	var ball = document.querySelector('.ball');
+	var timer = null;
+	var speedX = 2;
+	var speedY = 2;
+	var maxL = window.innerWidth - ball.offsetWidth;
+	var maxT = window.innerHeight - ball.offsetHeight;
+	timer = setInterval(function(){
+		var l = ball.offsetLeft + speedX;
+		var t = ball.offsetTop + speedY ;
+			if (l>maxL) {
+				l = maxL;
+				speedX = -1;
+			}else if (l<0) {
+				l = 0;
+				speedX = 1;
+			}
+			
+			if (t>maxT) {
+				t = maxT;
+				speedY = -1;
+			}else if (t<0) {
+				t = 0;
+				speedY = 1;
+			}
+		ball.style.left = l + 'px';
+		ball.style.top = t + 'px';
+		console.log(boom(ball,box))
+	},1);
+				function boom (ele1, ele2) {
+//				debugger
+				var ele1Left = ele1.offsetLeft;
+				var ele1Right = ele1Left + ele1.offsetWidth;
+				var ele1Top = ele1.offsetTop;
+				var ele1Bottom = ele1Top + ele1.offsetHeight;
+				var ele2Left = ele2.offsetLeft;
+				var ele2Right = ele2Left + ele2.offsetWidth;
+				var ele2Top = ele2.offsetTop;
+				var ele2Bottom = ele2Top + ele2.offsetHeight;
+				if(ele1Right <  ele2Left) {
+					
+				} else if(ele1Bottom < ele2Top) {
+					
+				} else if(ele1Left > ele2Right) {
+					
+				} else if(ele1Top > ele2Bottom) {
+					
+				} else {
+					return true;
+				}
+				return 0;
+			}
+</script>

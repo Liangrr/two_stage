@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function jsonp(src) {
+            var script = document.createElement('script');
+            script.src = src;
+            document.body.appendChild(script);
+        }
+        var url = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su";
+        var params = {
+            wd: '1111',
+            sid: '1422_21080_19897_26350_20927',
+            cb: "fn"
+        }
+        // 把url和参数经行拼接
+        
+        // 回掉函数的作用： 帮你获取数据，执行
+        function fn(json) {
+            console.log(json)
+        }
+        jsonp(); 
+        
+    </script>
+</body>
+</html>

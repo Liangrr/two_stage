@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 * 定义一个含有10个元素的数组，任意输入一个数，
+			 * 判断这个数在数组中是否存在，
+			 * 如果存在，就删除这个数
+			 */
+			//delete  数组长度不会放生改变，稀疏数组
+			function fn(num) {
+				var arr = [1,3,5,5,5,5,1,47,20,98];
+				for(var i = 0; i < arr.length; i++) {
+					if(arr[i] == num) {
+						arr.splice(i, 1);
+						i--;
+					}
+				}
+				return arr
+			}
+			console.log(fn(5))
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				margin: 100px auto;
+				width: 200px;
+				height: 200px;
+				background-color: dodgerblue;
+				opacity: 0.2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			
+		</div>
+	</body>
+</html>
+<script src="js/fadeTo.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var box = document.querySelector('.box');
+	var timer;
+	
+	box.onmouseenter = function(e){
+		e = e || window.event;
+		fadeIn(this,1000,test);
+	}
+	box.onmouseleave = function(e){
+		e = e || window.event;
+		fadeOut(this,1000,test);
+	}
+	
+	function fadeIn(element,time,callback){
+		fadeTo(element,1,time,callback)
+	}
+	function fadeOut(element,time,callback){
+		fadeTo(element,0,time,callback)
+	}
+
+	function test(element){
+		console.log('执行完成')
+//		alert('执行完成')
+	}
+	
+	function getStyle(ele,attr){
+		return	window.getComputedStyle?window.getComputedStyle(ele,null)[attr]:ele.currentStyle[attr];
+	}
+	
+</script>

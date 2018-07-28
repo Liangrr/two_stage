@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 写成对象，减少变量名称重复
+        // function checkName(name) {
+
+        // }   
+        // function checkEmail(mail) {
+
+        // }
+        // var checkInput = {
+        //     checkName: function() {
+
+        //     },
+        //     checkEmail: function() {
+
+        //     }
+        // }
+        // // 另外一个同事也想用你的方法
+        // var checkInputLi = checkInput;
+        // checkInputLi.checkEmail = function() {
+
+        // }
+        // 这种方式会影响另外一个同事的代码
+
+        // 工厂模式诞生，解决代码互相影响
+        // function CheckInput() {
+        //     return {
+        //         checkName: function() {
+
+        //         },
+        //         checkEmail: function() {
+
+        //         }
+        //      }
+        // }
+        // var checkInputLi = CheckInput()
+        // checkInputLi.checkEmail = {};
+        // var checkInputWang =  CheckInput();
+        // checkInputWang.checkEmail = {name: '123'}
+        // 工厂模式的缺点，不能确定他的父级（类）
+        
+        
+        //诞生了构造函数模式
+        // function CheckInput() {
+        //     this.checkName = function() {
+
+        //     }
+        //     this.checkEmail = function(){
+
+        //     }
+        // }
+        // 把每一个共有的属性都添加在对象上，是一种资源的浪费
+        var checkInputLi = new CheckInput();
+
+        // 诞生了原型链模式
+        // 函数自带prototype  属性
+        function CheckInput() {
+          // 把公有属性放在原型链上
+        }
+        CheckInput.prototype.checkName = function() {
+
+        }
+        CheckInput.prototype.checkEmail = function() {
+
+        }
+        
+        CheckInput.prototype = {
+
+        }
+        CheckInput.prototype.constructor = CheckInput
+        // 原型链模式与构造函数模式结合
+    </script>
+</body>
+</html>

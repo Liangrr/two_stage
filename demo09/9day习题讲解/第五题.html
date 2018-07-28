@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr = [ 
+				{name: '小兰', score: 97, age: 18},
+				{name: '小王', score: 98, age: 56},
+				{name: '小张', score: 84, age: 27},
+				{name: '小李', score: 86, age: 14},
+				{name: '小黄', score: 57, age: 27}
+			]
+//			 arr [97,98,84,86,57]
+
+//			arr.sort(function(a, b) {
+//			a, b代表的是数组中的元素
+//				return b- a
+//			})
+			arr.sort(function(a, b) {
+				return b.age - a.age
+			})
+			console.log(arr)
+		</script>
+	</body>
+</html>

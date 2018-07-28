@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function get() {
+          alert('通过php文件调用方法，成功!!')  
+        }
+        function getJson(json) {
+            console.log(json)
+        }
+        // {"msg":"","code":200}
+        // 1 jsonp
+        // -> 原理： 利用了script标签，向服务器请求文件时，没有同源策略。
+        // -> 手动script 标签， src等于请求地址
+        // -> 设置一个回掉函数
+        // -> jsonp 的方式需要前后台一起协同完成。
+        // 2.cros
+        // header('Access-Control-Allow-Origin:'*');
+        // 首部验证： user-id,放到请求头。 token:, 身份验证。
+        // 只需要后台设置
+    </script>
+    <script src="get.php">
+    </script>
+    
+</body>
+</html>

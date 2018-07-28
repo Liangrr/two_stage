@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="inp" type="text" placeholder="请输入搜索内容">
+    <button type="button" id="btn">搜索图片</button>
+    <ul>
+
+    </ul>
+    <script src="ajax1.3.js"></script>
+    <script>
+        btn.onclick = function() {
+            var val = inp.value;
+            getImage(val, 1);
+        }       
+        function getImage(val, page, pageSize) {
+            pageSize = pageSize || 10;
+            var pageNum = (page - 1) * pageSize + 1;
+            var params = {
+                url: `http://dev.91jianke.com:1091/id_v2_5/search_img?q=${val}&page_no=${pageNum}&page_size=${pageSize}`,
+                success: success
+            }
+            ajax(params);
+        }
+        function success(json) {
+            console.log(json); 
+        }
+    </script>
+</body>
+</html>

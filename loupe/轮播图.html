@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/loupe.css"/>
+	</head>
+	<body>
+		<div class="loupe">
+			<div class="picAll">
+				<img src="img/npc1.jpg"/>
+				<img src="img/npc2.jpg"/>
+				<img src="img/npc3.jpg"/>
+				<img src="img/npc4.jpg"/>
+				<img src="img/npc5.jpg"/>
+			</div>
+			<ul class="dotAll">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+			<button id="left"></button>
+			<button id="right"></button>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var picAll = document.querySelector('.picAll');
+	var imgs = document.querySelectorAll('.picAll img');
+	var dotAll = document.querySelector('.dotAll');
+	var lis = document.querySelectorAll('.dotAll li');
+	var leftBtn = document.getElementById('left');
+	var rightBtn = document.getElementById('right');
+	var timer;
+	var index = 0;
+	
+	autoPlay();
+	
+	leftBtn.onclick = function(){
+		showImg(index);
+//		autoPlay(index);
+	}
+	
+	dotAll.onclick = function(e){
+		e = e || window.event;
+		var tar = e.target || e.srcElement;
+		if (tar.nodeName == 'LI') {
+			showImg(tar.innerHTML-1);
+			autoPlay(tar.innerHTML-1);
+		}
+	}
+	
+	function showImg(index){
+		index = index || 0;
+		for (var i=0;i<lis.length;i++) {
+			lis[i].className = '';
+			imgs[i].style.display = 'none';
+		}
+		lis[index].className = 'active';
+		imgs[index].style.display = 'block';
+	}
+	
+	function autoPlay(index){
+		index = index || 0;
+		clearInterval(timer);
+		timer = setInterval(function(){
+			showImg(index);
+			index++;
+			if (index==lis.length) {
+				index = 0;
+			}
+		},1000);
+	}
+</script>

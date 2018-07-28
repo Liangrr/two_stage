@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inp {
+            color:  #ccc;
+        }
+        .error {
+            color: red;
+            display: none;  
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text" value="请输入内容" class="inp">
+        <span class="error"></span>
+    </div>
+    <ul class="libox">
+
+    </ul>
+    <script>
+        // 文本框模仿placeholder功能
+        var inp = document.querySelector('.inp');
+        var ulBox = document.querySelector('.libox');
+
+        var check = CheckInp();
+        inp.onfocus =function() {
+        	check.focus(inp)
+        }
+        inp.onblur = function(){
+        	check.blur(inp)
+        }
+        inp.onkeydown = function(){
+        	check.keydown(inp)
+        }
+        function CheckInp(){
+        	return {
+        		focus: function(params) {
+		            params.style.color = '#000';
+					params.nextElementSibling.style.display = 'none'
+		            if(params.value == '请输入内容') {
+		                params.value = ''
+		            }
+		        },
+		        blur:function(params) {
+		            if(params.value == '') {
+		                params.value = '请输入内容'
+		                params.style.color = '#ccc';
+		            }
+		        },
+		        keydown:function(params,ev) {
+		            ev = ev || window.event;
+		            var keyCode = ev.keyCode || ev.which;
+		            if(keyCode == 13 && ev.ctrlKey) {
+		                var reg = /^1[35789]\d{9}$/
+		                getStyle(params,reg)
+		            }
+		        }
+        	}
+        }
+
+//	获得样式
+	function getStyle(element,reg){
+		var e = element.nextElementSibling;
+		if (reg.test(element.value)) {
+			createDom('li',element.value,element.parentNode.nextElementSibling);
+			e.innerHTML = '你的输入正确！'
+			e.style.color = 'green'
+			e.style.display = 'inline'
+		}else{
+			e.innerHTML = '你的输入错误！'
+			e.style.color = 'red'
+			e.style.display = 'inline'
+		}
+	}
+//	插入dom元素方法
+	function createDom(child,childVal,parent){
+		var li = document.createElement(child);
+		li.innerHTML = childVal;
+		parent.appendChild(li);
+	}
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//			var arr = [1, 2, 5, 3, 9, 7]; // [1,2,3,5,7,9]
+//			arr.sort();
+//			'11' > '2'
+//			var arr = [11, 22, 5, 3, 9, 7];// [11, 22, 3, 5, 7, 9]
+//			arr.sort();
+			// 有缺陷，默认当字符串进行排序
+//			var sortGreat = function(a, b) {
+//				return a - b;
+				// 返回大于0为正序，
+				// 返回小于0 为倒序，
+				// 返回等于0. 两者位置不发生改变
+//			}
+//			arr.sort(sortGreat);
+//			console.log(arr)
+			var arr = [52 ,'11', '22', '5', '31', 9, 71, 2, 18, 26];
+			// [11, 5, 22, 9, 31, 2, 18, 26, 71] //第一次的结果
+			// [5, 11, 9, 22, 2, 18, 26, 31, 71] //第二次的结果
+			
+			// 第一次    8
+			// 第二次   7
+			// 第三次  6
+			// 第四次 5
+			for(var i = arr.length; i > 0; i--) {
+				for (var j = 0;j < i - 1; j++) {
+					if(arr[j] > arr[j + 1]) {
+						var _arr = arr[j]
+						arr[j] = arr[j + 1]
+						arr[j+1] = _arr
+//						arr[j] = arr[j] + arr[j + 1]
+//						arr[j + 1] = arr[j] - arr[j + 1]
+//						arr[j] = arr[j] - arr[j + 1]
+					}
+				}
+			}
+			console.log(arr)
+		</script>
+	</body>
+</html>

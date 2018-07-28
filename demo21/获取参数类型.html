@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	var str = 'sdasdas';
+	console.log(alterType3(str))
+
+	function alterType(parameter){
+		//获取该参数的类型，但是带object前缀
+		var strObj = Object.prototype.toString.call(parameter);
+		//删除]
+		var rep = strObj.replace(']','');
+		//截取
+		var cut = rep.substr(8,rep.length);
+		return cut;
+	}
+
+	function alterType2(parameter){
+		//获取该参数的类型，但是带object前缀
+		var strObj = Object.prototype.toString.call(parameter);
+		var reg = /\w+/g;
+		//去掉括号,获得的是个数组，第0个是object，第一个是参数类型
+		var arr = strObj.match(reg);
+		return arr[1];
+	}
+	
+	function alterType3(params){
+		const str = Object.prototype.toString.call(params);
+		return /^\[object (.*)\]$/.exec(str)[1];
+	}
+	
+	
+	
+</script>

@@ -1,0 +1,81 @@
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			
+			
+			.content {
+				width: 645px;
+				text-align: center;
+				position: absolute;
+				top: 28%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			
+			.content img {
+				width: 330px;
+				height: 150px;
+			}
+			
+			.content .input_container {
+				width: 645px;
+				height: 35px;
+				position: relative;
+			}
+			
+			.content .input_container input[type=text] {
+				width: 543px;
+				height: 33px;
+				outline: none;
+				border: 1px solid #aaa;
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding-left: 10px;
+			}
+			
+			.content .input_container input[type=button] {
+				width: 100px;
+				height: 35px;
+				background-color: blue;
+				color: black;
+				position: absolute;
+				top: 0;
+				right: 0;
+				outline: none;
+			}
+			/*不设置宽高,背景图不显示,所以要设置成display:block*/
+			
+			.content .input_container a {
+				width: 18px;
+				height: 16px;
+				position: absolute;
+				right: 112px;
+				top: 25%;
+				background-image: url(img/camera.png);
+			}
+			
+			.content .input_container a:hover {
+				background-position-y: -20px;
+			}
+			
+			
+#find_ul{
+	width: 543px;
+	/*height: 200px;*/
+	display: none;
+	position: absolute;
+	top: 36px;
+}
+#find_ul li{
+	width: 100%;
+	height: 50px;
+	background-color: #ccc;
+	margin-bottom: 2px;
+}

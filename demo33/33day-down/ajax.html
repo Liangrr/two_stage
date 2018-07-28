@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+</head>
+<body>
+
+
+
+    <script src="../33day-up/jquery.js"></script>
+    <script>
+        // get请求
+        // $.ajax({
+        //     type: 'get',
+        //     url: 'json/words.json',
+        //     // 是需要传输的数据
+        //     data: {
+        //         id: '111',
+        //         q: 'haha'
+        //     },
+        //     // 发送类型， 默认是form表单格式
+        //     // contentType: 'json',
+        //     success: function(res, text, xhr) {
+        //         console.log('请求成功');
+        //     },
+        //     error: function() {
+        //         // 发送ajax 请求失败，服务端不能做正常的处理
+        //         console.log('请求失败');
+        //     },
+        //     // 无论成功还是失败，都会执行该函数
+        //     complete: function() {
+        //         console.log('请求完成');
+        //     }
+        // })
+        // post请求
+        // $.ajax({
+        //     type: 'post',
+        //     url: 'xxxx.xxx',
+        //     =====》设置请求格式
+        //     contentType: 'json',
+        //     =====》 如果是post请求， 且为json格式，需要经行格式化，转为json字符串。
+        //     data: JSON.stringify({
+        //         name: 'xixi',
+        //         q: 'hahaha'
+        //     }),
+        //     headers: {user_id: 36},
+        //     success: function(res, text, xhr) {
+        //         console.log('请求成功');
+        //     },
+        //     error: function() {
+        //         // 发送ajax 请求失败，服务端不能做正常的处理
+        //         console.log('请求失败');
+        //     },
+        //     // 无论成功还是失败，都会执行该函数
+        //     complete: function() {
+        //         console.log('请求完成');
+        //     }
+        // })
+        // jsonp的形式
+        $.ajax({
+                type: 'get',
+                url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                data: {
+                    wd: '你好',
+                    sid: "1422_21080_19897_26350_20927",
+                },
+                // 预期后台返回的格式
+                dataType: "jsonp",
+                // 链接中callback的字替换成你传入的值
+                jsonp: 'cb',
+                // 无论你是jonp，get，post，只要返送请求成功success函数都会调用
+                success: function(res, text, xhr) {
+                    console.log(res);
+                },
+                error: function() {
+                    // 发送ajax 请求失败，服务端不能做正常的处理
+                    console.log('请求失败');
+                }
+            })
+   
+    </script>
+    <script>
+        json
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../../common.js"></script>
+		<script type="text/javascript">
+			//[1,2,3,4,5,6]随机打乱这个数组
+			var arr  = [1,2,3,4,5,6];
+			function fixArr(arr) {
+				var newArr = []
+				var length = arr.length
+				for (var i = 0; i < length; i++) {
+					var _random = maxRandom(arr.length - 1);
+					// 如果你不把选中的删除，理论上存在无限循环
+					newArr.push(arr[_random])
+					arr.splice(_random, 1)
+					// 删除一个元素后，arr长度少一
+				}
+				return newArr
+			}
+			console.log(fixArr(arr));
+			//	arr = [1,6,3,4,5,2]
+			//  arr = [1,6,5,4,3,2]
+			//  arr = [4,6,5,1,3,2]
+			//	随机一个数与最后一个数替换
+		</script>
+	</body>
+</html>

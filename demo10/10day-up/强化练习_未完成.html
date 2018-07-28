@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--第一题-->
+		<ul class="box">
+			<li class="item">1</li>
+			<li class="item">2</li>
+			<li class="item">3</li>
+			<li class="item">4</li>
+			<li class="item">5</li>
+			<li class="item">6</li>
+			<li class="item">7</li>
+			<li class="item">8</li>
+			<li class="item">9</li>
+			<li class="item">10</li>
+		</ul>
+		<button class="btn">删除最后一个元素</button>
+		<!--第三题-->
+		<div>
+			<span class="main_content">JavaScript</span>
+			是世界上最好的语言！！！
+		</div>
+		
+		<script type="text/javascript">
+			
+//			 1. 写一个函数，默认每次删除父元素节点最后一个子元素节点， 删除完时，要弹出警告。 
+			var box = document.querySelector('.box');
+			var btn = document.getElementsByClassName('btn');
+			btn[0].onclick = function(){
+				console.log(removeNode2())
+			}
+//			方法三
+			function removeNode3(){
+				var lastChild = box.lastElementChild;
+				if (lastChild) {
+					box.remove(lastChild);
+				} else{
+					alert('你已经删除完了！');
+					return '删除完成!';
+				}
+			}
+//			方法一:
+			function removeNode(){
+//				获取item必须放在里面,保持每次更新
+				var item = document.querySelectorAll('.box .item');
+//				长度为0之后
+				if (item.length==0) {
+					alert('你已经删除完了！');
+					return '删除完成!';
+				} else{
+//					第几个item是上个item的长度减一,即删除之后的item,获取item之后执行删除
+					item[item.length-1].remove();
+					return '删除'+item.length+'成功';
+				}
+			}
+//			方法二:
+			function removeNode2(){
+//				获取item必须放在里面,保持每次更新
+				var arr = document.querySelectorAll('.box .item');
+//				如果里面还有标签,则执行
+				if (arr.length>0) {
+//					获取li的数目,简单来讲,就是执行一次
+					for (var i=arr.length;i>arr.length-1;i--) {
+//						获取子元素的父级
+						var nodeParent = arr[i-1].parentNode;
+//						获取父级下的子元素并且删除
+						var rem =  nodeParent.removeChild(arr[i-1]);
+						return '删除'+arr.length+'成功';
+					}
+				}else{
+					alert('你已经删除完了！');
+					return '删除完成!';
+				}
+			}
+//			 2.封装一个函数,删除传入节点
+			
+			var liAll =  document.getElementsByTagName('li');
+//			输入一个标签名
+			var node = 'ul li:nth-child(2)';
+//			删除一个你输入标签名的标签
+//			console.log(remove(node));
+			function remove(node){
+//				获取标签,然后取得父级
+				var nodeParent = document.querySelector(node).parentNode;
+//				父级调用删除子元素方法,子元素是上面获取的标签
+				return  nodeParent.removeChild(document.querySelector(node));
+			}
+			
+//			 3.把JavaScript替换成粗体（就是把span标签变为b标签）
+
+				var box3 = document.querySelector('div');
+				var span = document.querySelector('div .main_content');
+				var b = document.createElement('b');
+				var texts = span.childNodes[0].nodeValue;
+//				var nodes = 
+				console.log(texts)
+				b.nodeValue = texts;
+				
+				console.log(b.nodeValue)
+		</script>
+	</body>
+</html>

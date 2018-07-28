@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+//	继承方式1.原型链继承
+//	把父实例赋给子实例的prototype
+//	这是子---构造函数
+	function People(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	People.prototype.eat = function(){
+		console.log(this.name + '吃吃吃!');
+	}
+//	父---构造函数
+	function Sport(name){
+		this.name = name;
+	}
+	Sport.prototype.run = function(){
+		console.log(this.name + '跑跑跑!')
+	}
+//	prototype是个对象,把新建的父实例赋给子实例，这样子实例就继承的父实例，但是子实例原先的东西也被覆盖了
+//	这里的new Sport()可以写Sport.prototype,但是写这个的话,当下面改变constructor的时候也改变了Sport的constructor了
+	People.prototype = new Sport('吾');
+//	这里会全部继承sport,并且原先constructor指向People改成指向Sport,所以这里需要改变回People
+	People.prototype.constructor = People;
+//	建立新实例
+	var person1 = new People('小米',18);
+	console.log(People.prototype.constructor)
+	person1.run();
+</script>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>简易封装轮播</title>
+		<link rel="stylesheet" type="text/css" href="css/loupe.css"/>
+	</head>
+	<body>
+		<div class="loupe">
+			<div class="box_img">
+				<img src="img/npc1.jpg" alt="" />
+				<img src="img/npc2.jpg" alt="" />
+				<img src="img/npc3.jpg" alt="" />
+				<img src="img/npc4.jpg" alt="" />
+				<img src="img/npc5.jpg" alt="" />
+				<img src="img/npc6.jpg" alt="" />
+				<img src="img/npc7.jpg" alt="" />
+			</div>
+			<ul class="box_ul">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<button id="left"></button>
+			<button id="right"></button>
+		</div>
+	</body>
+</html>
+<script src="js/sport2.1.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var loupe = document.querySelector('.loupe');
+	var box_img = document.querySelector('.box_img');
+	var imgs = document.querySelectorAll('.box_img img');
+	var box_ul = document.querySelector('.box_ul');
+	var liAll = document.querySelectorAll('.box_ul li');
+	var leftBtn = document.getElementById('left');
+	var rightBtn = document.getElementById('right');
+	var timer;
+	var index=0;
+
+
+	var packaging = {
+		autoPlay:function(){
+			clearInterval(timer)
+			timer = setInterval(function(){
+				index++;
+				packaging.showPage();
+			},2000);
+		},
+		showPage:function(){
+			if (index==7) {
+				index=0;
+			}else if(index==-1) {
+				index=6;
+			}
+			
+			for (var i=0;i<liAll.length;i++) {
+				liAll[i].className = '';
+			}
+			liAll[index].className = 'active'
+			
+			startMove(box_img,-500*index,100,'left');
+		}
+	}
+	
+	packaging.autoPlay()
+	
+	leftBtn.onclick = function(){
+		index++;
+		packaging.showPage();
+		packaging.autoPlay()
+	}
+	rightBtn.onclick = function(){
+		index--;
+		packaging.showPage();
+		packaging.autoPlay()
+	}
+
+
+
+//	function autoPlay(){
+//		clearInterval(timer)
+//		timer = setInterval(function(){
+//			index++;
+//			showPage();
+//		},2000);
+//	}
+//	
+//	function showPage(){
+//		if (index==7) {
+//			index=0;
+//		}else if(index==-1) {
+//			index=6;
+//		}
+//		
+//		for (var i=0;i<liAll.length;i++) {
+//			liAll[i].className = '';
+//		}
+//		liAll[index].className = 'active'
+//		
+//		startMove(box_img,-500*index,100,'left');
+//	}
+	
+
+	
+</script>

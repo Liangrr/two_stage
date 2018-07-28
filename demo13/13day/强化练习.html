@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#table-box {
+				
+			}
+			#table-box td,
+			#table-box th {
+				padding: 4px 20px;
+				background-color: #000;
+				color: #fff;
+				font-size: 14px;
+				text-align: center;
+			}
+			.btn {
+				font-size: 12px;
+				padding: 2px 18px;
+				background-color: #e23329;
+  				color: #fff;
+  				border-radius: 6px;
+  				border: none;
+			}
+			.btn.success {
+				background-color: #42d653;
+			}
+			.btn:focus {
+				outline: none;
+			}
+			.mg-r {
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="0" cellspacing="1" cellpadding="1" id="table-box">
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>身高</th>
+				<th>体重</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td><span id="">
+					小兰
+				</span></td>
+				<td>18</td>
+				<td>173cm</td>
+				<td>50kg</td>
+				<td>
+					<button class="btn success">增加</button>
+					<button class="btn del">删除</button>
+				</td>
+			</tr>
+		</table>
+		<script type="text/javascript">
+			// 利用事件委托
+			// 优点： 优化性能，不用给每个dom元素添加事件
+			// 通过委托给父级，添加新元素时，同样可以触发函数
+			var btnAll = document.getElementsByClassName('btn');
+			var tableBox = document.getElementById('table-box');
+
+//			btnAll[0].onclick = function(){
+//				console.log('添加按钮');
+//				var newNode = this.parentNode.parentNode.cloneNode(true);
+//				tableBox.appendChild(newNode);
+//			}
+//			btnAll[1].onclick = function(){
+//				console.log('删除按钮')
+//			}
+//			表格的左键事件
+			tableBox.onclick = function(e){
+				e = e || window.event;
+//				 event对象的属性target
+				var tar = e.target || e.srcElement;
+//				判断点击的类型
+				if (tar.nodeName == 'BUTTON') {
+//					类名
+					if(tar.className == 'btn success'){
+//						克隆按键的父级的父级 即tr
+						var newTr = tar.parentNode.parentNode.cloneNode(true);
+//						把tr加到table
+						tableBox.appendChild(newTr);
+					}else if(tar.className == 'btn del'){
+						var tr = document.querySelectorAll('table tr');
+//						如果tr超过俩个
+						if (tr.length>2){
+//							按键的父级的父级的父级的最后一个儿子,删除
+							tar.parentNode.parentNode.parentNode.lastElementChild.remove();
+						}
+					}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

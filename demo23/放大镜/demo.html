@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>盒子移动</title>
+    <style>
+        .box {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            border: 6px solid #000;
+        }
+        .item {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            background-color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item"></div>
+    </div>
+    <script>
+        //获取小盒子移动区域
+        var $box = document.querySelector('.box');
+        // 获取移动的盒子
+        var $item = document.querySelector('.item');
+        // 鼠标移入区域显示小盒子
+        $box.onmouseover = function() {
+            $item.style.display = 'block'
+        }
+        // 鼠标移出隐藏小盒子
+        $box.onmouseout = function() {
+            $item.style.display = 'none'
+        }
+        // 鼠标移动小盒子跟随移动
+        $box.onmousemove = function(ev) {
+            ev = ev || window.event
+            // 获取移动后，小盒子的位置
+            var l = ev.clientX - $box.offsetLeft - $item.offsetWidth / 2
+            var t = ev.clientY - $box.offsetTop - $item.offsetHeight / 2
+            // 获取最大边界
+            var maxL = $box.clientWidth - $item.offsetWidth
+            var maxT = $box.clientHeight - $item.offsetHeight
+            //边界处理
+            if(l > maxL) {
+                l = maxL
+            } else if(l < 0) {
+                l = 0
+            }
+            if(t > maxT) {
+                t = maxT
+            } else if (t < 0) {
+                t = 0
+            }
+            $item.style.left = l + 'px'
+            $item.style.top = t + 'px'
+        }
+    </script>
+</body>
+</html>

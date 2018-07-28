@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆页面</title>
+</head>
+<body>
+	
+    <!--<form method="POST" action="php/login.php">-->
+        <input type="text" placeholder="用户名" name="username" id="username"/> <br>
+        <input type="password" placeholder="密码" name="pwd" id="pwd"/> <br>
+        <button id="btn">测试</button>
+        <!--<input type="submit">-->
+    <!--</form>-->
+</body>
+</html>
+<script src="ajax.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var user = document.getElementById('username');
+	var pass = document.getElementById('pwd');
+	var btn = document.getElementById('btn');
+         // 1.当用户输入用户名称时，首先判断用户名是否合法
+        // -> js正则
+        // 2. 合法后，发送ajax，查询用户名是否存在
+        // -> 发送ajax，通过php文件来完成
+        // 3. 用户名称不存在，验证密码格式
+        // ->  js正则
+        // 4. 格式通过，点击注册按钮，发送post请求，进行用户数据插入。
+        // -> 通过php来完成
+	btn.onclick = function(){
+		var username = user.value;
+		var pwd = pass.value;
+//		建立传参,参数为一个对象
+		var params = {
+			data:{
+				username:username,
+				pwd:pwd
+			},
+			method: 'POST',
+			url:'test.php',
+			success:function(tip){
+				alert(tip);
+			},
+			fail:function(tip){
+				alert(tip);
+			}
+		}
+		var reg = /^\w+\d+$/g;
+		var reg2 = /\w+/g;
+		if (reg.test(username)) {
+			if (reg2.test(pwd)) {
+				ajax(params);
+			}else{
+				alert('您输入的密码有误！')
+			}
+		} else{
+			alert('您输入的账号有误！')
+		}
+	}
+</script>

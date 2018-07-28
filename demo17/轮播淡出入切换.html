@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+	<title>轮播图淡入淡出以及点击切换</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        ul,ol{ list-style: none;}
+        .wrapper{
+            width: 670px;
+            height: 240px;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        ul{
+        	position:relative;
+        }
+        ul li{
+        	position:absolute;
+        	top:0;
+        	left:0;
+        }
+        ol{
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            width: 190px;
+        }
+        ol li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: default;
+            background-color: #fff;
+        }
+        ol li.current{
+            background-color: pink;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul id="box">
+            <li style="z-index: 6;"><img src="images/1.jpg" alt=""/></li>
+            <li style="z-index: 5;"><img src="images/2.jpg" alt=""/></li>
+            <li style="z-index: 4;"><img src="images/3.jpg" alt=""/></li>
+            <li style="z-index: 3;"><img src="images/4.jpg" alt=""/></li>
+            <li style="z-index: 2;"><img src="images/5.jpg" alt=""/></li>
+            <li style="z-index: 1;"><img src="images/6.jpg" alt=""/></li>
+        </ul>
+        <ol style="z-index: 10;" id="uu">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ol>
+    </div>
+</body>
+</html>
+<script src="js/fadeTo.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    'use strict'
+    var img = document.getElementById('box');
+    var liImgs = img.querySelectorAll('li');
+    var tri = document.getElementById('uu');
+    var liTris = tri.querySelectorAll('li');
+    var timer;
+    var index;
+    
+//  这个循环是为了给liBox里面的每个li都加opacity行内样式
+//  for(var i = 0; i < liImgs.length; i++) {
+//      if(i == 0) {
+//          liImgs[i].style.opacity = 1;
+//          continue;
+//      }
+//      liImgs[i].style.opacity = 0;
+//  }	
+//  第一步:点击盒子然后通过事件委托获取到点击的li
+//	第二步：然后调用showImg函数的图片隐藏和显示操作
+//	第三步:设置定时器,传index,如果没有默认给1   
+    autoPlay();
+	showImgs(index);	
+//  点击tri然后通过事件委托
+    tri.onclick = function(e){
+    	e = e || window.event;
+    	var tar = e.target || e.srcElement;
+//  	判断是否点击的是li
+    	if (tar.nodeName=='LI') {
+			showImgs(tar.innerHTML-1);
+			autoPlay(tar.innerHTML-1);
+    	}
+    }
+    
+//  设置自动播放的函数并且传参index
+    function autoPlay(index){
+    	clearInterval(timer)
+//  	如果不传参,则返回1
+    	index = index || 0;
+    	timer =	setInterval(function(){
+    		showImgs(index);
+    		index++;
+    		if (index==liImgs.length) {
+    			index=0;
+    		}
+    	},1000);
+    }
+    
+    function showImgs(index){
+    	index = index || 0;
+//  	clearInterval(timer)
+//  		进行循环
+    		for (var i=0;i<liImgs.length;i++) {
+//  			设置每个li的class为空
+    			liTris[i].className = '';
+//  			设定每个li图片为none
+				fadeOut(liImgs[i],500,function(ele){
+					ele.style.display = 'none';
+				})
+//  			liImgs[i].style.display = 'none'
+    		}
+//  		设定显示的第几个的
+    		liTris[index].className = 'current';
+    		liImgs[index].style.display = 'block';
+    		fadeIn(liImgs[index],500)
+    }
+
+</script>

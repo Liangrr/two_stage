@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//函数参数值引用
+//			function createArr(num1, num2) {
+//				num1.push(num2)
+//				return num1
+//			}
+//			var arr = [1,2,3,4]
+//			var num2 = 5
+//			var arr2 =  createArr(arr, num2)
+//			console.log('arr2', arr2)
+//			console.log('arr', arr)
+			var a = 10;
+			var b = [];
+			function createArr2(num1, num2) {
+				num1 = 25;
+				num2 = '小薇';
+				return undefined;
+			}
+			createArr2(a, b);
+			console.log(a); // 10
+			console.log(b); // []
+		</script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			console.log(typeof 123==="number");
+			
+//			getD('2018/5/30');
+			function getD(value){
+				var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+				var dates = new Date(value);
+				console.log(week[dates.getDay()]);
+			}
+			
+		</script>
+	</body>
+</html>

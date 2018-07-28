@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        ul,ol{ list-style: none;}
+        .wrapper{
+            width: 670px;
+            height: 240px;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        ul{
+        	position:relative;
+        }
+        ul li{
+        	position:absolute;
+        	top:0;
+        	left:0;
+        }
+        ol{
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            width: 190px;
+        }
+        ol li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: default;
+            background-color: #fff;
+        }
+        ol li.current{
+            background-color: pink;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul id="box">
+            <li style="z-index: 6;"><img src="images/1.jpg" alt=""/></li>
+            <li style="z-index: 5;"><img src="images/2.jpg" alt=""/></li>
+            <li style="z-index: 4;"><img src="images/3.jpg" alt=""/></li>
+            <li style="z-index: 3;"><img src="images/4.jpg" alt=""/></li>
+            <li style="z-index: 2;"><img src="images/5.jpg" alt=""/></li>
+            <li style="z-index: 1;"><img src="images/6.jpg" alt=""/></li>
+        </ul>
+        <ol style="z-index: 10;" id="uu">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ol>
+    </div>
+</body>
+</html>
+<script src="js/sport2.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    'use strict'
+    var box = document.getElementById('box');
+    var liBox = box.querySelectorAll('li');
+    var uuBox = document.getElementById('uu');
+    var uuLiBox= uuBox.querySelectorAll('li');
+    for(var i = 0; i < liBox.length; i++) {
+        if(i == 0) {
+            liBox[i].style.opacity = 1;
+            continue;
+        }
+        liBox[i].style.opacity = 0;
+        }
+    // 利用事件委托
+    uuBox.onclick = function(ev) {
+        ev = ev || window.event;
+        var target = ev.target || ev.srcElement;
+        // 判断我点击的是否为li元素
+        if(target.nodeName == 'LI') {
+            // console.log(target.innerHTML)
+            showImage(target.innerHTML);
+            // 重置播放位置
+            autoPlay(target.innerHTML);
+            // for(var i = 0; i < uuLiBox.length; i++) {
+            //     // 清空所有class
+            //     uuLiBox[i].className = '';
+            //     // 让所有图片隐藏
+            //     liBox[i].style.display = 'none';
+            // }
+            // // 给我点击的元素添加class样式
+            // target.className = 'current';
+            // // 显示对应图片
+            // liBox[target.innerHTML - 1].style.display = 'block';
+        }
+    }
+    function showImage(index) {
+        // index 代表着你要显示第几张
+        for(var i = 0; i < liBox.length; i++) {
+                // 清空所有class
+            uuLiBox[i].className = '';
+            // 让所有图片隐藏
+            fadeOut(liBox[i], 1000, function(ele) {
+                ele.style.display = 'none';
+            });
+        }
+        // 给我点击的元素添加class样式
+        uuLiBox[index - 1].className = 'current';
+        // 显示对应图片
+        liBox[index - 1].style.display = 'block';
+        fadeIn(liBox[index - 1], 1000);
+    }
+    function autoPlay(index) {
+        clearInterval(box.timer);
+        index = index || 1;
+        box.timer = setInterval(function() {
+            if (index == uuLiBox.length) {
+                index = 0;
+            }
+            index++;
+            showImage(index);
+        }, 2000)
+    }
+    autoPlay()
+</script>	 

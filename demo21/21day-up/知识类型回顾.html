@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // number, string, null, undefined, object, symbol, boolean。
+        // 基本数据类型：
+        // number, string, null, undefined, boolean。
+        // 引用数据类型
+        // Array, function, regexp, Date
+
+        // 作用域链
+        function fn () {
+            var a = '海飞丝'
+            console.log(a);
+        }
+        fn()
+        var sName = '海飞丝'
+        function fn2() {
+            var sName = '霸王'
+            console.log(sName);
+        }
+        fn2()
+        var arr = []
+       function fn3() {
+            for(var i = 0; i < 10; i++) {
+                arr[i] = function() {
+                    console.log(i)
+                }
+            }
+            arr[0]() // 10
+            arr[1]() // 10
+            arr[8]() //  10
+            for(let i = 0; i < 10; i++) {
+                arr[i] = function() {
+                    console.log(i)
+                }
+            }
+            arr[0]() // 0
+            arr[1]() // 1
+            arr[8]() //  8
+       }
+       fn3()
+
+       // 原型链
+       // 查询属性或者调用方法的时候，如果本身没有，就从他的__proto__进行查找，如果有就返回，
+       // 如果没有继续向上级__proto__查找，直到找到Object
+       var arr = [1,2,3,4];
+    //    arr.push(10)
+       // 相当于重写了array的push方法
+    //    arr.push = function() {
+    //        console.log('哈哈哈')
+    //    }
+    //    arr.shift();
+    //    arr.push('25');
+       arr.shift = function(num) {
+        //    arr.unshift(num);
+            arr.push(num)
+       }
+       arr.shift('10');
+       console.log(str);
+    </script>
+</body>
+</html>

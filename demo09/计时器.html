@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<span>00</span>时:
+		<span>00</span>分:
+		<span>00</span>秒
+		<button>开始</button>
+		<button>暂停</button>
+		<button>重置</button>
+		<script type="text/javascript">
+		/*	整个计时器的思路:
+		 *	1.首先写按钮和显示,然后js进行获取
+		 *	2.点击按钮后,写应有的功能.如开始按钮
+		 *		开始按钮需要一个定时函数,每跳一次,这时候需要一个计数的载体count,count增加1
+		 *		然后将获得的count值进行时间转换,得出来的时间,小于10无法显示俩位数,这时候需要一个
+		 *		判断,如果小于10,我们给他加上字符串'0';算出来时间再通过innerHTML进行显示在
+		 *		span上面,这样就完成显示.
+		 *		然后暂停就是调用clearInterval()即可
+		 *		重置就是调用clearInterval并且把显示值为0,把count=0,并且执行一次函数
+		 *	3.最后就是bug问题，问题是 不断点击开始会加速运行 造成原因是 定时器多次运行 累加
+		 *		解决：给他加个琐
+		 * 		如何加，当你点击开始的时候进行判断，琐是否打开，如果打开，则执行，否则则不执行。
+		 * 			也要对重置和暂停进行，如果你点击暂停或者重置，说明需要再次开始，这时候需
+		 * 			要解锁。当你再次点开始的时候又进行加锁.
+		 */
+			// 计时器
+			var spanAll = document.querySelectorAll('span');
+			var btnAll = document.querySelectorAll('button');
+			var seconds = 0;
+			var bool = true; 
+			// 设置一个锁
+			var timer;
+			btnAll[0].onclick = function() {
+				if (bool) {
+					// 判断锁是否打开
+					bool = false
+					timer = setInterval(function() {
+						seconds++
+						countTime(seconds)
+					}, 1000)					
+				}
+				// timer相当于定时器的id号
+			}
+			btnAll[1].onclick = function() {
+				bool = true
+				clearInterval(timer)// 传入的参数是定时器的id号
+			}
+			btnAll[2].onclick = function() {
+				bool = true
+				clearInterval(timer)
+				seconds = 0
+				countTime(seconds)
+			}
+			function countTime(time) {
+				//time以秒为单位
+//				计算时分秒
+				var hour = parseNum(time / 60 / 60 % 24);
+				var min = parseNum(time / 60 % 60);
+				var sec = parseNum(time % 60);
+				// 把秒数格式化成时分秒
+				spanAll[0].innerHTML = hour
+				spanAll[1].innerHTML = min
+				spanAll[2].innerHTML = sec
+			}
+			function parseNum(num) {
+				num = Math.floor(num)
+				if(num < 10) {
+					num = '0' + num
+				}
+				return num
+			}
+		</script>
+	</body>
+</html>

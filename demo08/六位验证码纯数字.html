@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var str = '0123456789';
+	var str2 = ''
+	for (var i=0;i<6;i++) {
+		str2 += str[maxRan(str.length-1)]
+	}
+	console.log(str2)
+	function maxRan(max,min){
+		min = min || 0;
+		return parseInt(min+Math.random()*(max-min));
+	}
+</script>

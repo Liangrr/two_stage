@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		QQ:<input type="" name="" id="inp" value="" />
+		<script type="text/javascript">
+			var inp = document.getElementById('inp');
+			inp.onchange = function (){
+				var	value = inp.value;
+				if (check(value)) {
+					alert('QQ号合法');
+				} else{
+					alert('QQ号不合法！');	
+				}
+			}
+			function check(num){
+				var num = num.trim();
+				if (isNaN(num)) {
+					return false;
+				}
+				if (num.length<6||num.length>10) {
+					return false;
+				}
+				if (num.indexOf('.')>-1) {
+					return false;
+				}
+				return true;
+			}
+			
+		</script>
+	</body>
+</html>

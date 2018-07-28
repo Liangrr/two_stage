@@ -1,0 +1,34 @@
+<root>
+    <person>
+        <username>
+            兰兰
+        </username>
+        <age>
+            18
+        </age>
+    </person>
+    <person>
+        <username>
+            兰兰
+        </username>
+        <age>
+            18
+        </age>
+    </person>
+    <person>
+        <username>
+            花花
+        </username>
+        <age>
+            34
+        </age>
+    </person>
+    <person>
+        <username>
+            张三
+        </username>
+        <age>
+            45
+        </age>
+    </person>
+</root>

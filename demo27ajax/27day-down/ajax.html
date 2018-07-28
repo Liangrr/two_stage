@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+</head>
+<body>
+        <input id="inp" type="text" placeholder="请输入用户名"> <br/>
+        <input id="pass" type="password" placeholder="请输入密码"><br />
+        <button id="btn">注册</button>
+    <script src="ajax1.3.js"></script>
+    <script>
+        // 1.当用户输入用户名称时，首先判断用户名是否合法
+        // -> js正则
+        // 2. 合法后，发送ajax，查询用户名是否存在
+        // -> 发送ajax，通过php文件来完成
+        // 3. 用户名称不存在，验证密码格式
+        // ->  js正则
+        // 4. 格式通过，点击注册按钮，发送post请求，进行用户数据插入。
+        // -> 通过php来完成
+        var inp = document.getElementById('inp');
+        var pass = document.getElementById('pass');
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            var username = inp.value;
+            var pwd = pass.value;
+            var params = {
+                method: 'POST',
+                url: 'post.php',
+                data: {
+                    username: username,
+                    pwd: pwd
+                },
+                success: function(res) {
+                    console.log(res);
+                }
+            }
+            var params2 = {
+                method: 'GET',
+                url: 'post.php?id=10',
+                success: function(res) {
+                    alert('注册成功');
+                }
+            }
+            ajax(params);
+        }
+        
+    </script>
+</body>
+</html>

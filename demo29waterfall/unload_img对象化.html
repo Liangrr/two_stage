@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				padding-top: 50px;
+				box-sizing: border-box;
+       			overflow: auto;
+				height: 100vh;
+				list-style: none;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+			}
+			ul li img{
+				/*20%的可视高度*/
+				width:20vh;
+			}
+			header{
+				width: 100%;
+				height: 50px;
+				background-color: white;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: fixed;
+			}
+			#inp{
+				width: 200px;
+				height: 30px;
+				box-sizing: border-box;
+				border: 1px solid dodgerblue;
+			}
+			#search{
+				width: 50px;
+				height: 30px;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<header>
+				<input type="text" id="inp" placeholder="请输入"/>
+				<button id="search">搜索</button>
+			</header>
+			<ul class="ul_box">
+				
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	   	// 接口文档
+        // 搜索图片接口
+        // api： http://dev.91jianke.com:1091/id_v2_5/search_img
+        // 请求方式： GET,
+        // 参数： page_no: 非必填 ,默认是1 ==> 显示页码
+        // page_size:  非必填， 默认是10 ==>  一次返回多少条数据
+        // q: 必填  ==> 查询字段
+        // 返回字段：
+        // {
+        //   code: 0,  // 成功时， code默认为0
+        //   // ==》 返回的数据源
+        //   data: {
+        //     height: 531, //图片的高
+        //     img: '', //图片的地址
+        //     imgsize: '',图片的大小
+        //     imgtype: '', 图片的类型
+        //     title: '', 图片的标题
+        //     width: '', 图片的宽
+        //     thumb: '' 缩略图
+        //   }
+        // }
+        //第一步请求图片资源 
+	var inp = document.getElementById('inp');
+	var btn = document.getElementById('search');
+	var show_ul = document.querySelector('.ul_box');
+	
+
+//	这个是按钮点击开始搜索
+	btn.onclick = function(){
+		var params = {
+			//	输入框的值
+			val:inp.value,
+			//	页码
+			page_number:1,
+			//	每页的图片数目
+			page_amount:20,
+			//	加锁
+			bool = true
+		}
+		show_ul.innerHTML = '';
+		var url = `http://dev.91jianke.com:1091/id_v2_5/search_img?page_no=${page_number}&page_size=${page_amount}&q=${inp.value}`;
+		ajax(url);
+	}
+//	获取滚动
+	show_ul.onscroll = function(){
+		var h = this.scrollHeight - this.scrollTop -this.clientHeight;
+//		console.log(h);
+		page_num++;
+//		当滚动高度不足10时,自动获取下一页图片
+		if (h<10 && bool == true) {
+			bool = false;
+			var url = `http://dev.91jianke.com:1091/id_v2_5/search_img?page_no=${page_number}&page_size=${page_amount}&q=${inp.value}`;
+			ajax(url);
+		}
+	}
+	
+	function ajax(url){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET',url,true);
+		xhr.send(null);
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var json = xhr.responseText;
+				json = JSON.parse(json);
+				showImg(json);
+			}
+		}
+	}
+	
+	function showImg(json){
+//		获取json里面的data
+		var data = json.data;
+//		建立一个空盒子,frag可以自动销毁
+		var flag = document.createDocumentFragment();
+		for (var i=0;i<data.length;i++) {
+			var _li = document.createElement('li');
+			var _img = document.createElement('img');
+//			把data对应的图片的img的属性值赋给src
+			_img.src = data[i].img;
+			_li.appendChild(_img);
+			flag.appendChild(_li);
+		}
+		show_ul.appendChild(flag);
+		bool = true;
+	}
+</script>

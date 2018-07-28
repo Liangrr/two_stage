@@ -1,0 +1,56 @@
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.loupe{
+				margin: 100px auto;
+				width: 500px;
+				height: 300px;
+				overflow: hidden;
+				position: relative;
+			}
+			.box_img{
+				width: 3500px;
+				height: 300px;
+				list-style: none;
+				position: absolute;
+			}
+			.box_img img{
+				float: left;
+				width: 500px;
+				height: 300px;
+			}
+			.box_ul{
+				position: absolute;
+				bottom: 30px;
+				right: 20px;
+				list-style: none;
+			}
+			.box_ul li{
+				margin-left: 10px;
+				float: left;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background-color: white;
+				opacity: 0.5;
+			}
+			.box_ul li.active{
+				opacity: 1;
+			}
+			.loupe button{
+				width: 30px;
+				height: 44px;
+				background: url(../img/pre.png) no-repeat;
+				border: none;
+				position: absolute;
+				top: 50%;
+				margin-top: -22px;
+			}
+			#left{
+				left: 20px;
+			}
+			#right{
+				right: 20px;
+				background-position-x: -49px;
+			}

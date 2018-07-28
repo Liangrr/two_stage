@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//			1.颜色随机函数
+//			function randomColor() {
+//				var str = '0123456789abcdef';
+//				var color = '#';
+//				for (var i = 0; i < 6; i++) {
+//					color += str[fnRandom(str.length)]
+//				}
+//				return color
+//			}
+			function fnRandom(max, min) {
+				min = min || 0
+				return parseInt(min + Math.random() * (max - min));
+			}
+//			console.log(randomColor())
+//			2.冒泡排序
+//			var arr = [10,8,6,17,9,14,25];
+//			1. [8,6,10,9,14,17,25]
+//			2. [6,8,9,10,14,17,25]
+//			3. [6,8,9,10,14,17,25]
+//			for(var i = 1; i < arr.length; i++) {
+//				for (var j = 0; j < arr.length - i; j++) {
+//					if(arr[j] > arr[j+1]) {
+//						var _arr = arr[j];
+//						arr[j] = arr[j + 1];
+//						arr[j + 1] = _arr;
+//					}
+//				}
+//			}
+//			console.log(arr);
+//			3.求时间差
+//			function contTime(endTime) {
+//				// 当前时间
+//				var startTime = new Date();
+//				endTime = new Date(endTime);
+////				相差秒数
+//				var countTime = Math.abs(startTime.getTime() - endTime.getTime())/1000
+//				var obj = {}
+//				obj.day = Math.floor(countTime / 60 / 60 / 24);
+//				obj.hour = Math.floor(countTime / 60 / 60 % 24);
+//				obj.min = Math.floor(countTime / 60 % 60);
+//				obj.sec = Math.floor(countTime % 60);
+//				console.log(obj.day + '天' + obj.hour + '时' + obj.min + '分' + obj.sec + '秒')
+//			}
+//			contTime('2018-07-21')
+//			4.大乱数组
+//			function sortArr(arr) {
+//				var newArr = [];
+//				var length = arr.length;
+//				for (var i = 0; i < length; i++) {
+//					var _random = fnRandom(arr.length)
+//					newArr.push(arr[_random]);
+//					arr.splice(_random, 1);
+//				}
+//				console.log(newArr)
+//			}
+//			var arr = [1,2,3,4,5,6,7];
+//			sortArr(arr)
+		</script>
+	</body>
+</html>

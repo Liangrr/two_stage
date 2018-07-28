@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.ball{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				background-color: red;
+				position: absolute;
+				z-index: 1;
+			}
+			.box{
+				width: 200px;
+				height: 200px;
+				background-color: black;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ball">
+			
+		</div>
+		<div class="box">
+			
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var ball = document.querySelector('.ball');
+	var box = document.querySelector('.box');
+	var timer;
+	
+	sport();
+	function sport(){
+		var speedX = 1;
+		var speedY = 1;	
+		var innerL = Math.abs(window.innerWidth - ball.offsetWidth);
+		var innerT = Math.abs(window.innerHeight - ball.offsetHeight);	
+		timer = setInterval(function(){
+			var l = ball.offsetLeft;
+			var t = ball.offsetTop;
+			if (l>innerL) {
+				speedX = -1;
+			}if (l<0) {
+				speedX = 1;
+			}
+			
+			if (t>innerT) {
+				speedY = -1;
+			}
+			if (t<0) {
+				speedY = 1;
+			}
+			if ((box.offsetLeft<l&&l<(box.offsetWidth+box.offsetLeft))&&(box.offsetTop<t&&t<(box.offsetHeight+box.offsetTop))) {
+				console.log('true')
+			}
+		
+			ball.style.left = l + speedX + 'px';
+			ball.style.top = t + speedY + 'px';
+		},1);
+	}
+
+	
+</script>

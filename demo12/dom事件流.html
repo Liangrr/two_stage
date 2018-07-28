@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">按钮</button>
+		<button id="remBtn">删除</button>
+	</body>
+	<!--<script src="js/all_purpose.js" type="text/javascript" charset="utf-8"></script>-->
+	<script type="text/javascript">
+//		dom2级事件，规定了三个阶段，事件捕获阶段，元素本身阶段，事件冒泡阶段
+//		dom事件流明文规定，在捕获流不触发事件。但在ie9以上，以及更高版本浏览器上是支持的。
+		
+//		事件监听,三个参数,事件类型,布尔(true事件捕获，false事件冒泡)默认是false
+//		btn.addEventListener('click',method,false){
+//		}
+		
+//		没有第三个参数,默认是冒泡
+//		btn.attachEvent('onclick',method); 
+		
+		var btn = document.getElementById('btn');
+		var remBtn = document.getElementById('remBtn');
+		
+		btn.addEventListener('click',getDate);
+		
+		
+		remBtn.onclick = function(){
+			btn.removeEventListener('click',getDate)
+		}
+		//	获取当前时间 天时分秒
+		function getDate(){
+			var time = new Date();
+			var second = time.getSeconds();
+			var minute = time.getMinutes();
+			var hour = time.getHours();
+			console.log("asfjdalskfjl")
+	//		var day = time.getDay();
+			 return +hour+'时'+minute+'分'+second+'秒' ;
+		}
+	</script>
+</html>

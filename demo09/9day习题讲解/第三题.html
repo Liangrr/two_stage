@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="common.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var str = ''
+			var num = '0123456789'
+			var allM;
+			for (var i = 97; i < 123; i++) {
+				str += String.fromCharCode(i)
+			}
+			str += str.toUpperCase()
+			console.log(str)
+			// 所有英文字母，包含大小写
+			allM = str + num;
+			// 包含验证码所有符合度条件字符
+//			强制第一个是数字
+			var resultCode = num[maxRandom(9)];
+//			强制添加第二个是字母
+			resultCode += str[maxRandom(str.length - 1)];
+			// 随机寻找剩下四位的数字或者字母
+			for(var z = 0; z < 4; z ++) {
+				resultCode += allM[maxRandom(allM.length - 1)]
+			}
+//			打乱六位顺序，保证随机性
+			resultCode = fixArr(resultCode);
+			console.log(resultCode)
+		</script>
+	</body>
+</html>

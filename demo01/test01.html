@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+				
+		<input type="number"  id="run" placeholder="请输入大于0的年份"/>
+		<input type="button" onclick="check()" value="按钮" style="width: 40px; height: 20px;"/>
+		
+		<script type="text/javascript">
+		function check(){
+			var run = document.getElementById('run').value;
+			if(run>0){
+				if((run%4==0&&run%100!=0)||run%400==0){
+					alert('你输入的是闰年!');
+				}else if(run%100==0){
+					alert('今年是世纪！')
+				}else{
+					alert('你输入的是平年!');
+				}
+			}else{
+				alert('你的输入有误!');
+			}
+		}
+		</script>
+	</body>
+</html>

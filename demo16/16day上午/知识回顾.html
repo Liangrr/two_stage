@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>知识回顾</title>
+</head>
+<body>
+    <script>
+        // 事件
+        // 事件流 ==》 事件捕获，事件冒泡
+        // DOM事件流 == > dom2级事件，先捕获，到自身，然后冒泡
+        // 事件监听，false冒泡阶段使用，true捕获阶段使用
+        // dom0级。给同一个元素添加同个事件，只能添加一个，添加多个会被覆盖
+        // dom2级，可以添加多个事件。
+        // 事件委托，就是冒泡原理，把事件委托给了父级。
+        // 正则表达式
+        // test（）， exec（）
+        // replace(), match(), search()
+        //  g, i, m
+        // ^
+        // $
+        // \d
+        // \D
+        // \w
+        // [0-9A-Za-z]
+        // ?
+        // *
+        // +
+        // {m, }
+        // {m}
+        // {m, n}
+        // es6
+        // let, const 
+        // Symbol
+        // 函数， 默认值，
+        let y = 10
+        // function fn(x=y, y) {
+
+        // }
+        // fn(10)
+        // function fn(...arg) {
+        //     console.log(arg)
+        // }
+        // fn(1,2,3,4,5,6,7,8,9);
+        // var arr = [12,3,4,5,6,7,8,1,2,1,2,1,1,4,5,2,2,1,4,4,1,1,2]
+        // arr  =[...new Set(arr)];
+        // console.log(arr);
+        // 箭头函数
+        x => '123';
+        x  => ({name: 123});
+        () => {};
+        // 改变了this指向，this指向上下文
+        // this指向
+        // 函数体内的this只跟函数的调用方式有关
+        function fn() {
+            console.log(this.age)
+        }
+        var obj = {
+            age: '26',
+            _fn: fn
+        }
+        obj._fn()
+        fn()
+        var _fn = obj._fn
+        _fn()
+        // Map(),Set()
+        // Map中，相同key，设置两次值，会覆盖
+        var _map = new Map();
+        _map.set('age', 36);
+        _map.set([1,2,3,4,5], 36);
+        console.log(_map);
+        _map.delete('age');
+        
+    </script> 
+</body>
+</html>

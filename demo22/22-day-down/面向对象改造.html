@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inp {
+            color:  #ccc;
+        }
+        .error {
+            color: red;
+            display: none;  
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text" value="请输入内容" class="inp">
+        <span class="error">输入内容有误</span>
+    </div>
+    <ul class="libox">
+
+    </ul>
+    <script src="js/checkinp.js"></script>
+    <script>
+        // 文本框模仿placeholder功能
+        var inp = document.querySelector('.inp');
+        var ulBox = document.querySelector('.libox');
+		
+		var _fn = new Fn('.inp');
+        _fn.init()
+		
+        // function clearInp(ele) {
+        //     ele.style.color = '#000';
+        //     ele.nextElementSibling.style.display = 'none'
+        //     if(ele.value == '请输入内容') {
+        //         ele.value = ''
+        //     }
+        // }
+        // function initInp(ele) {
+        //     if(ele.value == '') {
+        //         ele.value = '请输入内容'
+        //         ele.style.color = '#ccc';
+        //     }
+        // }
+        // function checkInp(ele) {
+        //     var reg = /^1[35789]\d{9}$/
+        //     if(reg.test(ele.value)) {
+        //         var li = document.createElement('li')
+        //         li.innerHTML = ele.value
+        //         ulBox.appendChild(li);
+        //         ele.value = ''
+        //     } else {
+        //         ele.nextElementSibling.style.display = 'inline'
+        //     }
+        // }
+        // 减少变量污染
+        // var obj = {
+        //     clearInp:  function(ele) {
+        //         ele.style.color = '#000';
+        //         ele.nextElementSibling.style.display = 'none'
+        //         if(ele.value == '请输入内容') {
+        //             ele.value = ''
+        //         }
+        //     },
+        //     initInp: function (ele) {
+        //         if(ele.value == '') {
+        //             ele.value = '请输入内容'
+        //             ele.style.color = '#ccc';
+        //         }
+        //     },
+        //     checkInp: function (ele) {
+        //         var reg = /^1[35789]\d{9}$/
+        //         if(reg.test(ele.value)) {
+        //             var li = document.createElement('li')
+        //             li.innerHTML = ele.value
+        //             ulBox.appendChild(li);
+        //             ele.value = ''
+        //         } else {
+        //             ele.nextElementSibling.style.display = 'inline'
+        //         }
+        //     }
+        // }
+        // // 工厂模式
+        // function fn() {
+        //     return {
+        //         clearInp:  function(ele) {
+        //             ele.style.color = '#000';
+        //             ele.nextElementSibling.style.display = 'none'
+        //             if(ele.value == '请输入内容') {
+        //                 ele.value = ''
+        //             }
+        //         },
+        //         initInp: function (ele) {
+        //             if(ele.value == '') {
+        //                 ele.value = '请输入内容'
+        //                 ele.style.color = '#ccc';
+        //             }
+        //         },
+        //         checkInp: function (ele) {
+        //             var reg = /^1[35789]\d{9}$/
+        //             if(reg.test(ele.value)) {
+        //                 var li = document.createElement('li')
+        //                 li.innerHTML = ele.value
+        //                 ulBox.appendChild(li);
+        //                 ele.value = ''
+        //             } else {
+        //                 ele.nextElementSibling.style.display = 'inline'
+        //             }
+        //         }
+        //     }
+        // }
+
+        
+    </script>
+</body>
+</html>

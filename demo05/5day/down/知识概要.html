@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// 求任意个数的和
+//			function aa(num1, num2) {
+//				arguments[0] // 数据结构根数组一样，但是他不具有数组的特性
+//				console.log(num1 + num2)
+//			}
+			// 递归 
+//			function aa() {
+//				console.log(123123)
+//				aa()
+//			}
+//			aa()
+//			function aa() {
+//				for (var i = 0; i < 10; i ++) {
+//					console.log(i)
+//					if(i == 5) {
+//						
+//						return undefined
+//					}
+//				}
+//			}
+//			aa()
+			// 第一步 jieCheng（1）    ===>   1
+			// 第二步 jieCheng (2)   ===> 2 * jieCheng（1）
+			// 第三步 jieCheng (3)   ===> 3 * jieCheng (2)
+			// 第四步 jieCheng (4)  ===> 4 * jieCheng (3)
+			//......
+//			function jieCheng (n) {
+//				if (n == 1) {
+//					return 1
+//				}
+//				return n * jieCheng(n - 1)
+//			}
+//			var num = jieCheng(5)
+//			console.log(num)
+	        // 斐波那契数列 1 1 2 3 5 8 13 21 34 55.......
+//	        f(x) = x + 10
+//          f(x) = x * x + 10x + 12   f(1) = 1 
+	        // n = 1    1
+	        // n = 2    1
+	        // n = 3    getFei(1) + getFei(2) // 2
+	        // n = 4    getFei(3) + getFei(2) // 3
+	        // n = 5    getFei(4) + getFei(3) 
+//	        function getFei(n) {
+//	        	if (n ==1 || n == 2) {
+//	        		return 1
+//	        	}
+//	        	return getFei(n - 1) + getFei(n - 2)
+//	        }
+//	        var num = getFei(10)
+//	        console.log(num)
+// 斐波那契数列 1 1 2 3 5 8 13 21 34 55.......
+//   第一项     1
+//   第二项     1
+//   第三项     f(2) + f(1)
+//    4      f(3) + f(2)
+//    5      f(4) + f(3)
+//    6      f(5) + f(4)
+//		function feiBoSum(n) {
+//			if (n == 1 || n == 2) {
+//				return n
+//			}
+//			return feiBoSum(n - 1) + feiBoSum(n - 2) + 1
+//		}
+//     1 2 4 7 12 20 ....... 
+		var num = feiBoSum(10)
+		console.log(num)
+//		console.log(1)
+			// 事件函数
+		</script>
+	</body>
+</html>

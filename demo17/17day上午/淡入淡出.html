@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box, .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        opacity: .3;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box2"></div>
+    <script src="js/sport2.0.js"></script>
+    <script>
+        var box = document.querySelector('.box');
+        var box2 = document.querySelector('.box2');
+        
+        var timer;
+        box.onmouseover = function() {
+            fadeIn(this, 500);
+        }
+        box.onmouseout = function() {
+            fadeOut(this, 500);
+        }
+        box2.onmouseover = function() {
+            fadeIn(this, 500);
+        }
+        box2.onmouseout = function() {
+            fadeOut(this, 500);
+        }
+        // function fadeIn(element, time, callback) {
+        //     clearInterval(timer);
+        //     var target = 100
+        //     var init = getStyle(element, 'opacity') * 100
+        //     var _time = time / ((target - init) / 10);
+        //     timer = setInterval(function() {
+        //         // debugger
+        //         // 获取透明度
+        //         var opacity = getStyle(element, 'opacity') * 100;
+        //         // 透明度为1的时候结束
+        //         console.log(opacity)
+        //         if(opacity === 100) {
+        //             clearInterval(timer);
+        //             if (callback) {
+        //                 callback(element);
+        //             }
+        //         } else {
+        //             // 透明度累加
+        //             element.style.opacity = (opacity + 10)/ 100
+        //         }
+        //     }, _time);
+        //     // console.log()
+        // }
+        // function fadeOut(element, time, callback) {
+        //     clearInterval(timer);
+        //     timer = setInterval(function() {
+        //         // debugger
+        //         var opacity = getStyle(element, 'opacity') * 100;
+        //         if(opacity === 0) {
+        //             clearInterval(timer)
+        //         } else {
+        //             element.style.opacity = (opacity - 10)/ 100
+        //         }
+        //     }, 50);
+        // }
+        // function getStyle(ele, attr) {
+        //     return window.getComputedStyle ? window.getComputedStyle(ele, null)[attr] : ele.currentStyle[attr];
+        // }
+    
+    </script>
+</body>
+</html>

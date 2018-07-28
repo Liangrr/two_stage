@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .act {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">触发动画</button>
+    <div class="act"></div>
+    <script src="jquery.js"></script>
+    <script>
+    
+        $('.btn').on('click', function() {
+            $('.act').animate({height: 300, width: 400, left: 50, top: 100}, 1000);
+            // 当添加多个动画时，动画会进入异步队列等待，等待动画完成，才执行下一个动画
+            // $('.act').stop()
+            // 有的时候，想阻止当前动画，立即执行下一个动画，
+            // 就用stop阻止当前元素所有正在运行的动画，执行下一个
+            $('.act').animate({height: 100, width: 100, left: 0, top: 0}, 1000);
+        })
+    </script>
+</body>
+</html>

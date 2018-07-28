@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#tab{
+				margin: 100px auto;
+				/*width: 600px;*/
+				border-collapse: collapse;
+			}
+			#tab th{
+				height: 50px;
+				font-size: 20px;
+				text-align: center;
+			}
+			#tab td{
+				height: 50px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<table id="tab" border="1">
+			<tr><th colspan="4">Person Message</th></tr>
+			<tr><td>姓名</td><td>年龄</td><td>职业</td><td>简介</td></tr>
+
+		</table>
+		<script type="text/javascript">
+//			  用表格展示，obj里的内容,选项卡
+			var tab = document.getElementById('tab')
+			var tr = document.querySelectorAll('tr');
+			var td = document.querySelectorAll('td');
+			
+//          obj是插入数据，可以简短			
+			var obj = [
+				{
+					'name': '周杰伦', // 名称
+					'age': '28', // 年龄
+					'profession': '歌手', // 职业
+					// 简介
+					'introduce': '周杰伦（Jay Chou），1979年1月18日出生于台湾省新北市，中国台湾流行乐男歌手、音乐人、演员、导演、编剧、监制、商人。'
+				},
+				{
+					'name': '布冯',
+					'age': '40',
+					'profession': '足球运动员',
+					'introduce': '吉安路易吉·布冯（Gianluigi Buffon），1978年1月28日出生于意大利卡拉拉，意大利职业足球运动员，司职门将，效力于意甲尤文图斯足球俱乐部。'
+				},
+				{
+					'name': '加内特',
+					'age': '42',
+					'profession': '篮球运动员',
+					'introduce': '凯文·加内特（Kevin Garnett），1976年5月19日出生在美国南卡罗来纳，前美国职业篮球运动员，司职大前锋/中锋，绰号狼王（森林狼时期）、KG（名字缩写）、The BIG TICKET、Da Kid。'
+				},
+				{
+					'name': '李青',
+					'age': '28',
+					'profession': '打野',
+					'introduce': '李青是一个近战战士型英雄，拥有很高的机动性和爆发力，单挑和小规模团战能力很强，同时李青也是非常优秀的打野英雄，非常擅长野区的遭遇战和Gank，是非常致命的英雄人物。'
+				},
+				{
+					'name': '巫妖王',
+					'age': '1000',
+					'profession': 'boss',
+					'introduce': '巫妖王是魔兽世界设定中的一个职位，天灾军团的统领，并非专指某人，至今为止共有三代，初代耐奥祖、二代阿尔萨斯、三代伯瓦尔。'
+				}
+			];
+			
+			insertObj(obj);
+			
+			function insertObj(obj){
+//				获取文本内容的条数
+				for(var i=0;i<obj.length;i++){
+//					把每条内容的每个属性值加到新数组
+					var obj_val = Object.values(obj[i]);
+//					每条内容需要一行
+					var _tr = document.createElement('tr');
+//					对每条内容的每个属性值进行循环
+					for (var j=0;j<obj_val.length;j++) {
+//						定义td装载属性值
+						var _td= document.createElement('td');
+//						把第几个属性值加到第几个td
+						_td.innerHTML = obj_val[j];
+//						把td加到tr
+						_tr.appendChild(_td);
+					}	
+//						把tr加到table
+						tab.appendChild(_tr)
+				}
+			}
+	
+			
+//			for(var i = 0; i < obj.length; i++){
+//				var str = `<tr>
+//					<td>${obj[i].name}</td>
+//					<td>${obj[i].age}</td>
+//					<td>${obj[i].profession}</td>
+//					<td>${obj[i].introduce}</td>
+//				</tr>`
+//				tab.innerHTML += str
+//			}
+		</script>
+	</body>
+</html>

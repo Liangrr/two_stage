@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.glass{
+				margin-left: 20px;
+			}
+			.boundary{
+				width: 200px;
+				height: 200px;
+				position: relative;
+				border: 1px solid red;
+			}
+			.boundary img{
+				width: 200px;
+				height: 200px;
+			}
+			.manify{
+				width: 50px;
+				height: 50px;
+				display: none;
+				position: absolute;
+				background: rgba(0,0,0,0.1);
+			}
+			ul{
+				list-style: none;
+			}
+			ul li{
+				width: 50px;
+				height: 50px;
+				display: inline-block;
+				border:1px solid transparent;
+			}
+			ul li img{
+				font-size: 0;
+				width: 50px;
+				height: 50px;
+			}
+			.glass .img_show{
+				width: 100px;
+				height: 100px;
+				border: 1px solid;
+				position: absolute;
+				left: 300px;
+				top: 0;
+				overflow: hidden;
+			}
+			.glass .img_origin li.active{
+				border: 1px solid;
+			}
+			.img_show img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+		</style>
+	</head>
+	<body>
+		<div class="glass">
+			<div class="boundary">
+				<img src="img/01_big.jpg"/>
+				<div class="manify">
+					
+				</div>
+			</div>
+			<ul class="img_origin">
+				<li><img src="img/01_small.jpg"/></li>
+				<li><img src="img/02_small.jpg"/></li>
+			</ul>
+		<div class="img_show">
+			<img src="img/01_largest.jpg"/>
+		</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+//	第一步:创建一个盒子,然后创建一个小盒子(用来放大的).创建一个ul用来装载小图,用来点击切换.
+//	然后创建个显示的盒子,进行放大
+	function Glass(){
+		this.bor = document.querySelector('.boundary');
+		this.manify = document.querySelector('.manify');
+		this.img_origin = document.querySelector('.img_origin');
+		this.liAll = document.querySelectorAll('.glass .img_origin li');
+		this.img_show = document.querySelector('.img_show');
+	}
+	Glass.prototype.init = function(){
+		var _this = this;
+		this.bor.onmouseenter = function(e){
+		e = e || window.event;
+			_this.manify.style.display = 'block';
+		}
+		this.bor.onmouseleave = function(e){
+			e = e || window.event;
+			_this.manify.style.display = 'none';
+		}
+		this.bor.onmousemove = function(e){
+			e = e || window.event;
+			var l = e.clientX - _this.bor.offsetLeft - _this.manify.offsetWidth/2;
+			var t = e.clientY - _this.bor.offsetTop - _this.manify.offsetHeight/2;
+			_this.move(l,t);
+		}
+		for (var i = 0;i<this.liAll.length;i++) {
+			this.liAll[i].index = i;
+			this.liAll[i].onclick = function(){
+				_this.showImg(this.index);
+			}
+		}
+	}
+	Glass.prototype.showImg = function(index){
+		for (var i=0;i<this.liAll.length;i++) {
+				this.liAll[i].className = '';
+			}
+		this.liAll[index].className = 'active';
+		var src = this.liAll[index].querySelector('img').src;
+		this.bor.querySelector('img').src = src.replace('small','big');
+		this.img_show.querySelector('img').src = src.replace('small','largest');
+	}
+	Glass.prototype.move = function(l,t){
+		
+		var maxL = this.bor.clientWidth - this.manify.offsetWidth;
+		var maxT = this.bor.clientHeight - this.manify.offsetHeight;
+
+		l = (l>maxL?maxL:(l<0?0:l));
+		t = (t>maxT?maxT:(t<0?0:t));
+		
+		this.manify.style.left = l + 'px';
+		this.manify.style.top = t + 'px';
+		this.img_show.querySelector('img').style.left = -2*l +'px';
+		this.img_show.querySelector('img').style.top = -2*t +'px';
+	}
+	
+	var glass = new Glass();
+	glass.init();
+</script>

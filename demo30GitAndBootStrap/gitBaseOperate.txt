@@ -1,0 +1,54 @@
+首先github创建一个库
+安装git
+运行git.bash
+1. 要么在你所要加载的文件右键运行git.bash(这个会在相应的地址)
+或者通过 cd 相应的文件路径进入
+2. git clone GitHub地址   
+3.克隆后通过cd 库名 进入到主分支master
+4.当你有文件修改的时候，需要通过 git add 修改的文件的名称或者.   点代表全部文件 这里add表示添加到缓冲区
+5.把缓冲区的内容提交到本地仓库
+git commit -m '这里写本次提交内容的注释'
+第一次使用的话需要设定邮箱和账号
+ git config --global user.name '账号'
+ git config --global user.email '邮箱'
+6.提交到远程仓库GitHub  
+ git push origin 分支名称
+ 这里提示输入Github账号，密码
+ 出现很多行就是成功了，否则出现failed
+
+额外操作
+        // 查看当前状态
+        // -> git status 
+        // -> 拉取远程仓库代码
+        // git pull origin master
+        // -> 注意
+        // 假设你的项目和多个人同时开发时， 在你要写代码之前，拉去远程仓库最新代码
+        // 在你提交到远程之前，如果你没有同步过远程代码，git会强制你同步一次
+        // 代码要尽量多提交（做完一个小功能，提交到本地仓库）
+        // 查看日志
+        // 查看日志详细信息
+        // -> git log 
+        // 只查看版本号，和提交备注
+        // -> git log --pretty=oneline
+        // 版本回退
+        // git reset --hard HEAD^ (^ 代表上一个版本，^^代表上上个版本)
+        // git reset --hard 提交id （从日志里面查看） 返回到对应的版本
+        // 回退后悔，需要返回到新版本
+        // 查看所有日志
+        // -> git reflog 
+        // 在通过-> git reset --hard 提交id, 回到未来
+        // 【日常开发中，不建议在主线上进行开发】master ，是主线分支
+        // 创建分支
+        // 1. 分项目功能，创建分支，由不同的分来完成
+        // 2. 版本管理
+        // 3. bug分支， 测试bug， 如果测试通过，再把代码同步项目中
+        // 目的： 降低对主分支的影响。
+        // ->   git branch 分支名称
+        // 切换分支
+        // git checkout 分支名称
+        // 查看分支
+        // -> git branch
+        // 删除分支
+        // -> git branch -d 分支名称
+        // 合并分支
+        // git merge branch

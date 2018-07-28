@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//1. 用正则表达式判断年龄18-65 18-19 20-59 60-65
+//			var reg = /^(1[89]|[2-5][0-9]|6[0-5])$/
+//			console.log(reg.test('28'))
+//			//2. 用正则表达式匹配一个正确的手机号（手机号一般是15，13， 18，19，17开头）
+//			var reg2 = /^1[35789]\d{9}$/
+//			
+//			//3. 匹配一个正确的数字
+//			var reg3 = /^[+-]?(0|[1-9]\d*)(\.\d*[1-9])?$/
+//			// 4.身份证的匹配
+//			var str = '41150220000101053X';
+//			var reg4 = /\d{17}[\d|X]/;
+//			var reg5 = /^(\d{6})(\d{8})\d{2}(\d{1})[\d|X]$/;
+			//【分组的两个功能】
+			// 1.分组捕获,匹配的字符串如果含有(),代表分组,匹配的结果会以索引值的形式显示出来
+//			console.log(reg5.exec(str));
+//			var reg6 = /^(\d+)\.\1$/
+			// 2. \num 代表第几分组,内容须跟对应分组内容一样（类似于复制）
+//			console.log(reg6.test('11111.11111'))
+//			var reg7 = /^(\d{2})(\w{2})\2$/
+//			console.log(reg7.test('111111'))
+//			【字符串中利用正则表达式】
+// 			replace, 的第一个参数是正则表达式，如果不是，会隐士转换为正则表达式， 第二个参数是替换内容
+//			var str = '123Language';
+//			str = str.replace(/\d+/g, 'good');
+//			console.log(str)
+//			var str = '小兰是00年，06月06日出生，体重50公斤';
+//			var reg2 = /\d{2}/;
+//			如果正则表达式中,不加全局匹配(g), 功能跟reg.exec()是一模一样的
+//			console.log(str.match(reg2));
+// 			添加g以后，会把左右查询到符合条件的结果，以数组的形式，全部返回，如果找不到是null
+//			var reg3 = /\d{2}/g;
+//			console.log(str.match(reg3));
+//			//search(), 知道正则对应的字符会返回对应的索引，找不到返回-1
+//			console.log(str.search(reg3));
+//			var reg4 = /^\d/
+//			console.log(str.search(reg4));
+//			var str = '1998-06-10 08:26:32';
+//			var regDate = /\d+/g
+//			var arr = str.match(regDate)
+//			console.log(arr)
+//			console.log(`${arr[0]}年${arr[1]}月${arr[2]}日${arr[3]}时${arr[4]}分${arr[5]}秒`)
+////			中文名字的验证
+//          [\u4e00-\u9fa5]代表中文Unicode编码 
+//			var regName = /^[\u4e00-\u9fa5]{2,4}$/;
+//			var str = '     马        冬        梅        '           
+			// 去除左边空格
+//			var reg = /^\s+/
+//			str = str.replace(reg, '');
+//			去除右边空格
+//			var regRight = /\s+$/
+//			str = str.replace(regRight, '');
+//			console.log(str)
+//			【多行匹配】
+			var str = '1123\n456\naaa123'
+			console.log(str.match(/\d+$/gm))
+			// 加入\m以后，会把换行的地方，都当做新的一行
+			console.log(str)
+		</script>
+	</body>
+</html>

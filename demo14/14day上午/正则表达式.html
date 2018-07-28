@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 正则表达式就是验证字符串是否符合某个规则
+			// 正则表达式优点：短小，但是功能强大
+//			var str = '你TMD的说的太TMD好了,你TMD的说的太TMD好了,你TMD的说的太TMD好了,你TMD的说的太TMD好了,你TMD的说的太TMD好了,你TMD的说的太TMD好了,你TMD的说的太TMD好了,你TMD的说的太TMD好了';
+//			str = str.replace(/TMD/g, '');
+//			console.log(str)
+//			var str = '123456jkashdjkash1234567896415634akshdklasjdh';
+//			var reg = /\d+/g;
+			// 声明正则表达式
+//			var reg = /前锋教育/;
+//			var reg2 = new RegExp('前锋教育');
+			//两种方法
+			// 参数,是要检查的字符串,作用是判断字符串子否能和当前表达式匹配,如果匹配返回true,否则为false
+			// reg.test()
+			// var str = '今年前锋教育到2018'
+			// console.log(reg.test(str));
+			// 正则表达式是由元字符和修饰符组成
+			// 【修饰符】 g 全局匹配， i 不区分大小写， m 表示多行匹配
+//			reg.exec() // 捕获字符串，返回满足表达式的字符串内容
+			// 懒惰性， 贪婪性
+//			var str = '我今天买了一瓶海飞丝， 海飞丝真的太贵啦，用了我一个月的生活费，但是类，我觉得海飞丝真的是太好用了';
+//			var str2 = '我今天买了一瓶海飞丝Q1， 海飞丝真的太贵啦，用了我一个月的生活费，但是类，我觉得海飞丝真的是太好用了';
+//			var reg = /海飞丝/;
+//			console.log(reg.exec(str));
+			// 返回一个数组，第一个元素，是捕获到的内容， idnex是出现的索引位置， input：匹配的内容，转移后的字符串
+//			console.log(reg.exec(str));
+			// 【懒惰性】：匹配到第一个满足条件的字符，就结束了
+			// 【贪婪性】: 返回匹配条件最长的字符串
+//			console.log(reg.exec(str));
+//			var reg2 = /海飞丝/g;
+//			var reg3 = /海飞丝q1/g;
+//			console.log(reg2.lastIndex);
+//			console.log(reg2.exec(str), reg2.lastIndex);
+//			console.log(reg2.exec(str), reg2.lastIndex);
+//			console.log(reg2.exec(str), reg2.lastIndex);
+//			console.log(reg2.exec(str), reg2.lastIndex); // null
+//			console.log(reg2.exec(str), reg2.lastIndex); 
+//			
+//			console.log(reg3.exec(str2));
+			// reg会有lastindex属性, 是捕获开始的位置, 直到找不到匹配内容,返回null,lastindex会重置为0
+			// 【元字符】:
+			// \ 转义符， 改变它原有的意思
+			// ^ 位置的开始
+			// $ 结束符号
+			// . 除了\n以外的所有字符
+			//\d 代表0-9的数字
+			// \D 非0-9的字符
+			// \w [0-9a-zA-Z_]
+			// \W 与上面相反
+			// \b 匹配边缘字符
+			// 【量词元字符】
+			// * 表示0到多次
+			// + 表示至少1次
+			// ? 0或者1次
+			// {n}, n次
+			// {n,} 至少n次
+			// {n, m} 至少n次最多m次
+			// a|b // 这里有个坑， (abc|bcd)
+			// [abc] // 三者中的其中一个
+			// [a-z] a到z中的其中一个字符
+			// [^abc] // 除了abc以外的任意一个字符
+   			var str = '今年前锋教育到20_19';
+//			var str2 = '前锋教育到\n2018';
+//			console.log(str2);
+//			var reg = /^前锋教育$/
+//			var reg2 = /1.1/
+//			console.log(reg.test(str)) // false
+//			console.log(reg.test(str2));
+//			console.log(reg.test('前锋教育'));
+//			console.log(reg2.test('1.1'));
+//			console.log(reg2.test('1\n1'));
+//			var reg = /\W\W\W/g;
+//			console.log(reg.exec(str));
+//			var reg = /\w+t\b/g
+//			var str2 = 'JavaScript is the best Language!!!'
+//			console.log(reg.exec(str2))
+//			console.log(reg.exec(str2))
+			// 练习题
+			// 1. 匹配一个小写或大写字符或数字的正则表达式
+			var reg = /[0-9A-Za-z]/
+			// 简写方式
+//			console.log(reg.exec('A'));
+			// 2. str = '123456789str', 捕获前面的所有数字
+			var str = '1234a567854564564569str'
+			var reg2 = /\d+/g
+			console.log(reg2.exec(str))
+			
+		</script>
+	</body>
+</html>

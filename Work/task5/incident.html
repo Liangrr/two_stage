@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			h1,img{
+				padding: 0;
+				margin: 0;
+			}
+			h1{
+				margin-top: 50px;
+				text-align: center;
+			}
+			.className1{
+				margin: 50px auto;
+				width: 800px;
+				height: 400px;
+				position: relative;
+			}
+			img{
+				width: 800px;
+				height: 400px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>简介：鼠标移上去切图，点击再切图，双击再切，移出再返回原图</h1>
+		<div class="className1">
+			<img id="img4" src="../img/npc4.jpg"/>
+			<img id="img3" src="../img/npc3.jpg"/>
+			<img id="img2" src="../img/npc2.jpg"/>
+			<img id="img1" src="../img/npc1.jpg"/>
+		</div>
+		
+		<script type="text/javascript">
+			function getImg(img){
+				return document.getElementById(img);
+			}
+			var class1 = document.querySelector('.className1');
+//写好回来改进，用数组
+			var img4 = getImg('img4');
+			var img3 = getImg('img3');
+			var img2 = getImg('img2');
+			var img1 = getImg('img1');
+
+			class1.onmouseenter = function (){
+				img1.style.display="none";
+			}
+			
+			class1.onmousedown = function (){
+				img1.style.display="none";
+				img2.style.display='none';
+			}
+			
+			class1.ondblclick = function (){
+				img1.style.display="none";
+				img2.style.display='none';
+				img3.style.display='none';
+			}
+			
+			class1.onmouseleave = function (){
+				img1.style.display="block";
+				img2.style.display='block';
+				img3.style.display="block";
+				img4.style.display='block';
+			}
+			
+			
+		</script>
+	</body>
+</html>

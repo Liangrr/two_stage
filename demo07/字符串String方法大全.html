@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//			通常， JavaScript 字符串是原始值，可以使用字符创建： var firstName = "John"
+//			但我们也可以使用 new 关键字将字符串定义为一个对象： var firstName = new String("John")
+			
+			var str = new String('LiangRouRui1996');
+			var str2 = new String('1026');
+			var str3 = new String('Liang sa f')
+			//清除空格
+			str3.trim();
+			
+			console.log(str.length);//字符串的长度
+//			charAt() 方法可返回指定位置的字符。第一个字符位置为 0, 第二个字符位置为 1,以此类推.			
+			console.log(str.charAt(2));
+//			fromCharCode() 可接受一个指定的 Unicode 值，然后返回一个字符串。
+//			使用语法： String.fromCharCode()。
+			console.log(String.fromCharCode(52));
+//			把俩个字符串整合
+			console.log(str.concat(str2));
+//			indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+//			如果没有找到匹配的字符串则返回 -1。
+			console.log(str.indexOf('Rou'));
+//			lastIndexOf() 方法可返回一个指定的字符串值最后出现的位置
+			console.log(str.lastIndexOf('R'));
+//			replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+			console.log(str.replace('Rou','Mu'));
+//			search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。
+//			如果没有找到任何匹配的子串，则返回 -1。
+			console.log(str.search('u'));
+//			slice(start, end) 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
+//			使用 start（包含） 和 end（不包含） 参数来指定字符串提取的部分
+			console.log(str.slice(2,5));
+//			split() 方法用于把一个字符串分割成字符串数组。
+//			注意： split() 方法不改变原始字符串。
+			console.log(str3.split(' '));
+//			substr() 方法可在字符串中抽取从 开始 下标开始的指定数目的字符。
+			console.log(str.substr(2,5));
+//			substring() 方法用于提取字符串中介于两个指定下标之间的字符。
+			console.log(str.substring(2,5));
+//			valueOf() 方法可返回 String 对象的原始值。
+			console.log(str.valueOf());
+//			toLowerCase() 方法用于把字符串转换为小写
+//			toUpperCase() 方法用于把字符串转换为大写。
+			console.log(str.toLowerCase());
+			
+		</script>
+	</body>
+</html>

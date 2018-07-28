@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div">
+			<img src="img/0.png" />
+			<img src="img/8.png" /> 时
+			<img src="img/1.png" />
+			<img src="img/5.png" /> 分
+			<img src="img/0.png" />
+			<img src="img/9.png" /> 秒
+		</div>
+	</body>
+</html>
+<script src="js/getDate.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//			先执行一遍是避免定时开始的空白期
+			getGap();
+//			定时
+			setInterval(function(){getGap()},1000);
+			
+</script>

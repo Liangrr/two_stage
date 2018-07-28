@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		/*
+		 * 1. 输出数组中的最大数和最小数
+		 * 2. 定义一个含有30个整数元素的数组，按顺序分别赋予从2开始的偶数；
+		 	然后按顺序每五个数求出一个平均值，放在另一个数组中并输出。
+		   3.定义一个含有10个元素的数组，任意输入一个数，判断这个数在数组中是否存在，如果存在，就删除这个数
+		   4.利用数组，打印出斐波那契数列（写一个函数，传参数）
+		   5.编写函数noRepeat(arr) 将数组的重复元素去掉，并返回新的数组
+		   6.有一个从小到大排好序的数组。现输入一个数，要求按原来的规律将它插入数组中。
+		 */	
+
+//第一题：
+//方案一：
+		var min_max_arr = [22,13,5,15,36];
+//		Min_Max(min_max_arr);
+		function Min_Max(arr){
+			 for (var i=0;i<arr.length;i++) {
+			 	for (var j=i+1;j<arr.length;j++) {
+			 		if (arr[i]>arr[j]) {
+			 			var sum = arr[i];
+			 			arr[i] = arr[j];
+			 			arr[j] = sum; 
+			 		}
+			 	}
+			 }
+			 console.log(arr);
+			 var min = arr.shift();
+			 var max = arr.pop();
+			 console.log(min);
+			 console.log(max);
+		}
+//方案二：
+		var min_max_arr2 = [22,13,5,15,36,45,99,2];
+//		Min_Max2(min_max_arr2);
+		function Min_Max2(arr){
+			arr.sort(function(x,y){
+				return parseInt(x)-parseInt(y);
+			});
+			 console.log(arr);
+			 var min = arr.shift();
+			 var max = arr.pop();
+			 console.log(min);
+			 console.log(max);
+		}
+		
+//第二题：
+//方法一：
+		var arrayList = new Array(30);
+		var sum=0;
+		var arrayList2 = [];
+		for (var i=1;i<=arrayList.length;i++) {
+//			console.log(i*2);
+			sum=sum+2*i;
+			if (i%5==0) {
+				sum = sum/5;
+				arrayList2.push(sum);
+				sum=0;
+			}
+		}
+//		console.log(arrayList2)
+//方法二：			
+		var even = [];
+		function getEven(){
+			var sum=0;
+			for (var i=0;i<30;i++) {
+				sum = sum+2;
+				even.push(sum);
+			}
+			return even;
+		}
+//		console.log(even);
+		var warr=[];
+		function getAverage(even){
+			var sum = 0;
+			var newnum = 0;
+			for (var i = 0;i<even.length;i++) {
+				sum++;
+				newnum+=even[i];
+				if(sum==5){
+					var p=newnum/5;
+					warr.push(p);
+					sum=0;
+					newnum=0;
+				}
+			}
+			return warr;
+		}
+//		console.log(getAverage(getEven()));
+
+		
+//第三题：	
+		var arr = [3,1,4,5,7,2,6,0,9,8];
+//		console.log(arr);
+//		console.log(getThree(5,arr));
+		function getThree(num,arr){
+			for (var i=0;i<arr.length;i++) {
+			 		if (arr[i]==num) {
+			 			arr.splice(i,1);
+			 		}
+			 }
+			return arr;
+		}
+
+//第四题：	 
+//		getFour(10);
+		function getFour(n){
+			var array = new Array(n);
+			for (var i=1;i<array.length+1;i++) {
+				console.log(getFive(i));
+			}
+			function getFive(num){
+				if (num == 1 || num == 2) {
+					return 1;
+				}
+				return getFive(num-1)+getFive(num-2);
+			}
+		}
+
+		 
+//第五题：
+//		5.编写函数noRepeat(arr) 将数组的重复元素去掉，并返回新的数组
+//方法一：
+//		var arrRep = [13,15,23,12,66,24,13,23,15];
+//		noRepeat(arrRep);
+//		function noRepeat(arr){
+//			for (var i=0;i<arr.length;i++) {
+//			 	for (var j=i+1;j<arr.length;j++) {
+//			 		if (arr[i]==arr[j]) {
+//			 			arr.splice(i,1);
+//			 			j--;
+//			 		}
+//			 	}
+//			 }
+//			return arr;
+//		}
+
+//方法二：
+//		var arrRep = [13,15,23,12,66,24,13,23,15];
+//		var arrRep2 = [];
+//		noRepeat2(arrRep);
+//		console.log(noRepeat2(arrRep2));
+//		function noRepeat2(arr){
+//			for (var i=0;i<arr.length;i++) {
+//			 	if (arrRep2.indexOf(arrRep[i])<0) {
+//			 		arrRep2.push(arrRep[i]);
+//			 	}
+//			 }
+//			return arr;
+//		}
+
+//第六题：
+//		getSix(1);
+		function getSix(num){
+			var arrSort = [2,52,6,82,15];
+			arrSort.sort(function(x,y){
+				return parseInt(x)-parseInt(y);
+			});
+			console.log(arrSort);
+			arrSort.push(num);
+			arrSort.sort(function(x,y){
+				return parseInt(x)-parseInt(y);
+			});
+			console.log(arrSort);
+		}	 
+		 
+		</script>
+	</body>
+</html>
